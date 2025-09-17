@@ -108,6 +108,7 @@ $breakpoint-down: (
   font-optical-sizing: auto;
   font-weight: 800;
   font-style: normal;
+  @include letterSpacing(-37);
 }
 
 //font-sizeここから
@@ -474,4 +475,112 @@ header {
       background-color: #F05692;
     }
   }
+}
+
+.main {
+  width: 100vw;
+  height: auto;
+}
+
+.mv {
+  width: 100%;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__bg {
+    aspect-ratio: 990 / 655;
+    height: 85.29%;
+    background-image: url(../images/mv-bg.png);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+  }
+
+  &__inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 90px 60px;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+  }
+
+  &__text {
+    li {
+      color: $mainColor;
+      @include fontSize(20, 18, 1.5, 1.6);
+      @include letterSpacing(150, 150);
+      padding-top: 20px;
+
+      &:first-child {
+        padding-top: 0;
+      }
+    }
+  }
+
+  &__logo {
+    color: $mainColor;
+    @include fontSize(31, 27, 1.5, 1.5);
+    @include Montserrat();
+    padding-top: 36px;
+
+    @include mq-down(md) {
+      padding-top: 0;
+    }
+
+    span {
+      color: $accentColor;
+    }
+  }
+
+  &__catch {
+    width: 38.89%;
+    height: auto;
+    height: 100%;
+  }
+
+  &__decoration {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    img {
+      width: 150px;
+      height: 150px;
+    }
+  }
+}
+
+
+
+
+// #mv {
+//   width: 50%;
+//   height: auto;
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+// }
+
+#base path {
+  fill: #000;
+  /* 塗りの色 */
+}
+
+#mask path {
+  fill: none;
+  /* 塗りの色 */
+  stroke: #ffffff;
+  /* 線の色 */
+  stroke-width: 10px;
+  /* 線幅 */
+  stroke-linecap: round;
+  /* 線端の形状 */
+  stroke-linejoin: round;
+  /* 角の形状 */
 }

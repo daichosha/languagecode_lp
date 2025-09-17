@@ -9,3 +9,8 @@ $(function () {
     }
   });
 });
+
+new Vivus( 'mv', { // svgに指定するid名
+    duration: 120, // アニメーションの長さ
+    forceRender: false, //パスが更新で再レンダリングさせない
+});
