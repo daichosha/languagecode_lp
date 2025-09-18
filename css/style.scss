@@ -29,7 +29,7 @@ $breakpoint-up: (
   "md": "screen and (min-width: 830px)",
   "lg": "screen and (min-width: 1100px)",
   "xl": "screen and (min-width: 1366px)",
-  ) !default;
+) !default;
 
 // max-width
 $breakpoint-down: (
@@ -39,7 +39,7 @@ $breakpoint-down: (
   "md": "screen and (max-width: 829px)",
   "lg": "screen and (max-width: 1099px)",
   "xl": "screen and (max-width: 1365px)",
-  ) !default;
+) !default;
 
 // @mixinの定義
 @mixin mq-up($breakpoint: md) {
@@ -74,13 +74,11 @@ $breakpoint-down: (
   }
 }
 
-
 //------------------------
 /* サイト設計 */
 
 // フォントタイプ/
-@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Montserrat:wght@800&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap'
-);
+@import url("https://fonts.googleapis.com/css2?family=Caveat&family=Montserrat:wght@800&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap");
 
 //font-familyここから
 @mixin Zenkaku($weight: bold) {
@@ -89,9 +87,7 @@ $breakpoint-down: (
 
   @if $weight ==medium {
     font-weight: 500;
-  }
-
-  @else if $weight ==bold {
+  } @else if $weight ==bold {
     font-weight: 700;
   }
 }
@@ -132,7 +128,6 @@ $letterSpacing: 50;
 
 // xdの数値をそのまま入力するletter-spacing
 @mixin letterSpacing($letterSpacing: $letterSpacing, $letterSpacing_md: $letterSpacing) {
-
   // 親プロパティはネストより上
   & {
     letter-spacing: calc(#{math.div($letterSpacing, 1000)} * 1em);
@@ -143,16 +138,14 @@ $letterSpacing: 50;
   }
 }
 
-
 //変数
-$fontColor: #1C1C1C;
-$mainColor: #2F5F98;
-$accentColor: #FBCA41;
-$pointColor: #46BBD8;
-$whiteColor: #F9F9F9;
-$bgColor: #EEEEEE;
-$lightColor: #E2EFFF;
-
+$fontColor: #1c1c1c;
+$mainColor: #2f5f98;
+$accentColor: #fbca41;
+$pointColor: #46bbd8;
+$whiteColor: #f9f9f9;
+$bgColor: #eeeeee;
+$lightColor: #e2efff;
 
 body {
   background-color: #fff;
@@ -194,10 +187,7 @@ header {
 
       @include mq-down(md) {
         padding: 0 22px;
-
       }
-
-
     }
 
     &__text {
@@ -241,7 +231,6 @@ header {
         &:last-of-type {
           border-left: none;
         }
-
       }
     }
   }
@@ -268,7 +257,6 @@ header {
       @include mq-down(md) {
         padding: 0 22px;
         top: 36px;
-
       }
     }
 
@@ -312,7 +300,6 @@ header {
         right: 5.33%;
       }
     }
-
   }
 
   .header__logo {
@@ -337,7 +324,6 @@ header {
       width: 43px;
       height: 43px;
     }
-
 
     &__inner {
       width: 24px;
@@ -445,7 +431,6 @@ header {
     @include fontSize(16, 12, 1, 1);
     @include letterSpacing(100, 50);
 
-
     img {
       width: 25px;
       height: auto;
@@ -468,11 +453,11 @@ header {
     }
 
     &--line {
-      background-color: #41CF70;
+      background-color: #41cf70;
     }
 
     &--instagram {
-      background-color: #F05692;
+      background-color: #f05692;
     }
   }
 }
@@ -555,9 +540,6 @@ header {
   }
 }
 
-
-
-
 // #mv {
 //   width: 50%;
 //   height: auto;
@@ -583,4 +565,310 @@ header {
   /* 線端の形状 */
   stroke-linejoin: round;
   /* 角の形状 */
+}
+
+// 共通パーツ
+.more-btn {
+  width: 185px;
+  height: 58px;
+  background-image: url(../images/button-bk.png);
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  img {
+    width: 28px;
+    height: 8px;
+    margin-top: 4px;
+  }
+
+  &__text {
+    font-family: "Caveat", cursive;
+    @include fontSize(20, 20, 1, 1);
+    @include letterSpacing(100);
+  }
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+// 共通パーツここまで
+
+.scene {
+  width: 100%;
+  padding-top: 80px;
+
+  &__box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  &__line {
+    position: absolute;
+    bottom: -16px;
+    width: 100%;
+    z-index: -1;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__img {
+    width: 130px;
+    aspect-ratio: 1 / 1;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .scene-ttl {
+    text-align: center;
+    color: $mainColor;
+    position: relative;
+
+    &__sup {
+      position: absolute;
+      top: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+
+      span {
+        @include fontSize(16, 1);
+        @include letterSpacing(100);
+        background-color: $accentColor;
+        padding: 4px 40px;
+        width: fit-content;
+        border-radius: 18px;
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          margin-left: -8px;
+          border: 8px solid transparent;
+          border-top: 8px solid $accentColor;
+        }
+      }
+    }
+
+    &__box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      padding-top: 16px;
+    }
+
+    &__img {
+      height: 88px;
+      position: relative;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &__img2 {
+      width: 120px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+    }
+
+    &__text {
+      @include fontSize(25, 1);
+      @include letterSpacing(50);
+    }
+  }
+
+  &__flex {
+    position: relative;
+  }
+
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    gap: 8px;
+    top: -48px;
+  }
+
+  &__item {
+    &:nth-child(2) {
+      padding-top: 38px;
+    }
+    &:nth-child(3) {
+      padding-top: 40px;
+    }
+  }
+}
+
+.holl {
+  padding-top: 320px;
+
+  .holl-ttl {
+    text-align: center;
+    color: $fontColor;
+    @include fontSize(20, 1);
+    @include letterSpacing(50);
+
+    &__top {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+
+      img {
+        width: 402px;
+      }
+    }
+
+    &__bottom {
+      margin-top: 8px;
+      position: relative;
+      width: fit-content;
+      margin: 0 auto;
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 58px;
+        height: 8px;
+        background-image: url(../images/holl-ttlline.png);
+        background-size: cover;
+        bottom: -8px;
+        left: 120px;
+      }
+    }
+  }
+
+  &__wrap {
+    width: 100%;
+    height: 600px;
+    background: $mainColor;
+    clip-path: polygon(0 0, /* 左上 */ 50% 10%, /* 中央を少し下げる */ 100% 0, /* 右上 */ 100% 100%, /* 右下 */ 0 100% /* 左下 */);
+  }
+
+  .holl-bottom {
+    padding-top: 120px;
+
+    .holl-text {
+      text-align: center;
+      @include fontSize(24, 1);
+      @include letterSpacing(50);
+
+      &__bottom {
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+        margin-top: 8px;
+      }
+
+      &__logo {
+        color: $mainColor;
+        @include fontSize(30, 1);
+        @include Montserrat();
+        margin-right: 8px;
+
+        span {
+          color: $accentColor;
+        }
+      }
+
+      &__sup {
+        text-align: center;
+        margin-top: 44px;
+        @include fontSize(20, 20, 2, 2);
+        @include letterSpacing(50);
+
+        span {
+          position: relative;
+          z-index: 1;
+          margin: 0 4px;
+
+          &::before {
+            content: "";
+            position: absolute;
+            width: 108%;
+            height: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            -webkit-transform: translateX(-50%);
+            -ms-transform: translateX(-50%);
+            bottom: 0;
+            background-color: $accentColor;
+            z-index: -1;
+          }
+
+          &::after {
+            content: "8";
+            position: absolute;
+            bottom: -2px;
+            left: -2px;
+            font-family: "Caveat", cursive;
+            @include fontSize(40, 40, 1, 1);
+            @include letterSpacing(100);
+            color: $mainColor;
+          }
+        }
+      }
+    }
+  }
+
+  &__btn {
+    width: fit-content;
+    margin: 26px auto 0;
+  }
+
+  &__message {
+    margin-top: 44px;
+    width: 562px;
+  }
+}
+
+.story {
+  margin-top: 124px;
+
+  .story-ttl {
+    text-align: center;
+
+    &__en {
+      font-family: "Caveat", cursive;
+      @include fontSize(60, 60, 1, 1);
+      @include letterSpacing(200);
+      color: $accentColor;
+      font-weight: 100;
+    }
+
+    &__ja {
+      @include fontSize(30, 30, 1, 1);
+      @include letterSpacing(100);
+      color: $mainColor;
+      margin-top: 8px;
+    }
+  }
+
+  &__text {
+    text-align: center;
+    margin-top: 40px;
+    @include fontSize(16, 16, 2, 2);
+    @include letterSpacing(50);
+  }
 }
