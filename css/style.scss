@@ -850,20 +850,14 @@ header {
     text-align: center;
 
     &__en {
-      h2 {
-        font-family: "Caveat", cursive;
-        @include fontSize(60, 60, 1, 1);
-        @include letterSpacing(200);
-        color: $accentColor;
-        font-weight: 100;
-      }
+      width: 166px;
+      margin: 0 auto;
     }
 
     &__ja {
       @include fontSize(30, 30, 1, 1);
       @include letterSpacing(100);
       color: $mainColor;
-      margin-top: 8px;
     }
   }
 
@@ -903,7 +897,7 @@ header {
       &::after {
         content: "";
         position: absolute;
-        background-image: url(../images/story-nav_line01.png);
+        background-image: url(../images/walk-line.png);
         background-size: cover;
         width: 100%;
         height: 4px;
@@ -913,13 +907,13 @@ header {
 
       &:nth-child(2) {
         &::after {
-          background-image: url(../images/story-nav_line02.png);
+          background-image: url(../images/lang-line.png);
         }
       }
 
       &:nth-child(3) {
         &::after {
-          background-image: url(../images/story-nav_line03.png);
+          background-image: url(../images/regular-line.png);
         }
       }
     }
@@ -944,13 +938,11 @@ header {
           color: #43b771;
 
           &::before {
-            background: url(../images/lang-deco01.png);
-            background-size: contain;
+            background-image: url(../images/lang-deco01.png);
           }
 
           &::after {
-            background: url(../images/lang-deco02.png);
-            background-size: contain;
+            background-image: url(../images/lang-deco02.png);
           }
 
           > .story-list__inner {
@@ -973,6 +965,10 @@ header {
               }
 
               > .story-list__about {
+                &::after {
+                  background-image: url(../images/lang-serif.png);
+                }
+
                 > .story-list__block {
                   &:nth-child(2) {
                     > .story-list__unit {
@@ -1004,9 +1000,9 @@ header {
               background: rgba(67, 183, 113, 0.1);
 
               li {
-              > .story-list__navcap{
-                color: #43b771;
-                background-image: url(../images/lang-navcap.png);
+                > .story-list__navcap {
+                  color: #43b771;
+                  background-image: url(../images/lang-navcap.png);
                 }
               }
             }
@@ -1018,17 +1014,15 @@ header {
         background: rgba(159, 98, 184, 0.1);
 
         > .story-list__outer {
-          border: solid 2px #9F62B8;
-          color: #9F62B8;
+          border: solid 2px #9f62b8;
+          color: #9f62b8;
 
           &::before {
-            background: url(../images/regular-deco01.png);
-            background-size: contain;
+            background-image: url(../images/regular-deco01.png);
           }
 
           &::after {
-            background: url(../images/regular-deco02.png);
-            background-size: contain;
+            background-image: url(../images/regular-deco02.png);
           }
 
           > .story-list__inner {
@@ -1046,31 +1040,35 @@ header {
                 }
 
                 > .story-list__btn {
-                  background-color: #9F62B8;
+                  background-color: #9f62b8;
                 }
               }
 
               > .story-list__about {
+                &::after {
+                  background-image: url(../images/regular-serif.png);
+                }
+
                 > .story-list__block {
                   &:nth-child(2) {
                     > .story-list__unit {
                       > .story-list__item {
-                        border: dashed 1px #9F62B8;
+                        border: dashed 1px #9f62b8;
                       }
                     }
                   }
 
                   > .story-list__unit {
                     > .story-list__tab {
-                      background-color: #9F62B8;
+                      background-color: #9f62b8;
                     }
 
                     > .story-list__item {
-                      border: solid 1px #9F62B8;
+                      border: solid 1px #9f62b8;
 
                       &::after {
-                        background-color: #9F62B8;
-                        border: solid 1px #9F62B8;
+                        background-color: #9f62b8;
+                        border: solid 1px #9f62b8;
                       }
                     }
                   }
@@ -1082,9 +1080,9 @@ header {
               background: rgba(159, 98, 184, 0.1);
 
               li {
-              > .story-list__navcap{
-                color: #9F62B8;
-                background-image: url(../images/regular-navcap.png);
+                > .story-list__navcap {
+                  color: #9f62b8;
+                  background-image: url(../images/regular-navcap.png);
                 }
               }
             }
@@ -1106,7 +1104,7 @@ header {
       &::before {
         position: absolute;
         content: "";
-        background: url(../images/walk-deco01.png);
+        background-image: url(../images/walk-deco01.png);
         background-size: contain;
         width: 150px;
         height: 150px;
@@ -1117,7 +1115,7 @@ header {
       &::after {
         position: absolute;
         content: "";
-        background: url(../images/walk-deco02.png);
+        background-image: url(../images/walk-deco02.png);
         background-size: contain;
         width: 150px;
         height: 150px;
@@ -1216,10 +1214,22 @@ header {
       width: 54%;
       position: relative;
 
+      &::before {
+        position: absolute;
+        content: "たとえば、\Aこんなご提案をします";
+        white-space: pre;
+        width: 236px;
+        top: -72px;
+        right: 0;
+        text-align: center;
+        @include fontSize(16, 16, 1.6, 1.6);
+        @include letterSpacing(100);
+      }
+
       &::after {
         position: absolute;
         content: "";
-        background: url(../images/walk-serif.png);
+        background-image: url(../images/walk-serif.png);
         background-size: contain;
         background-repeat: no-repeat;
         width: 236px;
