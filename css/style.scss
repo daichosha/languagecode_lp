@@ -29,7 +29,7 @@ $breakpoint-up: (
   "md": "screen and (min-width: 830px)",
   "lg": "screen and (min-width: 1100px)",
   "xl": "screen and (min-width: 1366px)",
-) !default;
+  ) !default;
 
 // max-width
 $breakpoint-down: (
@@ -39,7 +39,7 @@ $breakpoint-down: (
   "md": "screen and (max-width: 829px)",
   "lg": "screen and (max-width: 1099px)",
   "xl": "screen and (max-width: 1365px)",
-) !default;
+  ) !default;
 
 // @mixinの定義
 @mixin mq-up($breakpoint: md) {
@@ -78,7 +78,8 @@ $breakpoint-down: (
 /* サイト設計 */
 
 // フォントタイプ/
-@import url("https://fonts.googleapis.com/css2?family=Caveat&family=Montserrat:wght@800&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:wght@800&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap'
+);
 
 //font-familyここから
 @mixin Zenkaku($weight: bold) {
@@ -87,16 +88,25 @@ $breakpoint-down: (
 
   @if $weight ==medium {
     font-weight: 500;
-  } @else if $weight ==bold {
+  }
+
+  @else if $weight ==bold {
     font-weight: 700;
   }
 }
 
-@mixin Caveat() {
+@mixin Caveat($weight: regular) {
   font-family: "Caveat", cursive;
   font-optical-sizing: auto;
-  font-weight: 400;
   font-style: normal;
+
+  @if $weight ==regular {
+    font-weight: 400;
+  }
+
+  @else if $weight ==bold {
+    font-weight: 700;
+  }
 }
 
 @mixin Montserrat() {
@@ -128,6 +138,7 @@ $letterSpacing: 50;
 
 // xdの数値をそのまま入力するletter-spacing
 @mixin letterSpacing($letterSpacing: $letterSpacing, $letterSpacing_md: $letterSpacing) {
+
   // 親プロパティはネストより上
   & {
     letter-spacing: calc(#{math.div($letterSpacing, 1000)} * 1em);
@@ -177,7 +188,7 @@ header {
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      max-width: 1366px;
+      padding: 0 4%;
       color: #fff;
       margin: 0 auto;
 
@@ -241,9 +252,9 @@ header {
       display: flex;
       left: 50%;
       transform: translate(-50%, 0%);
-      max-width: 1366px;
       align-items: center;
       padding-top: 16px;
+      padding: 16px 4% 0 4%;
       margin: 0 auto;
       width: 100%;
       justify-content: space-between;
@@ -524,8 +535,52 @@ header {
 
   &__catch {
     width: 38.89%;
-    height: auto;
     height: 100%;
+  }
+
+  &__img {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding-top: 16%;
+
+    &::after {
+      position: absolute;
+      content: "";
+      right: 0;
+      top: 0;
+      aspect-ratio: 98 / 84;
+      width: 25%;
+      height: auto;
+      background-image: url(../images/mv-star.png);
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+
+
+  svg {
+    width: 91%;
+    filter: drop-shadow(0px 3px 6px #2F5F98);
+
+    #base path {
+      fill: #fff;
+      /* 塗りの色 */
+    }
+
+    #mask path {
+      fill: none;
+      /* 塗りの色 */
+      stroke: #ffffff;
+      /* 線の色 */
+      stroke-width: 10px;
+      /* 線幅 */
+      stroke-linecap: round;
+      /* 線端の形状 */
+      stroke-linejoin: round;
+      /* 角の形状 */
+    }
   }
 
   &__decoration {
@@ -549,23 +604,6 @@ header {
 //   transform: translate(-50%, -50%);
 // }
 
-#base path {
-  fill: #000;
-  /* 塗りの色 */
-}
-
-#mask path {
-  fill: none;
-  /* 塗りの色 */
-  stroke: #ffffff;
-  /* 線の色 */
-  stroke-width: 10px;
-  /* 線幅 */
-  stroke-linecap: round;
-  /* 線端の形状 */
-  stroke-linejoin: round;
-  /* 角の形状 */
-}
 
 // 共通パーツ
 .more-btn {
@@ -585,16 +623,17 @@ header {
   }
 
   &__text {
-    font-family: "Caveat", cursive;
     @include fontSize(20, 20, 1, 1);
     @include letterSpacing(100);
+    @include Caveat(bold);
   }
 }
 
 .container {
-  width: 80%;
+  max-width: 1100px;
   margin: 0 auto;
 }
+
 // 共通パーツここまで
 
 .scene {
@@ -610,8 +649,11 @@ header {
 
   &__line {
     position: absolute;
-    bottom: -16px;
-    width: 100%;
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    width: 100vw;
     z-index: -1;
 
     img {
@@ -707,13 +749,14 @@ header {
     justify-content: space-between;
     position: absolute;
     gap: 8px;
-    top: -48px;
+    top: -46px;
   }
 
   &__item {
     &:nth-child(2) {
       padding-top: 38px;
     }
+
     &:nth-child(3) {
       padding-top: 40px;
     }
@@ -762,11 +805,24 @@ header {
   &__wrap {
     width: 100%;
     background: $mainColor;
-    clip-path: polygon(0 0, /* 左上 */ 50% 10%, /* 中央を少し下げる */ 100% 0, /* 右上 */ 100% 100%, /* 右下 */ 0 100% /* 左下 */);
+    clip-path: polygon(0 0,
+        /* 左上 */
+        50% 10%,
+        /* 中央を少し下げる */
+        100% 0,
+        /* 右上 */
+        100% 100%,
+        /* 右下 */
+        0 100%
+        /* 左下 */
+      );
+
+    position: relative;
+    z-index: -10;
   }
 
   &__box {
-    padding: 152px 0;
+    padding: 152px 0 20px 0;
   }
 
   &__point {
@@ -786,8 +842,8 @@ header {
       gap: 10px;
 
       &:nth-child(2) {
-      padding-top: 6px;
-    }
+        padding-top: 6px;
+      }
     }
 
     img {
@@ -820,17 +876,45 @@ header {
 
   .holl-bottom {
     padding-top: 120px;
+    position: relative;
+
+    &::after {
+      content: "";
+      width: 75%;
+      height: auto;
+      aspect-ratio: 1260 / 658;
+      background-image: url(../images/holl-bottom-bk.png);
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 30%;
+      right: 0;
+      transform: translate(0%, -50%);
+      z-index: -1;
+
+
+    }
 
     .holl-text {
       text-align: center;
       @include fontSize(24, 1);
       @include letterSpacing(50);
 
+
+      &__top {
+        background-color: #fff;
+        width: fit-content;
+        margin: 0 auto;
+      }
+
       &__bottom {
         display: flex;
         justify-content: center;
         align-items: baseline;
-        margin-top: 8px;
+        background-color: #fff;
+        width: fit-content;
+        margin: 8px auto 0;
       }
 
       &__logo {
@@ -849,6 +933,12 @@ header {
         margin-top: 44px;
         @include fontSize(20, 20, 2, 2);
         @include letterSpacing(50);
+
+        p {
+          background-color: #fff;
+          width: fit-content;
+          margin: 0 auto;
+        }
 
         span {
           position: relative;
@@ -874,10 +964,11 @@ header {
             position: absolute;
             bottom: -2px;
             left: -2px;
-            font-family: "Caveat", cursive;
+            color: $mainColor;
             @include fontSize(40, 40, 1, 1);
             @include letterSpacing(100);
-            color: $mainColor;
+            @include Caveat();
+
           }
         }
       }
@@ -893,6 +984,98 @@ header {
     margin-top: 44px;
     width: 562px;
   }
+
+  &__content {
+    position: relative;
+    top: -90px;
+  }
+
+  &__list {
+    color: $mainColor;
+    @include fontSize(14, 13, 1.5, 1.5);
+    text-align: center;
+    height: 374px;
+
+
+    li {
+      width: 320px;
+      height: 140px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url(../images/holl-bk01.png);
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: absolute;
+
+      // &:nth-child(2n) {
+      //   background-image: url(../images/holl-bk02.png);
+      // }
+
+      // &:nth-child(3n) {
+      //   background-image: url(../images/holl-bk03.png);
+      // }
+
+
+      &:nth-child(1) {
+        top: 40px;
+        left: 0;
+        background-image: url(../images/holl-bk.png);
+        background-size: 100%;
+        background-position: left;
+        width: 670px;
+        justify-content: end;
+
+
+        p {
+          width: 320px;
+          height: 140px;
+          height: fit-content;
+        }
+
+
+        // &::after {
+        //   content: "";
+        //   position: absolute;
+        //   width: 418px;
+        //   height: 56px;
+        //   background-image: url(../images/holl-line.png);
+        //   left: 0;
+        // }
+      }
+
+      &:nth-child(2) {
+        top: 0;
+        right: 152px;
+        background-image: url(../images/holl-bk02.png);
+      }
+
+      &:nth-child(3) {
+        top: 95px;
+        right: 0;
+        background-image: url(../images/holl-bk03.png);
+      }
+
+      &:nth-child(4) {
+        bottom: 30px;
+        right: 143px;
+        background-image: url(../images/holl-bk01.png);
+      }
+
+      &:nth-child(5) {
+        bottom: 0;
+        right: 440px;
+        background-image: url(../images/holl-bk03.png);
+      }
+
+      &:nth-child(6) {
+        bottom: 63px;
+        left: 80px;
+        background-image: url(../images/holl-bk02.png);
+      }
+    }
+  }
 }
 
 .story {
@@ -904,6 +1087,26 @@ header {
     &__en {
       width: 166px;
       margin: 0 auto;
+
+      svg {
+        #story-base path {
+          fill: $accentColor;
+          /* 塗りの色 */
+        }
+
+        #story-mask path {
+          fill: none;
+          /* 塗りの色 */
+          stroke: #ffffff;
+          /* 線の色 */
+          stroke-width: 5px;
+          /* 線幅 */
+          stroke-linecap: round;
+          /* 線端の形状 */
+          stroke-linejoin: round;
+          /* 角の形状 */
+        }
+      }
     }
 
     &__ja {
@@ -973,6 +1176,7 @@ header {
 
   .story-list {
     margin-top: 48px;
+     height: 100vh;
 
     &__wrap {
       background: rgba(70, 187, 216, 0.1);
@@ -985,7 +1189,7 @@ header {
       &:nth-child(2) {
         background: rgba(67, 183, 113, 0.1);
 
-        > .story-list__outer {
+        >.story-list__outer {
           border: solid 2px #43b771;
           color: #43b771;
 
@@ -997,45 +1201,45 @@ header {
             background-image: url(../images/lang-deco02.png);
           }
 
-          > .story-list__inner {
-            > .story-list__ttl {
+          >.story-list__inner {
+            >.story-list__ttl {
               &::after {
                 background-image: url(../images/lang-line.png);
               }
             }
 
-            > .story-list__box {
-              > .story-list__img {
+            >.story-list__box {
+              >.story-list__img {
                 &::before {
                   content: "ESL";
                   left: -16px;
                 }
 
-                > .story-list__btn {
+                >.story-list__btn {
                   background-color: #43b771;
                 }
               }
 
-              > .story-list__about {
+              >.story-list__about {
                 &::after {
                   background-image: url(../images/lang-serif.png);
                 }
 
-                > .story-list__block {
+                >.story-list__block {
                   &:nth-child(2) {
-                    > .story-list__unit {
-                      > .story-list__item {
+                    >.story-list__unit {
+                      >.story-list__item {
                         border: dashed 1px #43b771;
                       }
                     }
                   }
 
-                  > .story-list__unit {
-                    > .story-list__tab {
+                  >.story-list__unit {
+                    >.story-list__tab {
                       background-color: #43b771;
                     }
 
-                    > .story-list__item {
+                    >.story-list__item {
                       border: solid 1px #43b771;
 
                       &::after {
@@ -1048,11 +1252,11 @@ header {
               }
             }
 
-            > .story-list__nav {
+            >.story-list__nav {
               background: rgba(67, 183, 113, 0.1);
 
               li {
-                > .story-list__navcap {
+                >.story-list__navcap {
                   color: #43b771;
                   background-image: url(../images/lang-navcap.png);
                 }
@@ -1065,7 +1269,7 @@ header {
       &:nth-child(3) {
         background: rgba(159, 98, 184, 0.1);
 
-        > .story-list__outer {
+        >.story-list__outer {
           border: solid 2px #9f62b8;
           color: #9f62b8;
 
@@ -1077,46 +1281,55 @@ header {
             background-image: url(../images/regular-deco02.png);
           }
 
-          > .story-list__inner {
-            > .story-list__ttl {
+          >.story-list__inner {
+            >.story-list__ttl {
               &::after {
                 background-image: url(../images/regular-line.png);
               }
             }
 
-            > .story-list__box {
-              > .story-list__img {
+            >.story-list__box {
+              >.story-list__img {
                 &::before {
                   content: "Diploma & Degree Program";
                   top: -20px;
                 }
 
-                > .story-list__btn {
+                >.story-list__btn {
                   background-color: #9f62b8;
                 }
               }
 
-              > .story-list__about {
+              >.story-list__about {
                 &::after {
                   background-image: url(../images/regular-serif.png);
                 }
 
-                > .story-list__block {
+                >.story-list__block {
+                  &:nth-child(1) {
+                    >.story-list__unit {
+                      width: 91%;
+                    }
+
+                  }
+
                   &:nth-child(2) {
-                    > .story-list__unit {
-                      > .story-list__item {
+                    >.story-list__unit {
+                      >.story-list__item {
                         border: dashed 1px #9f62b8;
                       }
                     }
                   }
 
-                  > .story-list__unit {
-                    > .story-list__tab {
+                  >.story-list__unit {
+
+                    >.story-list__tab {
                       background-color: #9f62b8;
                     }
 
-                    > .story-list__item {
+                    >.story-list__item {
                       border: solid 1px #9f62b8;
+
 
                       &::after {
                         background-color: #9f62b8;
@@ -1128,11 +1341,11 @@ header {
               }
             }
 
-            > .story-list__nav {
+            >.story-list__nav {
               background: rgba(159, 98, 184, 0.1);
 
               li {
-                > .story-list__navcap {
+                >.story-list__navcap {
                   color: #9f62b8;
                   background-image: url(../images/regular-navcap.png);
                 }
@@ -1144,7 +1357,8 @@ header {
     }
 
     &__outer {
-      width: 92%;
+      max-width: 1256px;
+      width: 100%;
       margin: 0 auto;
       background-color: #fff;
       border: solid 2px #46bbd8;
@@ -1177,20 +1391,22 @@ header {
     }
 
     &__inner {
-      width: 88%;
+      max-width: 1100px;
+      width: 100%;
       margin: 0 auto;
     }
 
     &__ttl {
       width: fit-content;
       position: relative;
+
       h3 {
-        @include fontSize(30, 30, 1, 1);
+        @include fontSize(30, 20, 1, 1);
         @include letterSpacing(100);
 
         span {
-          font-family: "Caveat", cursive;
-          @include fontSize(29, 29, 1, 1);
+          @include Caveat();
+          @include fontSize(29, 20, 1, 1);
         }
       }
 
@@ -1207,7 +1423,7 @@ header {
     }
 
     &__note {
-      @include fontSize(18, 18, 1.5, 1.5);
+      @include fontSize(18, 14, 1.5, 1.5);
       @include letterSpacing(100);
       margin-top: 48px;
     }
@@ -1296,15 +1512,16 @@ header {
       justify-content: left;
       align-items: end;
       gap: 10px;
-      @include fontSize(20, 20, 1, 1);
-      @include letterSpacing(100);
+      @include fontSize(18, 13, 1, 1);
+      @include letterSpacing(100, 50);
 
       &:nth-child(2) {
         margin-top: 20px;
 
-        > .story-list__unit {
-          width: 35%;
-          > .story-list__item {
+        >.story-list__unit {
+          width: 34%;
+
+          >.story-list__item {
             border: dashed 1px #46bbd8;
           }
         }
@@ -1314,6 +1531,7 @@ header {
     &__unit {
       position: relative;
       width: 76%;
+
       &:nth-of-type(3) {
         margin-left: 32px;
       }
@@ -1358,7 +1576,7 @@ header {
       position: relative;
 
       span {
-        font-family: "Caveat", cursive;
+        @include Caveat(regular);
         @include fontSize(50, 50, 1, 1);
         @include letterSpacing(100);
         position: absolute;
@@ -1378,7 +1596,7 @@ header {
 
       img {
         width: 100%;
-        height: 100%;
+        height: auto;
       }
     }
 
@@ -1428,4 +1646,19 @@ header {
       align-items: center;
     }
   }
+
+.vertical-slider {
+  height: 100%;
+  overflow: hidden;
+}
+
+.vertical-slider .swiper-slide {
+  height: 100vh; /* 1スライドを必ず1画面に */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+
+}
+
 }
