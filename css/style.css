@@ -1,5 +1,5 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Caveat&family=Montserrat:wght@800&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:wght@800&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap");
 input[type=submit],
 input[type=button] {
   border-radius: 0;
@@ -73,7 +73,7 @@ header .header-title__inner {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  max-width: 1366px;
+  padding: 0 4%;
   color: #fff;
   margin: 0 auto;
 }
@@ -158,9 +158,9 @@ header .header-nav__inner {
   display: flex;
   left: 50%;
   transform: translate(-50%, 0%);
-  max-width: 1366px;
   align-items: center;
   padding-top: 16px;
+  padding: 16px 4% 0 4%;
   margin: 0 auto;
   width: 100%;
   justify-content: space-between;
@@ -460,25 +460,36 @@ header .hamburger.on .hamburger__line:last-of-type {
 }
 .mv__catch {
   width: 38.89%;
-  height: auto;
   height: 100%;
 }
-.mv__decoration {
+.mv__img {
+  width: 100%;
+  height: auto;
+  position: relative;
+  padding-top: 16%;
+}
+.mv__img::after {
   position: absolute;
-  bottom: 0;
+  content: "";
   right: 0;
+  top: 0;
+  aspect-ratio: 98/84;
+  width: 25%;
+  height: auto;
+  background-image: url(../images/mv-star.png);
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
-.mv__decoration img {
-  width: 150px;
-  height: 150px;
+.mv svg {
+  width: 91%;
+  filter: drop-shadow(0px 3px 6px #2F5F98);
 }
-
-#base path {
-  fill: #000;
+.mv svg #base path {
+  fill: #fff;
   /* 塗りの色 */
 }
-
-#mask path {
+.mv svg #mask path {
   fill: none;
   /* 塗りの色 */
   stroke: #ffffff;
@@ -489,6 +500,15 @@ header .hamburger.on .hamburger__line:last-of-type {
   /* 線端の形状 */
   stroke-linejoin: round;
   /* 角の形状 */
+}
+.mv__decoration {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.mv__decoration img {
+  width: 150px;
+  height: 150px;
 }
 
 .more-btn {
@@ -507,9 +527,12 @@ header .hamburger.on .hamburger__line:last-of-type {
   margin-top: 4px;
 }
 .more-btn__text {
-  font-family: "Caveat", cursive;
   font-size: 20px;
   line-height: 1;
+  font-family: "Caveat", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 700;
 }
 @media screen and (max-width: 829px) {
   .more-btn__text {
@@ -527,7 +550,7 @@ header .hamburger.on .hamburger__line:last-of-type {
 }
 
 .container {
-  width: 80%;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
@@ -543,8 +566,11 @@ header .hamburger.on .hamburger__line:last-of-type {
 }
 .scene__line {
   position: absolute;
-  bottom: -16px;
-  width: 100%;
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  width: 100vw;
   z-index: -1;
 }
 .scene__line img {
@@ -654,7 +680,7 @@ header .hamburger.on .hamburger__line:last-of-type {
   justify-content: space-between;
   position: absolute;
   gap: 8px;
-  top: -48px;
+  top: -46px;
 }
 .scene__item:nth-child(2) {
   padding-top: 38px;
@@ -715,9 +741,11 @@ header .hamburger.on .hamburger__line:last-of-type {
   width: 100%;
   background: #2f5f98;
   clip-path: polygon(0 0, 50% 10%, 100% 0, 100% 100%, 0 100%);
+  position: relative;
+  z-index: -10;
 }
 .holl__box {
-  padding: 152px 0;
+  padding: 152px 0 20px 0;
 }
 .holl__point {
   width: fit-content;
@@ -778,6 +806,22 @@ header .hamburger.on .hamburger__line:last-of-type {
 }
 .holl .holl-bottom {
   padding-top: 120px;
+  position: relative;
+}
+.holl .holl-bottom::after {
+  content: "";
+  width: 75%;
+  height: auto;
+  aspect-ratio: 1260/658;
+  background-image: url(../images/holl-bottom-bk.png);
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 30%;
+  right: 0;
+  transform: translate(0%, -50%);
+  z-index: -1;
 }
 .holl .holl-bottom .holl-text {
   text-align: center;
@@ -798,11 +842,18 @@ header .hamburger.on .hamburger__line:last-of-type {
     letter-spacing: calc(0.05 * 1em);
   }
 }
+.holl .holl-bottom .holl-text__top {
+  background-color: #fff;
+  width: fit-content;
+  margin: 0 auto;
+}
 .holl .holl-bottom .holl-text__bottom {
   display: flex;
   justify-content: center;
   align-items: baseline;
-  margin-top: 8px;
+  background-color: #fff;
+  width: fit-content;
+  margin: 8px auto 0;
 }
 .holl .holl-bottom .holl-text__logo {
   color: #2f5f98;
@@ -851,6 +902,11 @@ header .hamburger.on .hamburger__line:last-of-type {
     letter-spacing: calc(0.05 * 1em);
   }
 }
+.holl .holl-bottom .holl-text__sup p {
+  background-color: #fff;
+  width: fit-content;
+  margin: 0 auto;
+}
 .holl .holl-bottom .holl-text__sup span {
   position: relative;
   z-index: 1;
@@ -874,10 +930,13 @@ header .hamburger.on .hamburger__line:last-of-type {
   position: absolute;
   bottom: -2px;
   left: -2px;
-  font-family: "Caveat", cursive;
+  color: #2f5f98;
   font-size: 40px;
   line-height: 1;
-  color: #2f5f98;
+  font-family: "Caveat", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 400;
 }
 @media screen and (max-width: 829px) {
   .holl .holl-bottom .holl-text__sup span::after {
@@ -901,6 +960,74 @@ header .hamburger.on .hamburger__line:last-of-type {
   margin-top: 44px;
   width: 562px;
 }
+.holl__content {
+  position: relative;
+  top: -90px;
+}
+.holl__list {
+  color: #2f5f98;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+  height: 374px;
+}
+@media screen and (max-width: 829px) {
+  .holl__list {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+}
+.holl__list li {
+  width: 320px;
+  height: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../images/holl-bk01.png);
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+}
+.holl__list li:nth-child(1) {
+  top: 40px;
+  left: 0;
+  background-image: url(../images/holl-bk.png);
+  background-size: 100%;
+  background-position: left;
+  width: 670px;
+  justify-content: end;
+}
+.holl__list li:nth-child(1) p {
+  width: 320px;
+  height: 140px;
+  height: fit-content;
+}
+.holl__list li:nth-child(2) {
+  top: 0;
+  right: 152px;
+  background-image: url(../images/holl-bk02.png);
+}
+.holl__list li:nth-child(3) {
+  top: 95px;
+  right: 0;
+  background-image: url(../images/holl-bk03.png);
+}
+.holl__list li:nth-child(4) {
+  bottom: 30px;
+  right: 143px;
+  background-image: url(../images/holl-bk01.png);
+}
+.holl__list li:nth-child(5) {
+  bottom: 0;
+  right: 440px;
+  background-image: url(../images/holl-bk03.png);
+}
+.holl__list li:nth-child(6) {
+  bottom: 63px;
+  left: 80px;
+  background-image: url(../images/holl-bk02.png);
+}
 
 .story {
   margin-top: 124px;
@@ -911,6 +1038,22 @@ header .hamburger.on .hamburger__line:last-of-type {
 .story .story-ttl__en {
   width: 166px;
   margin: 0 auto;
+}
+.story .story-ttl__en svg #story-base path {
+  fill: #fbca41;
+  /* 塗りの色 */
+}
+.story .story-ttl__en svg #story-mask path {
+  fill: none;
+  /* 塗りの色 */
+  stroke: #ffffff;
+  /* 線の色 */
+  stroke-width: 5px;
+  /* 線幅 */
+  stroke-linecap: round;
+  /* 線端の形状 */
+  stroke-linejoin: round;
+  /* 角の形状 */
 }
 .story .story-ttl__ja {
   font-size: 30px;
@@ -1007,6 +1150,7 @@ header .hamburger.on .hamburger__line:last-of-type {
 }
 .story .story-list {
   margin-top: 48px;
+  height: 100vh;
 }
 .story .story-list__wrap {
   background: rgba(70, 187, 216, 0.1);
@@ -1088,6 +1232,9 @@ header .hamburger.on .hamburger__line:last-of-type {
 .story .story-list__wrap:nth-child(3) > .story-list__outer > .story-list__inner > .story-list__box > .story-list__about::after {
   background-image: url(../images/regular-serif.png);
 }
+.story .story-list__wrap:nth-child(3) > .story-list__outer > .story-list__inner > .story-list__box > .story-list__about > .story-list__block:nth-child(1) > .story-list__unit {
+  width: 91%;
+}
 .story .story-list__wrap:nth-child(3) > .story-list__outer > .story-list__inner > .story-list__box > .story-list__about > .story-list__block:nth-child(2) > .story-list__unit > .story-list__item {
   border: dashed 1px #9f62b8;
 }
@@ -1109,7 +1256,8 @@ header .hamburger.on .hamburger__line:last-of-type {
   background-image: url(../images/regular-navcap.png);
 }
 .story .story-list__outer {
-  width: 92%;
+  max-width: 1256px;
+  width: 100%;
   margin: 0 auto;
   background-color: #fff;
   border: solid 2px #46bbd8;
@@ -1139,7 +1287,8 @@ header .hamburger.on .hamburger__line:last-of-type {
   bottom: 12px;
 }
 .story .story-list__inner {
-  width: 88%;
+  max-width: 1100px;
+  width: 100%;
   margin: 0 auto;
 }
 .story .story-list__ttl {
@@ -1152,7 +1301,7 @@ header .hamburger.on .hamburger__line:last-of-type {
 }
 @media screen and (max-width: 829px) {
   .story .story-list__ttl h3 {
-    font-size: 30px;
+    font-size: 20px;
     line-height: 1;
   }
 }
@@ -1166,12 +1315,15 @@ header .hamburger.on .hamburger__line:last-of-type {
 }
 .story .story-list__ttl h3 span {
   font-family: "Caveat", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 400;
   font-size: 29px;
   line-height: 1;
 }
 @media screen and (max-width: 829px) {
   .story .story-list__ttl h3 span {
-    font-size: 29px;
+    font-size: 20px;
     line-height: 1;
   }
 }
@@ -1192,7 +1344,7 @@ header .hamburger.on .hamburger__line:last-of-type {
 }
 @media screen and (max-width: 829px) {
   .story .story-list__note {
-    font-size: 18px;
+    font-size: 14px;
     line-height: 1.5;
   }
 }
@@ -1307,12 +1459,12 @@ header .hamburger.on .hamburger__line:last-of-type {
   justify-content: left;
   align-items: end;
   gap: 10px;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1;
 }
 @media screen and (max-width: 829px) {
   .story .story-list__block {
-    font-size: 20px;
+    font-size: 13px;
     line-height: 1;
   }
 }
@@ -1321,14 +1473,14 @@ header .hamburger.on .hamburger__line:last-of-type {
 }
 @media screen and (max-width: 829px) {
   .story .story-list__block {
-    letter-spacing: calc(0.1 * 1em);
+    letter-spacing: calc(0.05 * 1em);
   }
 }
 .story .story-list__block:nth-child(2) {
   margin-top: 20px;
 }
 .story .story-list__block:nth-child(2) > .story-list__unit {
-  width: 35%;
+  width: 34%;
 }
 .story .story-list__block:nth-child(2) > .story-list__unit > .story-list__item {
   border: dashed 1px #46bbd8;
@@ -1391,6 +1543,9 @@ header .hamburger.on .hamburger__line:last-of-type {
 }
 .story .story-list__text span {
   font-family: "Caveat", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 400;
   font-size: 50px;
   line-height: 1;
   position: absolute;
@@ -1422,7 +1577,7 @@ header .hamburger.on .hamburger__line:last-of-type {
 }
 .story .story-list__caption img {
   width: 100%;
-  height: 100%;
+  height: auto;
 }
 .story .story-list__nav {
   display: flex;
@@ -1491,4 +1646,15 @@ header .hamburger.on .hamburger__line:last-of-type {
   .story .story-list__navcap {
     letter-spacing: calc(0.1 * 1em);
   }
-}/*# sourceMappingURL=style.css.map */
+}
+.story .vertical-slider {
+  height: 100%;
+  overflow: hidden;
+}
+.story .vertical-slider .swiper-slide {
+  height: 100vh; /* 1スライドを必ず1画面に */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
