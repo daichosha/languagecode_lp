@@ -20,34 +20,54 @@ new Vivus('story', { // svgに指定するid名
   forceRender: false, //パスが更新で再レンダリングさせない
 });
 
-// new fullpage('#fullpage', {
-//   autoScrolling: true,         // スクロールを1画面ごとに
-//   scrollHorizontally: false,   // 横スクロール不要なら false
-//   navigation: true,            // ドットナビ表示（必要なら）
-//   normalScrollElements: '.story, .header, .footer',
-//   // ↑ fullPageを効かせたくない要素を指定
-//   fitToSection: true,
-//   scrollingSpeed: 800
-// });
+new Vivus('points', { // svgに指定するid名
+  duration: 120, // アニメーションの長さ
+  forceRender: false, //パスが更新で再レンダリングさせない
+});
 
-/* 1. アドレスバー・ツールバーを除いた100vhの高さを取得 */
-function setHeight() {
-  let vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty("--vh", `${vh}px`);
-}
-setHeight();
-window.addEventListener("resize", setHeight);
+new Vivus('campaign', { // svgに指定するid名
+  duration: 120, // アニメーションの長さ
+  forceRender: false, //パスが更新で再レンダリングさせない
+});
 
-const swiper = new Swiper('.vertical-slider', {
-  direction: 'vertical',
-  slidesPerView: 1,
-mousewheel: {
-  releaseOnEdges: true,
-},
-  keyboard: { enabled: true },
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
-  },
-  speed: 800,
+new Vivus('flow', { // svgに指定するid名
+  duration: 120, // アニメーションの長さ
+  forceRender: false, //パスが更新で再レンダリングさせない
+});
+
+
+
+
+$(function() {
+  var $wraps = $('.story-list__wrap');
+  var $storyList = $('.story-list');
+  var windowHeight = $(window).height();
+
+  function updateActive() {
+    var scrollTop = $(window).scrollTop();
+    var listTop = $storyList.offset().top;
+
+    var index = 0; // デフォルトは最初のコンテンツ
+
+    if (scrollTop >= listTop) {
+      // story-list内のスクロール量
+      var relativeScroll = scrollTop - listTop;
+
+      // 現在のインデックス（100vhごとに切り替え）
+      index = Math.floor(relativeScroll / windowHeight);
+      if (index >= $wraps.length) index = $wraps.length - 1;
+    }
+
+    $wraps.removeClass('active');
+    $wraps.eq(index).addClass('active');
+  }
+
+  // 初期表示
+  updateActive();
+
+  // スクロール・リサイズ監視
+  $(window).on('scroll resize', function() {
+    windowHeight = $(window).height();
+    updateActive();
+  });
 });
