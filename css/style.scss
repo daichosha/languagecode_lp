@@ -78,7 +78,7 @@ $breakpoint-down: (
 /* サイト設計 */
 
 // フォントタイプ/
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:wght@800&family=Zen+Kaku+Gothic+New:wght@500;700&display=swap'
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:wght@800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap'
 );
 
 //font-familyここから
@@ -632,7 +632,13 @@ header {
 .container {
   max-width: 1100px;
   margin: 0 auto;
+
+  &__small {
+    max-width: 880px;
+    margin: 0 auto;
+  }
 }
+
 
 // 共通パーツここまで
 
@@ -1176,15 +1182,25 @@ header {
 
   .story-list {
     margin-top: 48px;
-     height: 100vh;
+    height: 300svh;
+
 
     &__wrap {
       background: rgba(70, 187, 216, 0.1);
       padding: 24px;
-      height: 100vh;
+      height: 100svh;
       display: flex;
       justify-content: center;
       align-items: center;
+      position: sticky;
+      top: 0;
+      opacity: 0;
+
+      &.active {
+        opacity: 1;
+      }
+
+
 
       &:nth-child(2) {
         background: rgba(67, 183, 113, 0.1);
@@ -1646,19 +1662,790 @@ header {
       align-items: center;
     }
   }
+}
 
-.vertical-slider {
+.points {
   height: 100%;
-  overflow: hidden;
+  background: linear-gradient(180deg, #fff 0%, #fff 75%, #F0F4F8 75%, #F0F4F8 100%);
+  padding: 120px 0;
+
+  .points-ttl {
+    .section-ttl__en {
+      width: 186px;
+
+      svg {
+        #points-base path {
+          fill: $accentColor;
+          isolation: isolate;
+          /* 塗りの色 */
+        }
+
+        #points-mask path {
+          fill: none;
+          /* 塗りの色 */
+          stroke: #ffffff;
+          /* 線の色 */
+          stroke-width: 5px;
+          /* 線幅 */
+          stroke-linecap: round;
+          /* 線端の形状 */
+          stroke-linejoin: round;
+          /* 角の形状 */
+        }
+      }
+    }
+  }
+
+  .points-item {
+    margin-top: 30px;
+
+    &__inner {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    &__box {
+      outline: 2px dashed $mainColor;
+      /* 線の太さ・種類・色 */
+      width: auto;
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+      align-items: center;
+      padding: 32px 14px;
+      background-color: #fff;
+      position: relative;
+
+      &:hover {
+        outline: 3px solid $accentColor;
+        transition: all 0.3s ease;
+        z-index: 1;
+
+        .points-item__decoration::before {
+          display: inline-block;
+          /* これがないと回転してくれない */
+          animation: rotate-z 5s linear infinite;
+          /* 2秒で1回転 */
+        }
+
+        @keyframes rotate-z {
+          from {
+            transform: rotateZ(0deg);
+          }
+
+          to {
+            transform: rotateZ(360deg);
+          }
+        }
+      }
+    }
+
+    &__decoration {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      top: -18px;
+      left: -18px;
+      text-align: center;
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      justify-content: center;
+      color: $mainColor;
+      @include Caveat();
+      @include fontSize(16, 11, 0.5, 0.5);
+      @include letterSpacing(100);
+      z-index: 5;
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        background-image: url(../images/point-number.png);
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: -1;
+        top: -2px;
+        left: 2px;
+      }
+
+      span {
+        @include fontSize(30, 36, 1, 1);
+        @include letterSpacing(0);
+        margin-right: 5px;
+      }
+    }
+
+    &__img {
+      width: 160px;
+      height: auto;
+      margin-top: 0 auto 24px auto;
+    }
+
+    &__text {
+      h3 {
+        text-align: center;
+        @include fontSize(20, 14, 1, 1);
+        @include letterSpacing(50);
+        position: relative;
+        width: fit-content;
+        margin: 0 auto 8px auto;
+
+        &::before {
+          content: '';
+          background-image: url(../images/front-bracket.png);
+          background-size: 100%;
+          background-position: center;
+          background-repeat: no-repeat;
+          width: 18px;
+          height: 12px;
+          position: absolute;
+          left: -20px;
+          top: -5px;
+        }
+
+        &::after {
+          content: '';
+          background-image: url(../images/back-bracket.png);
+          background-size: 100%;
+          background-position: center;
+          background-repeat: no-repeat;
+          width: 18px;
+          height: 12px;
+          position: absolute;
+          right: -20px;
+          bottom: -5px;
+        }
+      }
+
+      p {
+        @include fontSize(14, 12, 1.5, 1.5);
+        @include letterSpacing(50);
+        text-align: center;
+      }
+    }
+
+
+  }
+
 }
 
-.vertical-slider .swiper-slide {
-  height: 100vh; /* 1スライドを必ず1画面に */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
+.section-ttl {
+  &__ja {
+    @include fontSize(30, 30, 1, 1);
+    @include letterSpacing(100);
+    color: $mainColor;
+  }
+
 
 }
 
+.campaign {
+  background-color: #F0F4F8;
+  padding-bottom: 100px;
+  position: relative;
+
+  &::before {
+    z-index: 1;
+    content: "";
+    position: absolute;
+    width: 410px;
+    height: 410px;
+    top: -73px;
+    right: 15%;
+    opacity: .1;
+    border-radius: 20px;
+    background-image: repeating-linear-gradient(-45deg, #2f5f98, #2f5f98 5px, transparent 5px, transparent 10px);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 165px;
+    height: 165px;
+    bottom: -4%;
+    right: 5%;
+    opacity: .2;
+    background-image: radial-gradient(circle, #d96345 4px, transparent 4px);
+    background-position: 0 0;
+    background-size: 18px 18px;
+  }
+
+
+
+  &__ttl {
+    .section-ttl__en {
+      width: 278px;
+      margin: 0 auto 10px;
+
+      svg {
+        #campaign-base path {
+          fill: $accentColor;
+          isolation: isolate;
+          /* 塗りの色 */
+        }
+
+        #campaign-mask path {
+          fill: none;
+          /* 塗りの色 */
+          stroke: #ffffff;
+          /* 線の色 */
+          stroke-width: 5.5px;
+          /* 線幅 */
+          stroke-linecap: round;
+          /* 線端の形状 */
+          stroke-linejoin: round;
+          /* 角の形状 */
+        }
+      }
+    }
+
+    h2 {
+      width: 592px;
+      height: auto;
+      margin: 0 auto;
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 118px;
+        height: 68px;
+        background-image: url(../images/campaign-title-bubble.png);
+        background-size: cover;
+        left: -10px;
+        top: -46px;
+      }
+    }
+
+    p {
+      text-align: center;
+      margin: 10px auto 0;
+    }
+  }
+
+  &__inner {
+    background-color: #fff;
+    border-top: solid 3px $accentColor;
+    margin: 0 auto;
+    padding: 40px 0;
+    z-index: 2;
+    position: relative;
+  }
+
+  &__content {
+    max-width: 660px;
+    margin: 28px auto;
+  }
+
+  .campaign-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    &:nth-child(2) {
+      .campaign-item__graph::before {
+        width: 66.7%;
+      }
+    }
+
+    &:last-child {
+      .campaign-item__graph::before {
+        width: 100%;
+      }
+    }
+
+    &__period {
+      @include fontSize(15, 12, 2, 1.5);
+      @include letterSpacing(100, 50);
+      width: fit-content;
+
+      .big {
+        @include fontSize(16, 14, 2, 2);
+      }
+
+      .small {
+        @include fontSize(14, 12, 2, 1.5);
+        @include letterSpacing(50, 50);
+      }
+
+      img {
+        height: 20px;
+        width: auto;
+        margin-right: 4px;
+      }
+    }
+
+    &__lesson {
+      width: 68%;
+    }
+
+    &__free {
+      display: flex;
+      align-items: end;
+      justify-self: end;
+
+      p {
+        @include fontSize(14, 12, 1, 1);
+        @include letterSpacing(100, 25);
+
+        span {
+          @include fontSize(16, 17, 1, 1);
+          @include letterSpacing(100);
+        }
+
+        &:last-child {
+          @include fontSize(26, 17, 1, 1);
+          @include letterSpacing(100, 100);
+          color: $mainColor;
+          padding: 0 16px;
+          position: relative;
+
+          &::before {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 27px;
+            background-image: url(../images/campaign-star01.png);
+            background-size: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            top: -5px;
+            left: 0;
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 27px;
+            background-image: url(../images/campaign-star02.png);
+            background-size: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            top: -5px;
+            right: 0;
+          }
+        }
+      }
+
+      img {
+        height: 20px;
+        width: auto;
+        margin-right: 4px;
+      }
+    }
+
+    &__graph {
+      height: 20px;
+      background-color: #EEEEEE;
+      margin-top: 5px;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 33.3%;
+        height: 100%;
+        background-image: repeating-linear-gradient(-45deg, #fbca41, #fbca41 5px, #ffffff 5px, #ffffff 10px);
+        left: 0;
+        top: 0;
+      }
+    }
+  }
+
+  &__lower {
+
+    padding-top: 125px;
+
+
+  }
+
+  .campaign-lower {
+    width: 100%;
+    padding-top: 32px;
+    border-top: dashed 1px #707070;
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 85px;
+      height: 108px;
+      background-image: url(../images/campaign-girl.png);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      top: 10px;
+      left: 40px;
+      transform: translate(0%, -100%);
+    }
+
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 244px;
+      height: 95px;
+      background-image: url(../images/campaign-bubble.png);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      top: -25px;
+      left: 146px;
+      transform: translate(0%, -100%);
+    }
+
+    &__text {
+      max-width: 60%;
+      @include fontSize(16, 13, 2, 2);
+      @include letterSpacing(100);
+    }
+
+    &__btn {
+      padding-right: 35px;
+      position: relative;
+      margin-top: 20px;
+
+      span {
+        position: absolute;
+        rotate: 16deg;
+        top: -20px;
+        right: 5px;
+        @include fontSize(21, 12, 1, 1);
+        @include letterSpacing(100);
+        @include Caveat(bold);
+
+        &::before {
+          content: "";
+          position: absolute;
+          width: 1px;
+          height: 14px;
+          background-color: $fontColor;
+          top: 5px;
+          left: -15px;
+          rotate: -15deg;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          width: 1px;
+          height: 14px;
+          background-color: $fontColor;
+          top: 13px;
+          right: -15px;
+          rotate: 60deg;
+          @include fontSize(30, 20, 1, 1);
+          @include Caveat(bold);
+        }
+      }
+    }
+  }
+}
+
+.flow {
+  padding: 100px 0;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 130px;
+    top: 53%;
+    left: -2%;
+    opacity: .2;
+    background-image: radial-gradient(circle, #d96345 4px, transparent 4px);
+    background-position: 0 0;
+    background-size: 18px 18px;
+  }
+
+  &::before {
+    z-index: 1;
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    top: 40%;
+    left: 3%;
+    border-radius: 20px;
+    opacity: .3;
+    background-image: repeating-linear-gradient(45deg, $accentColor, $accentColor 5px, transparent 5px, transparent 10px);
+  }
+
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__ttl {
+    max-width: 21.25%;
+
+    .section-ttl__en {
+      width: 126px;
+
+      svg {
+        #flow-base path {
+          fill: $accentColor;
+          isolation: isolate;
+          /* 塗りの色 */
+        }
+
+        #flow-mask path {
+          fill: none;
+          /* 塗りの色 */
+          stroke: #ffffff;
+          /* 線の色 */
+          stroke-width: 5.5px;
+          /* 線幅 */
+          stroke-linecap: round;
+          /* 線端の形状 */
+          stroke-linejoin: round;
+          /* 角の形状 */
+        }
+      }
+    }
+  }
+
+  &__content {
+    max-width: 78.75%;
+    width: 100%;
+    counter-reset: flow-counter;
+
+    .flow-item {
+      margin: 0 23% 0 auto;
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 170px;
+        height: 2px;
+        border-top: 2px dashed $accentColor;
+        rotate: 15deg;
+        left: 50%;
+        transform: translate(0%, -50%);
+
+      }
+
+      &:nth-of-type(2n) {
+        margin: 0 auto 0 19%;
+
+        &::after {
+          rotate: -15deg;
+        }
+
+        .flow-item {
+          &__inner {
+            flex-flow: row-reverse;
+          }
+
+          &__text {
+            text-align: left;
+          }
+
+          &__title {
+            margin: 0 auto 8px 0;
+          }
+
+          &__title::before {
+            left: auto;
+            right: -15%;
+            transform: translate(-100%, -100%);
+          }
+        }
+      }
+
+      &:nth-of-type(3) {
+        .flow-item__title::before {
+          top: 40%;
+          left: 35%;
+        }
+      }
+
+      &:nth-of-type(4) {
+        .flow-item__title::before {
+          top: 40%;
+          right: -25%;
+        }
+      }
+
+
+
+      &:last-of-type {
+        &::after {
+          display: none;
+        }
+      }
+
+      &__inner {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 26px;
+        padding: 10px 0;
+      }
+
+      &__img {
+        width: 165px;
+        height: auto;
+      }
+
+      &__text {
+        text-align: right;
+
+        p {
+          @include fontSize(14, 13, 1.8, 1.5);
+          @include letterSpacing(50, 50);
+          font-weight: 400;
+        }
+      }
+
+      &__title {
+        margin-bottom: 8px;
+        @include fontSize(18, 16, 1.7, 1.5);
+        @include letterSpacing(200, 100);
+        width: fit-content;
+        margin: 0 0 8px auto;
+        position: relative;
+
+        &::before {
+          counter-increment: flow-counter;
+          content: counter(flow-counter, decimal-leading-zero);
+          position: absolute;
+          opacity: 0.6;
+          color: $accentColor;
+          z-index: -1;
+          top: 70%;
+          left: -15%;
+          transform: translate(0%, -100%);
+          @include Caveat();
+          @include fontSize(45, 45, 1, 1);
+          @include letterSpacing(100);
+        }
+
+      }
+    }
+  }
+}
+
+.link {
+  border-top: solid 1px $mainColor;
+  padding: 87px 0;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+
+  &::before {
+    z-index: 1;
+    content: "";
+    position: absolute;
+    width: 410px;
+    height: 50px;
+    top: -50px;
+    right: 0%;
+    opacity: .15;
+    background-image: repeating-linear-gradient(-45deg, #2f5f98, #2f5f98 5px, transparent 5px, transparent 10px);
+  }
+
+
+  &__inner {
+    position: relative;
+  }
+
+  &__logo {
+    width: 152px;
+    height: auto;
+    margin: 0 auto 20px;
+  }
+
+  &__text {
+    @include fontSize(18, 16, 2, 2);
+    @include letterSpacing(50);
+    margin-bottom: 32px;
+  }
+
+  &__btn {
+    width: fit-content;
+    margin: 0 auto;
+
+    a {
+      width: 185px;
+      display: block;
+    }
+
+    margin: 0 auto;
+  }
+
+  &__img {
+    &--lady {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      left: 0;
+      bottom: 30%;
+    }
+
+    &--family {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      right: 0;
+      bottom: 30%;
+    }
+
+    &--girl {
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      right: 12%;
+      bottom: -15%;
+    }
+
+    &--foreigner {
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      left: 12%;
+      bottom: -15%;
+    }
+  }
+}
+
+footer {
+  background-color: $mainColor;
+  color: #fff;
+  padding: 20px 0;
+
+  ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    li {
+      padding: 0 16px;
+      border-left: solid 1px #fff;
+      border-right: solid 1px #fff;
+      font-weight: 400;
+      @include fontSize(14, 12, 1, 1);
+
+      &:first-child {
+        border-right: none;
+      }
+    }
+  }
+
+  .copyright {
+    margin: 8px auto 0;
+    width: fit-content;
+    font-weight: 400;
+    @include fontSize(12, 10, 1, 1);
+  }
 }
