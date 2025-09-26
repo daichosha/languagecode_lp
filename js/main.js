@@ -4,14 +4,42 @@ $(function () {
   $('.hamburger').on('click', function () {
     $(this).toggleClass('on');
     $('.header-nav__menu').toggleClass('on');
-    if (!$('.floating').hasClass('on')) {
-      $('.floating').toggleClass('on');
-    }
+    $('.header-menu').toggleClass('on');
+    $('.floating__line').toggleClass('on');
   });
 });
 
+// ページ内スクロール
+$('a[href^="#"]').click(function () {
+  const speed = 600;
+  let href = $(this).attr("href");
+  let target = $(href == "#" || href == "" ? "html" : href);
+
+  // スクロール位置に余白を追加（マイナスで上に余白を残す）
+  let headerHeight = 80; // ←ヘッダーの高さに合わせて調整
+  let position = target.offset().top - headerHeight;
+
+  if ($(this).closest('.story__nav').length > 0) {
+    // story__nav 内のリンクは余白なし
+    position = target.offset().top;
+  } else {
+    // 通常はヘッダー分だけ引く
+    position = target.offset().top - headerHeight;
+  }
+
+  $("body,html").animate({ scrollTop: position }, speed, "swing");
+
+  // ハンバーガーを閉じる
+  $('.hamburger').removeClass('on');
+  $('.header-nav__menu').removeClass('on');
+  $('.header-menu').removeClass('on');
+  $('.floating__line').removeClass('on');
+
+  return false;
+});
+
 new Vivus('mv', { // svgに指定するid名
-  duration: 120, // アニメーションの長さ
+  duration: 150, // アニメーションの長さ
   forceRender: false, //パスが更新で再レンダリングさせない
 });
 
@@ -35,10 +63,102 @@ new Vivus('flow', { // svgに指定するid名
   forceRender: false, //パスが更新で再レンダリングさせない
 });
 
+//mvアニメーション
+$(function () {
+  var done = false;
+  $(window).on('scroll load', function () {
+    var winTop = $(window).scrollTop();
+    var winBottom = winTop + $(window).height();
+    var elTop = $('.mv').offset().top;
+
+    if (!done && elTop < winBottom) {
+      done = true;
+      setTimeout(function () {
+        $('.mv__img').addClass('on');
+      }, 2000); // 2秒後
+
+      setTimeout(function () {
+        $('.mv__text li').each(function (i) {
+          var $li = $(this);
+          setTimeout(function () {
+            $li.addClass('on');
+          }, i * 500); // 0.5秒ごとに次の li に on
+        });
+      }, 2500); // 開始を2秒遅らせる
+    }
+  });
+});
+
+// スクロールして表示領域に入ったらclass付与
+$(function () {
+  $(".js-fadeUp").on("inview", function () {
+    $(this).addClass("is-inview");
+  });
+});
+
+$(function () {
+  $(".scene-ttl__img, .scene-ttl__img2").on("inview", function () {
+    $(this).addClass("on");
+  });
+});
+
+$(function () {
+  $(".holl__point").on("inview", function () {
+    $(this).addClass("on");
+  });
+});
+
+setTimeout(function () {
+  $(function () {
+    $(".holl-bottom__bk").on("inview", function () {
+      $(this).addClass("on");
+    });
+  });
+}, 1500); // 開始を2秒遅らせる
+
+setTimeout(function () {
+  $(function () {
+    $(".story-list__about").on("inview", function () {
+      $(this).addClass("on");
+    });
+  });
+}, 500); // 開始を2秒遅らせる
 
 
 
-$(function() {
+setTimeout(function () {
+  $(function () {
+    $(".story-list__caption").on("inview", function () {
+      $(this).addClass("on");
+    });
+  });
+}, 1000); // 開始を2秒遅らせる
+
+
+
+$(function () {
+  $(".campaign-item__graph").on("inview", function () {
+    $(this).addClass("on");
+  });
+});
+
+setTimeout(function () {
+  $(function () {
+    $(".campaign-lower").on("inview", function () {
+      $(this).addClass("on");
+    });
+  });
+}, 1800); // 開始を2秒遅らせる
+
+
+
+$(function () {
+  $(".link__img").on("inview", function () {
+    $(this).addClass("on");
+  });
+});
+
+$(function () {
   var $wraps = $('.story-list__wrap');
   var $storyList = $('.story-list');
   var windowHeight = $(window).height();
@@ -66,7 +186,7 @@ $(function() {
   updateActive();
 
   // スクロール・リサイズ監視
-  $(window).on('scroll resize', function() {
+  $(window).on('scroll resize', function () {
     windowHeight = $(window).height();
     updateActive();
   });

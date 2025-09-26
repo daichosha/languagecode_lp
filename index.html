@@ -23,6 +23,7 @@
   <script src="js/vivus.min.js" defer></script>
   <script src="js/swiper-bundle.min.js" defer></script>
   <script src="js/fullpage.min.js" defer></script>
+  <script src="js/jquery.inview.min.js" defer></script>
   <script src="js/main.js" defer></script>
   <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js" defer></script>
 
@@ -72,6 +73,99 @@
             <span class="hamburger__line"></span>
             <span class="hamburger__line"></span>
             <span class="hamburger__line"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="header-menu">
+      <div class="header-menu__emptiness"></div>
+      <div class="container">
+        <div class="header-menu__inner">
+          <div class="header-menu__nav">
+            <div class="header-list">
+              <a href="#">
+                <div class="header-list__inner">
+                  <div class="header-list__text">
+                    <span>Top</span>
+                    <p>トップページ</p>
+                  </div>
+                  <div class="header-list__arrow">
+                    <img src="images/hamburger-yellowarrow.png" alt="" width="30" height="15" loading="lazy">
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="header-list">
+              <a href="#link-story">
+                <div class="header-list__inner">
+                  <div class="header-list__text">
+                    <span>Story</span>
+                    <p>あなたらしい留学とは？</p>
+                  </div>
+                  <div class="header-list__arrow">
+                    <img src="images/hamburger-yellowarrow.png" alt="" width="30" height="15" loading="lazy">
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="header-list">
+              <a href="#link-points">
+                <div class="header-list__inner">
+                  <div class="header-list__text">
+                    <span>Point</span>
+                    <p>ランゲージコードにできること</p>
+                  </div>
+                  <div class="header-list__arrow">
+                    <img src="images/hamburger-yellowarrow.png" alt="" width="30" height="15" loading="lazy">
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="header-list">
+              <a href="#link-campaign">
+                <div class="header-list__inner">
+                  <div class="header-list__text">
+                    <span>Campaign</span>
+                    <p>留学前英語学習応援キャンペーン</p>
+                  </div>
+                  <div class="header-list__arrow">
+                    <img src="images/hamburger-yellowarrow.png" alt="" width="30" height="15" loading="lazy">
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="header-list">
+              <a href="#link-flow">
+                <div class="header-list__inner">
+                  <div class="header-list__text">
+                    <span>Flow</span>
+                    <p>留学の流れ</p>
+                  </div>
+                  <div class="header-list__arrow">
+                    <img src="images/hamburger-yellowarrow.png" alt="" width="30" height="15" loading="lazy">
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="header-menu__link">
+            <div class="header-link">
+              <div class="header-link__logo">Language Code <span>:</span></div>
+              <div class="header-link__text">公式サイトでは、留学に関する様々な情報を発信中です。<br>
+                詳しく知りたい方はこちらから</div>
+              <div class="header-link__btn">
+                <a href="">
+                  <div class="more-btn">
+                    <div class="more-btn__text">View More</div>
+                    <img src="./images/button-arrow.png" alt="" />
+                  </div>
+                </a>
+              </div>
+              <img class="header-link__img--girl" src="images/link-03.png" alt="" width="140" height="140"
+                loading="lazy">
+              <img class="header-link__img--plane" src="images/plane.png" alt="" width="160" height="160"
+                loading="lazy">
+            </div>
           </div>
         </div>
       </div>
@@ -131,13 +225,10 @@
           <img src="./images/scene-01.png" alt="" />
         </div>
         <div class="scene-ttl">
-          <div class="scene-ttl__sup"><span>先輩に聞いた</span></div>
+          <div class="scene-ttl__sup js-fadeUp"><span>先輩に聞いた</span></div>
           <div class="scene-ttl__box">
-            <div class="scene-ttl__img">
-              <img src="./images/scene-circle.png" alt="" />
-              <div class="scene-ttl__img2">
-                <img src="./images/scene-title.png" alt="" />
-              </div>
+            <div class="scene-ttl__img2">
+              <img src="./images/scene-title.png" alt="" />
             </div>
             <div class="scene-ttl__text">を実感した留学のワンシーン</div>
           </div>
@@ -145,7 +236,6 @@
         <div class="scene__img">
           <img src="./images/scene-02.png" alt="" />
         </div>
-
       </div>
       <div class="container scene__flex">
         <div class="scene__list">
@@ -163,12 +253,11 @@
           </div>
         </div>
         <div class="scene__line">
-          <img src="./images/scene-line.png" alt="" />
         </div>
       </div>
     </section>
     <section class="holl">
-      <div class="holl-ttl">
+      <div class="holl-ttl js-fadeUp">
         <div class="holl-ttl__top">
           <img src="./images/holl-text.png" alt="" />
           <p>と思っているあなた。</p>
@@ -217,7 +306,7 @@
       </div>
       <div class="holl-bottom">
         <div class="container">
-          <div class="holl-text">
+          <div class="holl-text js-fadeUp">
             <div class="holl-text__top">あなたの留学が、後悔で終わらないために。</div>
             <div class="holl-text__bottom">
               私たち、
@@ -225,25 +314,28 @@
               の留学システムは生まれました。
             </div>
           </div>
-          <div class="holl-text__sup">
+          <div class="holl-text__sup js-fadeUp">
             <p>Language code:は、あなたに寄り添う留学サポートです。</p>
             <p>私たちが月にお受けできるのは、最大で<span>　名</span>まで。</p>
             <p>それは、一人ひとりと丁寧に向き合い、 あなたらしい留学 を叶えるためです。</p>
           </div>
-          <div class="holl__btn">
-            <div class="more-btn">
-              <div class="more-btn__text">View More</div>
-              <img src="./images/button-arrow.png" alt="" />
-            </div>
+          <div class="holl__btn js-fadeUp">
+            <a href="">
+              <div class="more-btn">
+                <div class="more-btn__text">View More</div>
+                <img src="./images/button-arrow.png" alt="" />
+              </div>
+            </a>
           </div>
           <div class="holl__message">
             <img src="./images/story-text.png" alt="" />
           </div>
         </div>
+        <div class="holl-bottom__bk"></div>
       </div>
     </section>
-    <section class="story">
-      <div class="story-ttl">
+    <section class="story" id="link-story">
+      <div class="story-ttl ">
         <div class="story-ttl__en">
           <svg id="story" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             viewBox="0 0 175.8 76">
@@ -265,27 +357,39 @@
         </div>
         <h2 class="story-ttl__ja">あなたらしい留学とは？</h2>
       </div>
-      <div class="story__text">
+      <div class="story__text ">
         あなたらしい留学とは、目標や夢に合わせてつくる留学のことです。<br />
         留学先の国やコースにはそれぞれ特徴があります。<br />
         経験豊富なエージェントがあなたにぴったりのプランを一緒に考えます。
       </div>
       <ul class="story__nav">
         <li>
-          <p>ワーキングホリデー</p>
-          <img src="./images/story-arrow01.png" alt="" />
+          <a href="#link-wh">
+            <div class="story__nav-inner">
+              <p>ワーキングホリデー</p>
+              <img src="./images/story-arrow01.png" alt="" />
+            </div>
+          </a>
         </li>
         <li>
-          <p>語学留学</p>
-          <img src="./images/story-arrow02.png" alt="" />
+          <a href="#link-esl">
+            <div class="story__nav-inner">
+              <p>語学留学</p>
+              <img src="./images/story-arrow02.png" alt="" />
+            </div>
+          </a>
         </li>
         <li>
-          <p>正規留学</p>
-          <img src="./images/story-arrow03.png" alt="" />
+          <a href="#link-ddp">
+            <div class="story__nav-inner">
+              <p>正規留学</p>
+              <img src="./images/story-arrow03.png" alt="" />
+            </div>
+          </a>
         </li>
       </ul>
-      <div class="story-list ">
-        <div class="story-list__wrap">
+      <div class="story-list">
+        <div class="story-list__wrap" id="link-wh">
           <div class="story-list__outer">
             <div class="story-list__inner">
               <div class="story-list__ttl">
@@ -329,16 +433,21 @@
                 </div>
               </div>
               <ul class="story-list__nav">
-                <li>カナダ</li>
                 <li>
-                  <div class="story-list__navcap">ワーホリ可能期間最長</div>オーストラリア
+                  <a href="#">カナダ</a>
                 </li>
-                <li>ニュージーランド</li>
+                <li>
+                  <div class="story-list__navcap">ワーホリ可能期間最長</div>
+                  <a href="#">オーストラリア</a>
+                </li>
+                <li>
+                  <a href="#">ニュージーランド</a>
+                </li>
               </ul>
             </div>
           </div>
         </div>
-        <div class="story-list__wrap swiper-slide vertical-slider__slide">
+        <div class="story-list__wrap" id="link-esl">
           <div class="story-list__outer">
             <div class="story-list__inner">
               <div class="story-list__ttl">
@@ -382,17 +491,17 @@
                 </div>
               </div>
               <ul class="story-list__nav">
-                <li>カナダ</li>
-                <li>オーストラリア</li>
-                <li>ニュージーランド</li>
+                <li><a href="">カナダ</a></li>
+                <li><a href="">オーストラリア</a></li>
+                <li><a href="">ニュージーランド</a></li>
                 <li>
-                  <div class="story-list__navcap">費用が比較的安価</div>フィリピン
+                  <div class="story-list__navcap">費用が比較的安価</div><a href="">フィリピン</a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-        <div class="story-list__wrap swiper-slide vertical-slider__slide">
+        <div class="story-list__wrap" id="link-ddp">
           <div class="story-list__outer">
             <div class="story-list__inner">
               <div class="story-list__ttl">
@@ -437,18 +546,18 @@
               </div>
               <ul class="story-list__nav">
                 <li>
-                  <div class="story-list__navcap">教育水準が高い</div>カナダ
+                  <div class="story-list__navcap">教育水準が高い</div><a href="">カナダ</a>
                 </li>
-                <li>オーストラリア</li>
-                <li>ニュージーランド</li>
-                <li>フィリピン</li>
+                <li><a href="">オーストラリア</a></li>
+                <li><a href="">ニュージーランド</a></li>
+                <li><a href="">フィリピン</a></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <section class="points">
+    <section class="points" id="link-points">
       <div class="container">
         <div class="points-ttl">
           <div class="section-ttl__en">
@@ -558,7 +667,7 @@
         </div>
       </div>
     </section>
-    <section class="campaign">
+    <section class="campaign" id="link-campaign">
       <div class="container__small">
         <div class="campaign__inner">
           <div class="campaign__ttl">
@@ -661,7 +770,7 @@
         </div>
       </div>
     </section>
-    <section class="flow">
+    <section class="flow" id="link-flow">
       <div class="container__small">
         <div class="flow__inner">
           <div class="flow__ttl">
@@ -693,7 +802,7 @@
             <h2 class="section-ttl__ja">留学の流れ</h2>
           </div>
           <div class="flow__content">
-            <div class="flow-item">
+            <div class="flow-item js-fadeUp">
               <div class="flow-item__inner">
                 <div class="flow-item__text">
                   <div class="flow-item__title">
@@ -707,7 +816,7 @@
                 </div>
               </div>
             </div>
-            <div class="flow-item">
+            <div class="flow-item js-fadeUp">
               <div class="flow-item__inner">
                 <div class="flow-item__text">
                   <div class="flow-item__title">
@@ -720,7 +829,7 @@
                 </div>
               </div>
             </div>
-            <div class="flow-item">
+            <div class="flow-item js-fadeUp">
               <div class="flow-item__inner">
                 <div class="flow-item__text">
                   <div class="flow-item__title">
@@ -736,7 +845,7 @@
                 </div>
               </div>
             </div>
-            <div class="flow-item">
+            <div class="flow-item js-fadeUp">
               <div class="flow-item__inner">
                 <div class="flow-item__text">
                   <div class="flow-item__title">
@@ -752,7 +861,7 @@
                 </div>
               </div>
             </div>
-            <div class="flow-item">
+            <div class="flow-item js-fadeUp">
               <div class="flow-item__inner">
                 <div class="flow-item__text">
                   <div class="flow-item__title">
@@ -766,7 +875,7 @@
                 </div>
               </div>
             </div>
-            <div class="flow-item">
+            <div class="flow-item js-fadeUp">
               <div class="flow-item__inner">
                 <div class="flow-item__text">
                   <div class="flow-item__title">
@@ -782,7 +891,7 @@
                 </div>
               </div>
             </div>
-            <div class="flow-item">
+            <div class="flow-item js-fadeUp">
               <div class="flow-item__inner">
                 <div class="flow-item__text">
                   <div class="flow-item__title">
@@ -816,10 +925,12 @@
             </div>
           </a>
         </div>
-        <img class="link__img--lady" src="images/link-01.png" alt="" width="150" height="150" loading="lazy">
-        <img class="link__img--family" src="images/link-02.png" alt="" width="150" height="150" loading="lazy">
-        <img class="link__img--girl" src="images/link-03.png" alt="" width="160" height="160" loading="lazy">
-        <img class="link__img--foreigner" src="images/link-04.png" alt="" width="160" height="160" loading="lazy">
+        <img class="link__img--lady link__img" src="images/link-01.png" alt="" width="150" height="150" loading="lazy">
+        <img class="link__img--family link__img" src="images/link-02.png" alt="" width="150" height="150"
+          loading="lazy">
+        <img class="link__img--girl link__img" src="images/link-03.png" alt="" width="160" height="160" loading="lazy">
+        <img class="link__img--foreigner link__img" src="images/link-04.png" alt="" width="160" height="160"
+          loading="lazy">
       </div>
     </section>
   </main>

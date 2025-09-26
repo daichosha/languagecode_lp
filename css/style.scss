@@ -149,6 +149,7 @@ $letterSpacing: 50;
   }
 }
 
+
 //変数
 $fontColor: #1c1c1c;
 $mainColor: #2f5f98;
@@ -157,6 +158,62 @@ $pointColor: #46bbd8;
 $whiteColor: #f9f9f9;
 $bgColor: #eeeeee;
 $lightColor: #e2efff;
+$animeSpeed: 0.2s ease-in;
+
+// 共通パーツ
+.more-btn {
+  width: 185px;
+  height: 58px;
+  background-image: url(../images/button-bk.png);
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  &:hover {
+    img {
+      transform: translateX(5px);
+      transition: all $animeSpeed;
+    }
+  }
+
+  img {
+    width: 28px;
+    height: 8px;
+    margin-top: 4px;
+    transform: translateX(0px);
+    transition: all $animeSpeed;
+  }
+
+  &__text {
+    @include fontSize(20, 20, 1, 1);
+    @include letterSpacing(100);
+    @include Caveat(bold);
+
+  }
+}
+
+/* フェードイン(初期値) */
+.js-fadeUp {
+  opacity: 0;
+  /* 最初は非表示 */
+  transform: translateY(30px);
+  /* 下に30pxの位置から */
+  transition: opacity .8s, transform .8s;
+  /* 透過率と縦方向の移動を0.8秒 */
+}
+
+/* フェードイン(スクロールした後) */
+.js-fadeUp.is-inview {
+  opacity: 1;
+  /* 表示領域に入ったら表示 */
+  transform: translateY(0);
+  /* 30px上に移動する */
+  transition-delay: .3s;
+  /* フェード開始を0.5秒遅らせる */
+}
+
 
 body {
   background-color: #fff;
@@ -167,6 +224,7 @@ body {
   margin: 0;
   @include Zenkaku();
   @include fontSize(16, 16, 1.6, 1.6);
+  position: relative;
 
   img {
     width: 100%;
@@ -239,8 +297,19 @@ header {
         @include fontSize(12, 12, 1, 1);
         @include letterSpacing(0, 0);
 
+
         &:last-of-type {
           border-left: none;
+        }
+
+        a {
+          opacity: 1;
+          transition: opacity $animeSpeed;
+
+          &:hover {
+            opacity: 0.5;
+            transition: opacity $animeSpeed;
+          }
         }
       }
     }
@@ -283,7 +352,8 @@ header {
       justify-content: center;
       margin: 0 auto;
       opacity: 0;
-      transition: all 0.2s ease-in;
+      transition: opacity $animeSpeed;
+      pointer-events: none;
 
       img {
         width: 80.53%;
@@ -296,7 +366,8 @@ header {
 
       &.on {
         opacity: 1;
-        transition: all 0.2s ease-in;
+        transition: opacity $animeSpeed;
+        pointer-events: auto;
       }
     }
 
@@ -377,7 +448,7 @@ header {
       .hamburger__line {
         &:first-of-type {
           transform: translateY(8px) rotate(-35deg);
-          transition: all 0.2s ease-in;
+          transition: all $animeSpeed;
 
           @include mq-down(md) {
             transform: translateY(6px) rotate(-35deg);
@@ -386,12 +457,12 @@ header {
 
         &:nth-of-type(2) {
           opacity: 0;
-          transition: all 0.2s ease-in;
+          transition: all $animeSpeed;
         }
 
         &:last-of-type {
           transform: translateY(-10px) rotate(35deg);
-          transition: all 0.2s ease-in;
+          transition: all $animeSpeed;
 
           @include mq-down(md) {
             transform: translateY(-7px) rotate(35deg);
@@ -399,6 +470,160 @@ header {
         }
       }
     }
+  }
+
+  .header-menu {
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100svh;
+    z-index: 9;
+    padding-top: 100px;
+    display: flex;
+    justify-content: space-between;
+    opacity: 0;
+    transition: opacity $animeSpeed;
+    pointer-events: none;
+
+
+    &.on {
+      opacity: 1;
+      transition: opacity $animeSpeed;
+      pointer-events: auto;
+
+    }
+
+
+
+    .container {
+      height: 100%;
+      width: 100%;
+    }
+
+    &__inner {
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__nav {
+      width: 100%;
+      max-width: 42.45%;
+
+      .header-list {
+        width: 100%;
+        border-bottom: dashed 1px $mainColor;
+
+        &:hover {
+          .header-list__arrow {
+            transform: translateX(0);
+            transition: all $animeSpeed;
+          }
+
+        }
+
+        &:first-of-type {
+          border-top: dashed 1px $mainColor;
+        }
+
+        &__inner {
+          display: flex;
+          padding: 14px;
+          justify-content: space-between;
+          align-items: center;
+          padding: 14px 16px 20px 32px;
+        }
+
+        &__text {
+          color: $mainColor;
+          @include fontSize(20, 18, 1, 1);
+          @include letterSpacing(100, 50);
+          z-index: 1;
+
+          span {
+            position: relative;
+            @include Caveat();
+            @include fontSize(24, 21, 1, 1);
+            @include letterSpacing(200, 200);
+            color: $accentColor;
+            z-index: -1;
+            left: -16px;
+            bottom: -3px;
+          }
+        }
+
+        &__arrow {
+          width: 30px;
+          height: auto;
+          transform: translateX(-5px);
+          transition: all $animeSpeed;
+
+
+        }
+
+      }
+    }
+
+    &__link {
+      max-width: 50.64%;
+      width: 100%;
+      position: relative;
+
+      .header-link {
+        &__logo {
+          color: $mainColor;
+          margin-bottom: 32px;
+          @include fontSize(38, 23, 1.5, 1.5);
+          @include letterSpacing(-37);
+          @include Montserrat();
+
+          span {
+            color: $accentColor;
+          }
+        }
+
+        &__text {
+          @include fontSize(18, 14, 2, 1.5);
+          @include letterSpacing(50);
+          margin-bottom: 40px;
+        }
+
+        &__btn {
+          width: 100%;
+
+          a {
+            width: fit-content;
+            display: block;
+            margin: 0 0 0 auto;
+
+          }
+        }
+
+        &__img {
+          &--girl {
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            left: -21px;
+            bottom: -90px;
+            transform: scale(-1, 1);
+
+          }
+
+          &--plane {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            right: 10px;
+            top: 21px;
+            transform: translate(0%, -100%);
+          }
+        }
+      }
+    }
+
   }
 }
 
@@ -408,18 +633,65 @@ header {
   right: -10px;
   bottom: 6%;
   opacity: 1;
+  transition: opacity 0.4s ease-out;
 
   &.on {
     opacity: 1;
-    transition: all 0.2s ease-in;
+    transition: opacity 0.4s ease-out;
   }
 
   &__line {
     margin-bottom: 6px;
+    position: relative;
 
     &:hover .floating-item--line {
       transform: translateX(-10px);
       transition: transform 0.3s ease;
+    }
+
+    &.on {
+      &::after {
+        opacity: 1;
+        transition: opacity 0.3s ease;
+      }
+
+      &::before {
+        opacity: 1;
+        transition: opacity 0.3s ease;
+      }
+    }
+
+    &::after {
+      position: absolute;
+      content: "Take the first step.";
+      left: -220px;
+      top: -10px;
+      width: 220px;
+      height: 100px;
+      color: $mainColor;
+      transform: rotate(-24deg);
+      @include Caveat();
+      @include fontSize(21, 16, 1, 1);
+      @include letterSpacing(200);
+      opacity: 0;
+      transition: opacity $animeSpeed;
+
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: -220px;
+      top: -10px;
+      width: 220px;
+      height: 100px;
+      background-image: url(../images/hamburger-arrow.png);
+      background-size: 30%;
+      background-position: right 15% top 0;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity $animeSpeed;
+
     }
   }
 
@@ -511,9 +783,29 @@ header {
       @include fontSize(20, 18, 1.5, 1.6);
       @include letterSpacing(150, 150);
       padding-top: 20px;
+      opacity: 0;
 
       &:first-child {
         padding-top: 0;
+      }
+
+      &.on {
+        animation: my-animation2 0.8s ease-out 0s 1;
+        opacity: 1;
+
+        @keyframes my-animation2 {
+          0% {
+            transform: translateX(0%) translateY(20%);
+            animation-timing-function: ease;
+            opacity: 0;
+          }
+
+          100% {
+            transform: translateX(0%) translateY(0%);
+            opacity: 1;
+            /* →右へ50px ＆ ↑上へ50px */
+          }
+        }
       }
     }
   }
@@ -547,8 +839,8 @@ header {
     &::after {
       position: absolute;
       content: "";
-      right: 0;
-      top: 0;
+      right: 0px;
+      top: 0px;
       aspect-ratio: 98 / 84;
       width: 25%;
       height: auto;
@@ -556,7 +848,32 @@ header {
       background-size: 100%;
       background-position: center;
       background-repeat: no-repeat;
+      opacity: 0;
+
     }
+
+    &.on {
+      &::after {
+        opacity: 1;
+        animation: my-animation 0.8s ease-out 0s 1;
+
+        @keyframes my-animation {
+          0% {
+            transform: translateX(-20%) translateY(20%);
+            animation-timing-function: ease;
+            opacity: 0;
+          }
+
+          100% {
+            transform: translateX(0%) translateY(0%);
+            opacity: 1;
+            /* →右へ50px ＆ ↑上へ50px */
+          }
+        }
+      }
+    }
+
+
   }
 
 
@@ -587,47 +904,18 @@ header {
     position: absolute;
     bottom: 0;
     right: 0;
-
-    img {
-      width: 150px;
-      height: 150px;
-    }
   }
-}
-
-// #mv {
-//   width: 50%;
-//   height: auto;
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-// }
-
-
-// 共通パーツ
-.more-btn {
-  width: 185px;
-  height: 58px;
-  background-image: url(../images/button-bk.png);
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
 
   img {
-    width: 28px;
-    height: 8px;
-    margin-top: 4px;
-  }
+    width: 150px;
+    height: 150px;
 
-  &__text {
-    @include fontSize(20, 20, 1, 1);
-    @include letterSpacing(100);
-    @include Caveat(bold);
   }
 }
+
+
+
+
 
 .container {
   max-width: 1100px;
@@ -645,6 +933,8 @@ header {
 .scene {
   width: 100%;
   padding-top: 80px;
+  overflow: hidden;
+  height: 380px;
 
   &__box {
     display: flex;
@@ -655,22 +945,23 @@ header {
 
   &__line {
     position: absolute;
-    position: absolute;
-    top: 0%;
+    top: 15px;
     left: 50%;
     transform: translate(-50%, -100%);
-    width: 100vw;
+    width: 2506px;
+    height: 543px;
     z-index: -1;
-
-    img {
-      width: 100%;
-      height: 100%;
-    }
+    content: "";
+    background-image: url(../images/sceneline.png);
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: 100%;
   }
 
   &__img {
     width: 130px;
     aspect-ratio: 1 / 1;
+    margin-bottom: 10px;
 
     img {
       width: 100%;
@@ -716,28 +1007,53 @@ header {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 16px;
       padding-top: 16px;
+      position: relative;
     }
 
     &__img {
+      position: absolute;
       height: 88px;
-      position: relative;
+      width: 88px;
+      left: 0;
 
-      img {
-        width: 100%;
-        height: 100%;
-      }
     }
 
     &__img2 {
       width: 120px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
+      position: relative;
+
+      &.on {
+        &::after {
+          animation: rotation 6s linear infinite;
+        }
+      }
+
+      &::after {
+        position: absolute;
+        content: "";
+        height: 88px;
+        width: 88px;
+        background-image: url(../images/scene-circle.png);
+        background-size: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transform-origin: center center;
+        z-index: -1;
+      }
+
+      @keyframes rotation {
+        0% {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+
+        100% {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
     }
 
     &__text {
@@ -748,6 +1064,7 @@ header {
 
   &__flex {
     position: relative;
+    width: 100%;
   }
 
   &__list {
@@ -755,22 +1072,33 @@ header {
     justify-content: space-between;
     position: absolute;
     gap: 8px;
-    top: -46px;
+    top: -30px;
   }
 
   &__item {
+    display: block;
+
+    &:nth-child(1) {
+      rotate: (-2deg);
+    }
+
     &:nth-child(2) {
-      padding-top: 38px;
+      padding-top: 30px;
     }
 
     &:nth-child(3) {
-      padding-top: 40px;
+      padding-top: 32px;
+    }
+
+    &:nth-child(4) {
+      rotate: (2deg);
     }
   }
 }
 
 .holl {
-  padding-top: 320px;
+  padding-top: 120px;
+  overflow-x: hidden;
 
   .holl-ttl {
     text-align: center;
@@ -877,29 +1205,107 @@ header {
       height: 72px;
       top: -48px;
       right: -48px;
+      transform-origin: center bottom;
+      transform: rotate(20deg);
+      opacity: 0;
+
+    }
+
+    &.on {
+      &::after {
+        animation: yurayura 3s linear;
+        opacity: 1;
+
+        @keyframes yurayura {
+          0% {
+            opacity: 0;
+            transform: rotate(20deg);
+          }
+
+          25% {
+            transform: rotate(-10deg);
+          }
+
+          50% {
+
+            transform: rotate(20deg);
+          }
+
+          75% {
+            opacity: 1;
+            transform: rotate(-10deg);
+          }
+
+          100% {
+            opacity: 1;
+            transform: rotate(20deg);
+          }
+        }
+      }
     }
   }
 
   .holl-bottom {
     padding-top: 120px;
-    position: relative;
 
-    &::after {
+    &__bk {
+      position: relative;
       content: "";
-      width: 75%;
-      height: auto;
-      aspect-ratio: 1260 / 658;
-      background-image: url(../images/holl-bottom-bk.png);
-      background-size: 100%;
-      background-position: center;
-      background-repeat: no-repeat;
-      position: absolute;
-      top: 30%;
-      right: 0;
-      transform: translate(0%, -50%);
-      z-index: -1;
+      width: 100vw;
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 1996px;
+        height: 810px;
+        background-image: url(../images/holl-bottom-bk.png);
+        background-size: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0px;
+        right: 25%;
+        transform: translate(50%, -100%);
+        z-index: -1;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 190px;
+        height: 190px;
+        background-image: url(../images/plane.png);
+        background-size: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        bottom: 30px;
+        right: 20%;
+        z-index: -1;
+        opacity: 0;
+      }
 
 
+      &.on {
+        &::before {
+          opacity: 1;
+          animation: holl-animation 0.8s ease-out 0s 1;
+
+          @keyframes holl-animation {
+            0% {
+              transform: translateX(-30%) translateY(15%);
+              animation-timing-function: ease;
+              opacity: 0;
+            }
+
+            100% {
+              transform: translateX(0%) translateY(0%);
+              opacity: 1;
+              /* →右へ50px ＆ ↑上へ50px */
+            }
+          }
+        }
+      }
     }
 
     .holl-text {
@@ -1015,15 +1421,6 @@ header {
       background-repeat: no-repeat;
       position: absolute;
 
-      // &:nth-child(2n) {
-      //   background-image: url(../images/holl-bk02.png);
-      // }
-
-      // &:nth-child(3n) {
-      //   background-image: url(../images/holl-bk03.png);
-      // }
-
-
       &:nth-child(1) {
         top: 40px;
         left: 0;
@@ -1033,22 +1430,11 @@ header {
         width: 670px;
         justify-content: end;
 
-
         p {
           width: 320px;
           height: 140px;
           height: fit-content;
         }
-
-
-        // &::after {
-        //   content: "";
-        //   position: absolute;
-        //   width: 418px;
-        //   height: 56px;
-        //   background-image: url(../images/holl-line.png);
-        //   left: 0;
-        // }
       }
 
       &:nth-child(2) {
@@ -1129,6 +1515,7 @@ header {
     @include letterSpacing(50);
   }
 
+  //要確認
   &__nav {
     display: flex;
     justify-content: center;
@@ -1144,6 +1531,13 @@ header {
       width: fit-content;
       position: relative;
 
+      &:hover {
+        img {
+          transform: translateX(0px);
+          transition: all $animeSpeed;
+        }
+      }
+
       p {
         @include fontSize(18, 18, 1, 1);
         @include letterSpacing(100);
@@ -1153,6 +1547,8 @@ header {
         width: 20px;
         height: 12px;
         margin-top: 4px;
+        transform: translateX(-5px);
+        transition: all $animeSpeed;
       }
 
       &::after {
@@ -1180,6 +1576,58 @@ header {
     }
   }
 
+  &__nav-inner {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    gap: 8px;
+    width: fit-content;
+    position: relative;
+
+    &:hover {
+      img {
+        transform: translateX(0px);
+        transition: all $animeSpeed;
+      }
+    }
+
+    p {
+      @include fontSize(18, 18, 1, 1);
+      @include letterSpacing(100);
+    }
+
+    img {
+      width: 20px;
+      height: 12px;
+      margin-top: 4px;
+      transform: translateX(-5px);
+      transition: all $animeSpeed;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      background-image: url(../images/walk-line.png);
+      background-size: cover;
+      width: 100%;
+      height: 4px;
+      bottom: -16px;
+      left: 0;
+    }
+
+    &:nth-child(2) {
+      &::after {
+        background-image: url(../images/lang-line.png);
+      }
+    }
+
+    &:nth-child(3) {
+      &::after {
+        background-image: url(../images/regular-line.png);
+      }
+    }
+  }
+
   .story-list {
     margin-top: 48px;
     height: 300svh;
@@ -1195,9 +1643,15 @@ header {
       position: sticky;
       top: 0;
       opacity: 0;
+      transition: opacity $animeSpeed;
+      pointer-events: none;
+
 
       &.active {
         opacity: 1;
+        transition: opacity $animeSpeed;
+        pointer-events: auto;
+
       }
 
 
@@ -1275,6 +1729,16 @@ header {
                 >.story-list__navcap {
                   color: #43b771;
                   background-image: url(../images/lang-navcap.png);
+                }
+
+                a {
+                  color: #444444;
+                  transition: color $animeSpeed;
+
+                  &:hover {
+                    color: #43b771;
+                    transition: color $animeSpeed;
+                  }
                 }
               }
             }
@@ -1364,6 +1828,16 @@ header {
                 >.story-list__navcap {
                   color: #9f62b8;
                   background-image: url(../images/regular-navcap.png);
+                }
+
+                a {
+                  color: #444444;
+                  transition: color $animeSpeed;
+
+                  &:hover {
+                    color: #9f62b8;
+                    transition: color $animeSpeed;
+                  }
                 }
               }
             }
@@ -1487,9 +1961,18 @@ header {
       justify-content: left;
       align-items: center;
 
+      &:hover {
+        img {
+          transform: translateX(0px);
+          transition: all $animeSpeed;
+        }
+      }
+
       img {
         width: 47px;
         height: 19px;
+        transform: translateX(-5px);
+        transition: all $animeSpeed;
       }
     }
 
@@ -1508,6 +1991,8 @@ header {
         text-align: center;
         @include fontSize(16, 16, 1.6, 1.6);
         @include letterSpacing(100);
+        opacity: 0;
+
       }
 
       &::after {
@@ -1520,6 +2005,28 @@ header {
         height: 72px;
         top: -56px;
         right: 0;
+        opacity: 0;
+      }
+
+      &.on {
+
+        &::after,
+        &::before {
+          animation: fadeIn .5s linear;
+          opacity: 1;
+
+          @keyframes fadeIn {
+            0% {
+              opacity: 0;
+              transform: translateY(10px);
+            }
+
+            100% {
+              opacity: 1;
+              transform: translateY(0px);
+            }
+          }
+        }
       }
     }
 
@@ -1609,6 +2116,25 @@ header {
       transform: translateX(-50%);
       -webkit-transform: translateX(-50%);
       -ms-transform: translateX(-50%);
+      opacity: 0;
+      transform-origin: center center;
+
+      &.on {
+        animation: fadeIn2 .5s linear;
+        opacity: 1;
+
+        @keyframes fadeIn2 {
+          0% {
+            opacity: 0;
+            transform: translateY(10px) translateX(-50%);
+          }
+
+          100% {
+            opacity: 1;
+            transform: translateY(0px) translateX(-50%);
+          }
+        }
+      }
 
       img {
         width: 100%;
@@ -1632,7 +2158,6 @@ header {
         position: relative;
         @include fontSize(18, 18, 1, 1);
         @include letterSpacing(100);
-        color: #444444;
 
         &:nth-child(n + 2) {
           &::before {
@@ -1644,6 +2169,17 @@ header {
             left: 0;
           }
         }
+
+        a {
+          color: #444444;
+          transition: color $animeSpeed;
+
+          &:hover {
+            color: #46bbd8;
+            transition: color $animeSpeed;
+          }
+        }
+
       }
     }
 
@@ -1947,14 +2483,24 @@ header {
     margin-bottom: 24px;
 
     &:nth-child(2) {
-      .campaign-item__graph::before {
-        width: 66.7%;
+      .campaign-item__graph {
+        &.on {
+          &::before {
+            width: 66.6%;
+            transition: width 1s ease-out;
+          }
+        }
       }
     }
 
     &:last-child {
-      .campaign-item__graph::before {
-        width: 100%;
+      .campaign-item__graph {
+        &.on {
+          &::before {
+            width: 100%;
+            transition: width 1.5s ease-in;
+          }
+        }
       }
     }
 
@@ -2048,11 +2594,18 @@ header {
       &::before {
         content: "";
         position: absolute;
-        width: 33.3%;
+        width: 0%;
         height: 100%;
         background-image: repeating-linear-gradient(-45deg, #fbca41, #fbca41 5px, #ffffff 5px, #ffffff 10px);
         left: 0;
         top: 0;
+      }
+
+      &.on {
+        &::before {
+          width: 33.3%;
+          transition: width 0.5s ease-in;
+        }
       }
     }
   }
@@ -2087,19 +2640,35 @@ header {
       transform: translate(0%, -100%);
     }
 
-
     &::after {
       content: "";
       position: absolute;
-      width: 244px;
-      height: 95px;
+      width: 240px;
+      height: 71px;
       background-image: url(../images/campaign-bubble.png);
-      background-size: cover;
+      background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
-      top: -25px;
+      top: -110px;
       left: 146px;
-      transform: translate(0%, -100%);
+      transform: rotate(-5deg);
+    }
+
+    &.on {
+      &::after {
+        animation: yurayura3 0.5s linear;
+        animation-iteration-count: 3;
+
+        @keyframes yurayura3 {
+          0% {
+            transform: rotate(-5deg);
+          }
+
+          50% {
+            transform: rotate(5deg);
+          }
+        }
+      }
     }
 
     &__text {
@@ -2385,12 +2954,31 @@ header {
   }
 
   &__img {
+    @keyframes link-animation {
+      0% {
+        transform: translateX(50%);
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateX(0%)
+      }
+    }
+
+
     &--lady {
       position: absolute;
       width: 150px;
       height: 150px;
       left: 0;
       bottom: 30%;
+      opacity: 0;
+
+      &.on {
+        animation: link-animation 1.2s ease-out 0s 1;
+        opacity: 1
+      }
     }
 
     &--family {
@@ -2399,6 +2987,12 @@ header {
       height: 150px;
       right: 0;
       bottom: 30%;
+      opacity: 0;
+
+      &.on {
+        animation: link-animation 1.2s ease-out 0s 1;
+        opacity: 1
+      }
     }
 
     &--girl {
@@ -2407,6 +3001,12 @@ header {
       height: 160px;
       right: 12%;
       bottom: -15%;
+      opacity: 0;
+
+      &.on {
+        animation: link-animation 0.8s ease-out 0s 1;
+        opacity: 1
+      }
     }
 
     &--foreigner {
@@ -2415,6 +3015,12 @@ header {
       height: 160px;
       left: 12%;
       bottom: -15%;
+      opacity: 0;
+
+      &.on {
+        animation: link-animation 1.2s ease-out 0s 1;
+        opacity: 1
+      }
     }
   }
 }
@@ -2439,6 +3045,16 @@ footer {
       &:first-child {
         border-right: none;
       }
+
+      a {
+        opacity: 1;
+        transition: opacity $animeSpeed;
+
+        &:hover {
+          opacity: 0.5;
+          transition: opacity $animeSpeed;
+        }
+      }
     }
   }
 
@@ -2448,4 +3064,5 @@ footer {
     font-weight: 400;
     @include fontSize(12, 10, 1, 1);
   }
+
 }
