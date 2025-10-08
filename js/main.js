@@ -9,6 +9,24 @@ $(function () {
   });
 });
 
+//headerの位置調整
+$(function () {
+  const $title = $('.header-title');
+  const $nav = $('.header-nav__inner');
+
+  $(window).on('scroll', function () {
+    const titleBottom = $title.offset().top + $title.outerHeight();
+    const scrollTop = $(window).scrollTop();
+
+    if (scrollTop > titleBottom) {
+      $nav.addClass('on');
+    } else {
+      $nav.removeClass('on');
+    }
+  });
+});
+
+
 // ページ内スクロール
 $('a[href^="#"]').click(function () {
   const speed = 600;
@@ -43,36 +61,40 @@ new Vivus('mv', { // svgに指定するid名
   forceRender: false, //パスが更新で再レンダリングさせない
 });
 
-new Vivus('story', { // svgに指定するid名
-  duration: 120, // アニメーションの長さ
-  forceRender: false, //パスが更新で再レンダリングさせない
-});
+// new Vivus('story', { // svgに指定するid名
+//   duration: 120, // アニメーションの長さ
+//   forceRender: false, //パスが更新で再レンダリングさせない
+// });
 
-new Vivus('points', { // svgに指定するid名
-  duration: 120, // アニメーションの長さ
-  forceRender: false, //パスが更新で再レンダリングさせない
-});
+// new Vivus('points', { // svgに指定するid名
+//   duration: 120, // アニメーションの長さ
+//   forceRender: false, //パスが更新で再レンダリングさせない
+// });
 
-new Vivus('campaign', { // svgに指定するid名
-  duration: 120, // アニメーションの長さ
-  forceRender: false, //パスが更新で再レンダリングさせない
-});
+// new Vivus('campaign', { // svgに指定するid名
+//   duration: 120, // アニメーションの長さ
+//   forceRender: false, //パスが更新で再レンダリングさせない
+// });
 
-new Vivus('flow', { // svgに指定するid名
-  duration: 120, // アニメーションの長さ
-  forceRender: false, //パスが更新で再レンダリングさせない
-});
+// new Vivus('flow', { // svgに指定するid名
+//   duration: 120, // アニメーションの長さ
+//   forceRender: false, //パスが更新で再レンダリングさせない
+// });
 
-//mvアニメーション
+//mvアニメーション(PC)
 $(function () {
   var done = false;
   $(window).on('scroll load', function () {
+    // 画面幅が830px以下なら処理しない
+    if ($(window).width() <= 830) return;
+
     var winTop = $(window).scrollTop();
     var winBottom = winTop + $(window).height();
     var elTop = $('.mv').offset().top;
 
     if (!done && elTop < winBottom) {
       done = true;
+
       setTimeout(function () {
         $('.mv__img').addClass('on');
       }, 2000); // 2秒後
@@ -88,6 +110,37 @@ $(function () {
     }
   });
 });
+
+//mvアニメーション(sp)
+$(function () {
+  if ($(window).width() <= 830) {
+    const $items = $('.mv__text-inner li');
+    let index = 0;
+    const duration = 5000; // 4秒
+    setTimeout(function () {
+      $('.mv__img').addClass('on');
+    }, 2000); // 2秒後
+
+
+    // 最初の要素を表示
+    $items.eq(index).addClass('sp-on');
+
+    // 次の要素に切り替え続けるループ
+    setInterval(function () {
+      const nextIndex = (index + 1) % $items.length;
+
+      // 現在→次を一度に切り替え（同時にクラス更新）
+      $items.removeClass('sp-on').eq(nextIndex).addClass('sp-on');
+
+      // インデックス更新
+      index = nextIndex;
+    }, duration);
+  }
+});
+
+
+
+
 
 // スクロールして表示領域に入ったらclass付与
 $(function () {
