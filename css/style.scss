@@ -151,7 +151,7 @@ $letterSpacing: 50;
 
 
 //変数
-$fontColor: #1c1c1c;
+$fontColor: #444444;
 $mainColor: #2f5f98;
 $accentColor: #fbca41;
 $pointColor: #46bbd8;
@@ -255,7 +255,7 @@ header {
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      padding: 0 4%;
+      padding: 0 5%;
       color: #fff;
       margin: 0 auto;
 
@@ -333,7 +333,7 @@ header {
       left: 50%;
       transform: translate(-50%, 0%);
       align-items: center;
-      padding: 0 4% 0 4%;
+      padding: 0 5% 0 5%;
       margin: 0 auto;
       width: 100%;
       justify-content: space-between;
@@ -954,13 +954,13 @@ header {
 
     @include mq-down(md) {
       display: block;
-      padding: 0 4%;
+      padding: 0 5%;
     }
   }
 
   &__text {
     @include mq-down(md) {
-      padding: 0 4%;
+      padding: 0 5%;
       width: 100%;
     }
 
@@ -1258,7 +1258,7 @@ header {
   @include mq-down(md) {
     max-width: none;
     width: 100%;
-    padding: 0 4%;
+    padding: 0 5%;
   }
 
   &__small {
@@ -1268,7 +1268,7 @@ header {
     @include mq-down(md) {
       max-width: none;
       width: 100%;
-      padding: 0 8%;
+      padding: 0 10%;
     }
   }
 }
@@ -1293,7 +1293,6 @@ header {
 
   @include mq-down(md) {
     padding-top: 32px;
-    padding-bottom: 32px;
     height: auto;
   }
 
@@ -1317,20 +1316,26 @@ header {
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: 100%;
+
+    @include mq-down(md) {
+      background-image: url(../images/sceneline_sp.png);
+      width: 857px;
+      height: 96px;
+      top: 15px;
+    }
   }
 
   &__img {
-    width: 130px;
-    aspect-ratio: 1 / 1;
+    width: 53px;
     margin-bottom: 10px;
 
     @include mq-down(md) {
-      width: 95px;
+      width: 38px;
     }
 
     img {
       width: 100%;
-      height: 100%;
+      height: auto;
     }
   }
 
@@ -1475,7 +1480,8 @@ header {
     @include mq-down(md) {
       height: 135px;
       margin-bottom: 20px;
-      &:last-of-type{
+
+      &:last-of-type {
         margin-bottom: 0;
       }
     }
@@ -1489,10 +1495,10 @@ header {
     top: -30px;
 
     @include mq-down(md) {
-      padding: 0 4%;
+      justify-content: center;
       width: 100%;
-      height: 132px;
-      gap: 16px;
+      height: 120px;
+      gap: 12px;
       top: 0;
       left: 50%;
       transform: translate(-50%, 0%);
@@ -1507,16 +1513,17 @@ header {
 
       @include mq-down(md) {
         // 1・2段目左側
-        rotate: (5deg);
+        rotate: (6deg);
       }
     }
 
     &:nth-child(2) {
       padding-top: 30px;
-       @include mq-down(md) {
-        padding-top: 0;
-         // 1・2段目右側
-        rotate: (-5deg);
+
+      @include mq-down(md) {
+        padding-top: 1px;
+        // 1・2段目右側
+        rotate: (-6deg);
       }
     }
 
@@ -1527,18 +1534,29 @@ header {
     &:nth-child(4) {
       rotate: (2deg);
     }
+
+    img {
+      @include mq-down(md) {
+        width: auto;
+        height: 100%;
+      }
+    }
   }
 }
 
 .holl {
   padding-top: 120px;
-  overflow-x: hidden;
+  overflow: hidden;
+
+  @include mq-down(md) {
+    padding-top: 80px;
+  }
 
   .holl-ttl {
     text-align: center;
     color: $fontColor;
-    @include fontSize(20, 20, 1, 1);
-    @include letterSpacing(50);
+    @include fontSize(20, 18, 1, 1.5);
+    @include letterSpacing(50, 80);
 
     &__top {
       display: flex;
@@ -1546,26 +1564,68 @@ header {
       align-items: center;
       gap: 16px;
 
+      @include mq-down(md) {
+        display: block;
+      }
+
       img {
         width: 402px;
+
+        @include mq-down(md) {
+          width: 257px;
+        }
+
       }
     }
 
     &__bottom {
-      margin-top: 8px;
-      position: relative;
-      width: fit-content;
-      margin: 0 auto;
 
-      &::after {
-        content: "";
-        position: absolute;
-        width: 58px;
-        height: 8px;
-        background-image: url(../images/holl-ttlline.png);
-        background-size: cover;
-        bottom: -8px;
-        left: 120px;
+      span {
+        position: relative;
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translate(-50%, 100%);
+          width: 58px;
+          height: 8px;
+          background-image: url(../images/holl-ttlline.png);
+          background-size: contain;
+          background-position: center;
+          background-repeat: no-repeat;
+
+          @include mq-down(md) {
+            background-image: url(../images/holl-ttlline_sp.png);
+            width: 37px;
+            height: 11px;
+
+          }
+        }
+      }
+
+
+    }
+  }
+
+  &__triangle {
+    position: relative;
+
+    &::after {
+      content: "";
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 60px 50vw 0 50vw;
+      border-color: #fff transparent transparent transparent;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+
+      @include mq-down(md) {
+        border-width: 40px 50vw 0 50vw;
       }
     }
   }
@@ -1573,24 +1633,63 @@ header {
   &__wrap {
     width: 100%;
     background: $mainColor;
-    clip-path: polygon(0 0,
-        /* 左上 */
-        50% 10%,
-        /* 中央を少し下げる */
-        100% 0,
-        /* 右上 */
-        100% 100%,
-        /* 右下 */
-        0 100%
-        /* 左下 */
-      );
-
-    position: relative;
     z-index: -10;
+
+
   }
 
   &__box {
     padding: 152px 0 20px 0;
+    position: relative;
+
+    @include mq-down(md) {
+      padding: 80px 0 60px 0;
+    }
+
+    &::before {
+      position: absolute;
+      content: "";
+      background-image: url(../images/holl-decoration01.png);
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 130px;
+      height: 130px;
+      right: 0;
+      top: 80px;
+
+      @include mq-down(md) {
+        width: 85px;
+        height: 85px;
+        right: -4%;
+        top: 75px;
+      }
+
+
+    }
+
+    &::after {
+      position: absolute;
+      content: "";
+      background-image: url(../images/holl-decoration02.png);
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      width: 130px;
+      height: 130px;
+      left: 0;
+      bottom: 40px;
+
+
+      @include mq-down(md) {
+        width: 90px;
+        height: 90px;
+        left: -4%;
+        bottom: 8px;
+      }
+
+    }
+
   }
 
   &__point {
@@ -1598,10 +1697,15 @@ header {
     text-align: center;
     color: #fff;
     transform: rotate(-5deg);
-    @include fontSize(26, 26, 1.8, 1.8);
+    @include fontSize(26, 23, 1.8, 1);
     @include letterSpacing(100);
     margin-left: 64px;
     position: relative;
+
+    @include mq-down(md) {
+      margin-left: 6%;
+    }
+
 
     span {
       display: flex;
@@ -1609,14 +1713,27 @@ header {
       align-items: center;
       gap: 10px;
 
+      @include mq-down(md) {
+        gap: 6px;
+      }
+
       &:nth-child(2) {
         padding-top: 6px;
+
+        @include mq-down(md) {
+          padding-top: 3px;
+        }
       }
     }
 
     img {
       width: 220px;
       height: 49px;
+
+      @include mq-down(md) {
+        width: 190px;
+        height: auto;
+      }
     }
 
     &::before {
@@ -1628,6 +1745,13 @@ header {
       height: 40px;
       top: -32px;
       left: -64px;
+
+      @include mq-down(md) {
+        width: 22px;
+        height: 30px;
+        top: -30px;
+        left: -25px;
+      }
     }
 
     &::after {
@@ -1642,6 +1766,13 @@ header {
       transform-origin: center bottom;
       transform: rotate(20deg);
       opacity: 0;
+
+      @include mq-down(md) {
+        width: 62px;
+        height: 62px;
+        top: -38px;
+        right: -38px;
+      }
 
     }
 
@@ -1682,6 +1813,10 @@ header {
   .holl-bottom {
     padding-top: 120px;
 
+    @include mq-down(md) {
+      padding: 70px 0 35px 0;
+    }
+
     &__bk {
       position: relative;
       content: "";
@@ -1701,6 +1836,15 @@ header {
         right: 25%;
         transform: translate(50%, -100%);
         z-index: -1;
+
+        @include mq-down(md) {
+          width: 850px;
+          height: 647px;
+          background-image: url(../images/holl-bottom-bk_sp.png);
+          top: 25px;
+          left: -160%;
+          right: auto;
+        }
       }
 
       &::before {
@@ -1717,6 +1861,14 @@ header {
         right: 20%;
         z-index: -1;
         opacity: 0;
+
+        @include mq-down(md) {
+          width: 130px;
+          height: 130px;
+          bottom: -30px;
+          right: 0px;
+
+        }
       }
 
 
@@ -1744,49 +1896,61 @@ header {
 
     .holl-text {
       text-align: center;
-      @include fontSize(24, 1);
-      @include letterSpacing(50);
+      @include fontSize(24, 20, 2, 1.5);
+
+      @include letterSpacing(50, 80);
 
 
-      &__top {
+      span {
+        color: $mainColor;
+        @include fontSize(30, 24, 1, 1);
+        @include Montserrat();
+        margin-right: 8px;
+        position: relative;
+
+        &::after {
+          content: ":";
+          color: $accentColor;
+        }
+      }
+
+      p {
         background-color: #fff;
         width: fit-content;
         margin: 0 auto;
-      }
 
-      &__bottom {
-        display: flex;
-        justify-content: center;
-        align-items: baseline;
-        background-color: #fff;
-        width: fit-content;
-        margin: 8px auto 0;
-      }
+        @include mq-down(md) {
+          margin-top: 12px;
 
-      &__logo {
-        color: $mainColor;
-        @include fontSize(30, 30, 1, 1);
-        @include Montserrat();
-        margin-right: 8px;
-
-        span {
-          color: $accentColor;
+          &:first-child {
+            margin-top: 0;
+          }
         }
       }
 
       &__sup {
         text-align: center;
         margin-top: 44px;
-        @include fontSize(20, 20, 2, 2);
-        @include letterSpacing(50);
+        @include fontSize(20, 16, 2, 1.8);
+        @include letterSpacing(50, 80);
+
+        @include mq-down(md) {
+          margin-top: 24px;
+        }
 
         p {
           background-color: #fff;
           width: fit-content;
           margin: 0 auto;
+
+          @include mq-down(md) {
+            &:last-child {
+              margin-top: 16px;
+            }
+          }
         }
 
-        span {
+        .number {
           position: relative;
           z-index: 1;
           margin: 0 4px;
@@ -1811,12 +1975,18 @@ header {
             bottom: -2px;
             left: -2px;
             color: $mainColor;
-            @include fontSize(40, 40, 1, 1);
+            @include fontSize(40, 32, 1, 1);
             @include letterSpacing(100);
             @include Caveat();
 
           }
         }
+
+        .big {
+          @include fontSize(22, 18, 1, 1);
+          @include letterSpacing(50, 80);
+        }
+
       }
     }
   }
@@ -1829,11 +1999,39 @@ header {
   &__message {
     margin-top: 44px;
     width: 562px;
+
+    @include mq-down(md) {
+      width: 289px;
+      margin-top: 20px;
+    }
   }
 
   &__content {
     position: relative;
     top: -90px;
+
+    @include mq-down(md) {
+      top: 0;
+      margin: 0 calc(50% - 50vw);
+      width: 100vw;
+      padding: 50px 0 0;
+    }
+
+    &::after {
+      @include mq-down(md) {
+        position: absolute;
+        top: 0%;
+        left: 5%;
+        transform: translate(0%, -50%);
+        content: '';
+        width: 855px;
+        height: 73px;
+        background-image: url(../images/holl-ttl_sp.png);
+        background-size: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    }
   }
 
   &__list {
@@ -1841,6 +2039,11 @@ header {
     @include fontSize(14, 13, 1.5, 1.5);
     text-align: center;
     height: 374px;
+
+    @include mq-down(md) {
+      height: auto;
+
+    }
 
 
     li {
@@ -1855,7 +2058,19 @@ header {
       background-repeat: no-repeat;
       position: absolute;
 
-      &:nth-child(1) {
+      @include mq-down(md) {
+        width: 300px;
+        height: 130px;
+        background-size: contain;
+        position: static;
+      }
+
+
+    }
+
+    .holl__item {
+
+      &--01 {
         top: 40px;
         left: 0;
         background-image: url(../images/holl-bk.png);
@@ -1864,42 +2079,68 @@ header {
         width: 670px;
         justify-content: end;
 
+        @include mq-down(md) {
+          background-image: url(../images/holl-bk01.png);
+          width: 300px;
+          justify-content: center;
+        }
+
         p {
           width: 320px;
-          height: 140px;
           height: fit-content;
+
+          @include mq-down(md) {
+            width: 300px;
+
+          }
         }
       }
 
-      &:nth-child(2) {
+      &--02 {
         top: 0;
         right: 152px;
         background-image: url(../images/holl-bk02.png);
       }
 
-      &:nth-child(3) {
+      &--03 {
         top: 95px;
         right: 0;
         background-image: url(../images/holl-bk03.png);
       }
 
-      &:nth-child(4) {
+      &--04 {
         bottom: 30px;
         right: 143px;
         background-image: url(../images/holl-bk01.png);
       }
 
-      &:nth-child(5) {
+      &--05 {
         bottom: 0;
         right: 440px;
         background-image: url(../images/holl-bk03.png);
       }
 
-      &:nth-child(6) {
+      &--06 {
         bottom: 63px;
         left: 80px;
         background-image: url(../images/holl-bk02.png);
       }
+    }
+  }
+
+  &__pagination {
+    .swiper-pagination {
+      position: static;
+      margin-top: 12px;
+    }
+
+    .swiper-pagination-bullet {
+      background-color: #fff;
+      opacity: 1;
+    }
+
+    .swiper-pagination-bullet-active {
+      background-color: $accentColor;
     }
   }
 }
@@ -1907,12 +2148,25 @@ header {
 .story {
   margin-top: 124px;
 
+  @include mq-down(md) {
+    margin-top: 100px;
+  }
+
   .story-ttl {
     text-align: center;
+
+    @include mq-down(md) {
+      text-align: left;
+    }
 
     &__en {
       width: 166px;
       margin: 0 auto;
+
+      @include mq-down(md) {
+        width: 110px;
+        margin: 0 auto 0 0;
+      }
 
       svg {
         #story-base path {
@@ -1936,8 +2190,8 @@ header {
     }
 
     &__ja {
-      @include fontSize(30, 30, 1, 1);
-      @include letterSpacing(100);
+      @include fontSize(30, 23, 1, 1);
+      @include letterSpacing(100, 50);
       color: $mainColor;
     }
   }
@@ -1945,17 +2199,29 @@ header {
   &__text {
     text-align: center;
     margin-top: 40px;
-    @include fontSize(16, 16, 2, 2);
+    @include fontSize(16, 14, 2, 1.5);
     @include letterSpacing(50);
+
+    @include mq-down(md) {
+      margin-top: 16px;
+      text-align: left;
+    }
   }
 
-  //要確認
   &__nav {
     display: flex;
     justify-content: center;
     text-align: center;
     gap: 36px;
     margin-top: 56px;
+
+    @include mq-down(md) {
+      flex-flow: wrap;
+      justify-content: start;
+      gap: 16px;
+      margin-top: 24px;
+      max-width: 90%;
+    }
 
     li {
       display: flex;
@@ -1965,6 +2231,14 @@ header {
       width: fit-content;
       position: relative;
 
+      @include mq-down(md) {
+        margin-top: 16px;
+
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+
       &:hover {
         img {
           transform: translateX(0px);
@@ -1973,7 +2247,7 @@ header {
       }
 
       p {
-        @include fontSize(18, 18, 1, 1);
+        @include fontSize(18, 16, 1, 1);
         @include letterSpacing(100);
       }
 
@@ -2066,6 +2340,10 @@ header {
     margin-top: 48px;
     height: 300svh;
 
+    @include mq-down(md) {
+      height: auto;
+    }
+
 
     &__wrap {
       background: rgba(70, 187, 216, 0.1);
@@ -2080,6 +2358,14 @@ header {
       transition: opacity $animeSpeed;
       pointer-events: none;
 
+      @include mq-down(md) {
+        opacity: 1;
+        position: static;
+        height: auto;
+        pointer-events: auto;
+        padding: 24px 2%;
+      }
+
 
       &.active {
         opacity: 1;
@@ -2093,90 +2379,85 @@ header {
       &:nth-child(2) {
         background: rgba(67, 183, 113, 0.1);
 
-        >.story-list__outer {
-          border: solid 2px #43b771;
-          color: #43b771;
+        .story-list {
+          &__outer {
+            border: solid 2px #43b771;
+            color: #43b771;
 
-          &::before {
-            background-image: url(../images/lang-deco01.png);
+            &::before {
+              background-image: url(../images/lang-deco01.png);
+            }
+
+            &::after {
+              background-image: url(../images/lang-deco02.png);
+            }
           }
 
-          &::after {
-            background-image: url(../images/lang-deco02.png);
-          }
-
-          >.story-list__inner {
-            >.story-list__ttl {
+          &__img {
+            @include mq-down(md) {
               &::after {
-                background-image: url(../images/lang-line.png);
-              }
-            }
+                background-image: url(../images/lang-deco02.png);
+                left: -34px;
 
-            >.story-list__box {
-              >.story-list__img {
-                &::before {
-                  content: "ESL";
-                  left: -16px;
-                }
-
-                >.story-list__btn {
-                  background-color: #43b771;
-                }
-              }
-
-              >.story-list__about {
-                &::after {
-                  background-image: url(../images/lang-serif.png);
-                }
-
-                >.story-list__block {
-                  &:nth-child(2) {
-                    >.story-list__unit {
-                      >.story-list__item {
-                        border: dashed 1px #43b771;
-                      }
-                    }
-                  }
-
-                  >.story-list__unit {
-                    >.story-list__tab {
-                      background-color: #43b771;
-                    }
-
-                    >.story-list__item {
-                      border: solid 1px #43b771;
-
-                      &::after {
-                        background-color: #43b771;
-                        border: solid 1px #43b771;
-                      }
-                    }
-                  }
-                }
-              }
-            }
-
-            >.story-list__nav {
-              background: rgba(67, 183, 113, 0.1);
-
-              li {
-                >.story-list__navcap {
-                  color: #43b771;
-                  background-image: url(../images/lang-navcap.png);
-                }
-
-                a {
-                  color: #444444;
-                  transition: color $animeSpeed;
-
-                  &:hover {
-                    color: #43b771;
-                    transition: color $animeSpeed;
-                  }
-                }
               }
             }
           }
+
+          &__ttl {
+            &::after {
+              background-image: url(../images/lang-line.png);
+            }
+          }
+
+          &__img {
+            &::before {
+              content: "ESL";
+              left: -16px;
+            }
+          }
+
+          &__btn {
+            background-color: #43b771;
+          }
+
+          &__about {
+            &::after {
+              background-image: url(../images/lang-serif.png);
+            }
+          }
+
+          &__tab {
+            background-color: #43b771;
+          }
+
+          &__item {
+            border: #43b771 solid 1px;
+
+            &::after {
+              background-color: #43b771;
+            }
+          }
+
+          &__block {
+            &:nth-child(2) {
+              .story-list__item {
+                border: #43b771 dashed 1px;
+              }
+
+            }
+          }
+
+          &__nav {
+            li {
+              background-color: #ECF8F0;
+            }
+          }
+
+          &__navcap {
+            color: #43b771;
+            background-image: url(../images/lang-navcap.png);
+          }
+
         }
       }
 
@@ -2223,6 +2504,10 @@ header {
                   &:nth-child(1) {
                     >.story-list__unit {
                       width: 91%;
+
+                      @include mq-down(md) {
+                        width: 87%;
+                      }
                     }
 
                   }
@@ -2291,15 +2576,30 @@ header {
       color: #46bbd8;
       position: relative;
 
+      @include mq-down(md) {
+        max-width: 100%;
+        border-radius: 16px;
+        padding: 60px 0 36px 0;
+      }
+
       &::before {
         position: absolute;
         content: "";
         background-image: url(../images/walk-deco01.png);
         background-size: contain;
+        background-repeat: no-repeat;
         width: 150px;
         height: 150px;
         top: 10px;
         right: 20px;
+
+        @include mq-down(md) {
+          z-index: 1;
+          width: 90px;
+          height: 90px;
+          top: 5px;
+          right: 0px;
+        }
       }
 
       &::after {
@@ -2311,6 +2611,10 @@ header {
         height: 150px;
         left: 10px;
         bottom: 12px;
+
+        @include mq-down(md) {
+          display: none;
+        }
       }
     }
 
@@ -2318,11 +2622,21 @@ header {
       max-width: 1100px;
       width: 100%;
       margin: 0 auto;
+
+      @include mq-down(md) {
+        max-width: 100%;
+        border-radius: 16px;
+        padding: 0 8%;
+      }
     }
 
     &__ttl {
       width: fit-content;
       position: relative;
+
+      @include mq-down(md) {
+        margin-top: 16px
+      }
 
       h3 {
         @include fontSize(30, 20, 1, 1);
@@ -2343,6 +2657,10 @@ header {
         height: 6px;
         bottom: -16px;
         left: 0;
+
+        @include mq-down(md) {
+          bottom: -10px;
+        }
       }
     }
 
@@ -2350,6 +2668,10 @@ header {
       @include fontSize(18, 14, 1.5, 1.5);
       @include letterSpacing(100);
       margin-top: 48px;
+
+      @include mq-down(md) {
+        margin-top: 16px;
+      }
     }
 
     &__box {
@@ -2365,21 +2687,52 @@ header {
       margin-left: 36px;
       position: relative;
 
+      @include mq-down(md) {
+        width: 100%;
+        aspect-ratio: 295/196;
+        margin-left: 0;
+
+
+      }
+
       img {
         width: 100%;
         height: 100%;
         border-radius: 20px;
+
+        @include mq-down(md) {
+          border-radius: 16px;
+        }
       }
 
       &::before {
-        content: "Working Horiday";
+        content: "Working Holiday";
         position: absolute;
         font-family: "Caveat", cursive;
-        @include fontSize(26, 26, 1, 1);
+        @include fontSize(26, 28, 1, 1);
         @include letterSpacing(200);
         top: -16px;
         left: -36px;
         transform: rotate(-7deg);
+
+        @include mq-down(md) {
+          top: -26px;
+          left: -15px;
+          transform: rotate(-5deg);
+        }
+      }
+
+      &::after {
+        @include mq-down(md) {
+          position: absolute;
+          content: "";
+          background-image: url(../images/walk-deco02.png);
+          background-size: contain;
+          width: 100px;
+          height: 100px;
+          left: -50px;
+          bottom: -17px;
+        }
       }
     }
 
@@ -2395,6 +2748,13 @@ header {
       justify-content: left;
       align-items: center;
 
+      @include mq-down(md) {
+        right: 0;
+        bottom: -15px;
+        width: 53px;
+        height: 33px;
+      }
+
       &:hover {
         img {
           transform: translateX(0px);
@@ -2407,6 +2767,13 @@ header {
         height: 19px;
         transform: translateX(-5px);
         transition: all $animeSpeed;
+
+        @include mq-down(md) {
+          transform: translateX(-0px);
+          width: 36px;
+          height: 16px;
+          margin-top: 4px;
+        }
       }
     }
 
@@ -2414,6 +2781,11 @@ header {
       padding-bottom: 56px;
       width: 54%;
       position: relative;
+
+      @include mq-down(md) {
+        width: 100%;
+        padding-bottom: 24px;
+      }
 
       &::before {
         position: absolute;
@@ -2423,10 +2795,15 @@ header {
         top: -72px;
         right: 0;
         text-align: center;
-        @include fontSize(16, 16, 1.6, 1.6);
+        @include fontSize(16, 12, 1.6, 1.6);
         @include letterSpacing(100);
         opacity: 0;
 
+        @include mq-down(md) {
+          width: 178px;
+          height: 54px;
+          top: -68px;
+        }
       }
 
       &::after {
@@ -2440,6 +2817,12 @@ header {
         top: -56px;
         right: 0;
         opacity: 0;
+
+        @include mq-down(md) {
+          width: 178px;
+          height: 54px;
+          top: -50px;
+        }
       }
 
       &.on {
@@ -2462,6 +2845,19 @@ header {
           }
         }
       }
+
+      .story-list__block {
+        &:nth-child(2) {
+          .story-list__text {
+            @include mq-down(md) {
+              margin-top: 42px;
+              width: 100%;
+              text-align: right;
+            }
+
+          }
+        }
+      }
     }
 
     &__block {
@@ -2469,14 +2865,28 @@ header {
       justify-content: left;
       align-items: end;
       gap: 10px;
-      @include fontSize(18, 13, 1, 1);
+      @include fontSize(18, 13, 1, 1.5);
       @include letterSpacing(100, 50);
+
+      @include mq-down(md) {
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: none;
+      }
 
       &:nth-child(2) {
         margin-top: 20px;
 
+        @include mq-down(md) {
+          margin-top: 15px;
+        }
+
         >.story-list__unit {
           width: 34%;
+
+          @include mq-down(md) {
+            width: 45%;
+          }
 
           >.story-list__item {
             border: dashed 1px #46bbd8;
@@ -2489,8 +2899,16 @@ header {
       position: relative;
       width: 76%;
 
+      @include mq-down(md) {
+        width: 87%;
+      }
+
       &:nth-of-type(3) {
         margin-left: 32px;
+
+        @include mq-down(md) {
+          margin-left: 0px;
+        }
       }
     }
 
@@ -2500,8 +2918,13 @@ header {
       background-color: #46bbd8;
       color: #fff;
       border-radius: 8px 8px 0 0;
-      @include fontSize(14, 14, 1, 1);
+      @include fontSize(14, 11, 1, 1);
       @include letterSpacing(50);
+
+      @include mq-down(md) {
+        padding: 3px 9px;
+        border-radius: 6px 6px 0 0;
+      }
     }
 
     &__item {
@@ -2512,6 +2935,10 @@ header {
       position: relative;
       z-index: 1;
       text-align: center;
+
+      @include mq-down(md) {
+        padding: 12px 0;
+      }
 
       &::after {
         content: "";
@@ -2528,23 +2955,38 @@ header {
       }
     }
 
+    &__cross {
+      position: relative;
+
+      &::after {
+        content: "×";
+        @include Caveat(regular);
+        @include fontSize(50, 30, 1, 1);
+        @include letterSpacing(100);
+        position: absolute;
+        bottom: 8px;
+
+        @include mq-down(md) {
+          left: -9px;
+        }
+      }
+    }
+
     &__text {
       padding-bottom: 16px;
       position: relative;
+      @include fontSize(20, 16, 1, 1);
+      @include letterSpacing(100, 100);
 
-      span {
-        @include Caveat(regular);
-        @include fontSize(50, 50, 1, 1);
-        @include letterSpacing(100);
-        position: absolute;
-        bottom: 6px;
+      @include mq-down(md) {
+        padding-bottom: 0;
       }
     }
 
     &__caption {
       position: absolute;
-      width: 92%;
-      height: 48px;
+      width: auto;
+      height: 32px;
       margin-top: 6px;
       left: 50%;
       transform: translateX(-50%);
@@ -2552,6 +2994,11 @@ header {
       -ms-transform: translateX(-50%);
       opacity: 0;
       transform-origin: center center;
+
+      @include mq-down(md) {
+        height: 30px;
+      }
+
 
       &.on {
         animation: fadeIn2 .5s linear;
@@ -2571,8 +3018,8 @@ header {
       }
 
       img {
-        width: 100%;
-        height: auto;
+        width: auto;
+        height: 100%;
       }
     }
 
@@ -2581,8 +3028,18 @@ header {
       height: 60px;
       margin: 104px auto 0;
       width: fit-content;
-      background: rgba(70, 187, 216, 0.1);
+      background-color: rgba(70, 187, 216, 0.1);
       border-radius: 30px;
+
+      @include mq-down(md) {
+        flex-wrap: wrap;
+        background-color: transparent;
+        margin: 40px auto 0;
+        border-radius: 0;
+        height: auto;
+        width: 100%;
+        justify-content: space-between;
+      }
 
 
       li {
@@ -2591,8 +3048,19 @@ header {
         justify-content: center;
         align-items: center;
         position: relative;
-        @include fontSize(18, 18, 1, 1);
+        @include fontSize(18, 14, 1, 1);
         @include letterSpacing(100);
+
+
+        @include mq-down(md) {
+          width: 47%;
+          align-items: center;
+          background-color: rgba(70, 187, 216, 0.1);
+          border-radius: 8px;
+          padding: 8px 0;
+          text-align: center;
+
+        }
 
         &:nth-child(n + 2) {
           &::before {
@@ -2602,12 +3070,26 @@ header {
             height: 27px;
             background: repeating-linear-gradient(to bottom, #808080 0 2px, transparent 2px 4px);
             left: 0;
+
+            @include mq-down(md) {
+              display: none;
+            }
+          }
+        }
+
+        &:last-of-type {
+          @include mq-down(md) {
+            margin-top: 12px;
           }
         }
 
         a {
           color: #444444;
           transition: color $animeSpeed;
+
+          @include mq-down(md) {
+            margin: 0 auto;
+          }
 
           &:hover {
             color: #46bbd8;
@@ -2621,16 +3103,23 @@ header {
     &__navcap {
       position: absolute;
       color: #46bbd8;
-      @include fontSize(14, 14, 1, 1);
-      @include letterSpacing(100);
+      @include fontSize(14, 10, 1, 1);
+      @include letterSpacing(100, 0);
       top: -24px;
       background-image: url(../images/walk-navcap.png);
       background-size: contain;
+      background-repeat: no-repeat;
       width: 192px;
       height: 17px;
       display: flex;
       justify-content: center;
       align-items: center;
+
+      @include mq-down(md) {
+        width: 124px;
+        height: 15px;
+        top: -18px;
+      }
     }
   }
 }

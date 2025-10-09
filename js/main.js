@@ -138,10 +138,6 @@ $(function () {
   }
 });
 
-
-
-
-
 // スクロールして表示領域に入ったらclass付与
 $(function () {
   $(".js-fadeUp").on("inview", function () {
@@ -211,12 +207,16 @@ $(function () {
   });
 });
 
+
 $(function () {
   var $wraps = $('.story-list__wrap');
   var $storyList = $('.story-list');
   var windowHeight = $(window).height();
 
   function updateActive() {
+    // 830px以下なら実行しない
+    if (window.innerWidth <= 830) return;
+
     var scrollTop = $(window).scrollTop();
     var listTop = $storyList.offset().top;
 
@@ -244,3 +244,42 @@ $(function () {
     updateActive();
   });
 });
+
+
+
+//swiper 
+let mySwiper = null;
+
+function initSwiper() {
+  const winW = window.innerWidth;
+
+  if (winW <= 830) {
+    if (!mySwiper) {
+      mySwiper = new Swiper('.swiper', {
+        loop: true,
+        // slidesPerView: 1.25,
+        slidesPerView: 'auto', // センター寄せする場合 auto 推奨
+        centeredSlides: true,  // 中央配置
+        spaceBetween: -10,     // 左右10pxかぶせる
+        speed: 1000,           // スライド速度
+        // autoplay: {
+        //   delay: 2000,         // 自動送り間隔
+        //   disableOnInteraction: false,
+        // },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+      });
+    }
+  } else {
+    if (mySwiper) {
+      mySwiper.destroy(true, true);
+      mySwiper = null;
+    }
+  }
+}
+
+window.addEventListener('load', initSwiper);
+window.addEventListener('resize', initSwiper);
+
