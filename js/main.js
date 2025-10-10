@@ -61,15 +61,15 @@ new Vivus('mv', { // svgに指定するid名
   forceRender: false, //パスが更新で再レンダリングさせない
 });
 
-// new Vivus('story', { // svgに指定するid名
-//   duration: 120, // アニメーションの長さ
-//   forceRender: false, //パスが更新で再レンダリングさせない
-// });
+new Vivus('story', { // svgに指定するid名
+  duration: 120, // アニメーションの長さ
+  forceRender: false, //パスが更新で再レンダリングさせない
+});
 
-// new Vivus('points', { // svgに指定するid名
-//   duration: 120, // アニメーションの長さ
-//   forceRender: false, //パスが更新で再レンダリングさせない
-// });
+new Vivus('points', { // svgに指定するid名
+  duration: 120, // アニメーションの長さ
+  forceRender: false, //パスが更新で再レンダリングさせない
+});
 
 // new Vivus('campaign', { // svgに指定するid名
 //   duration: 120, // アニメーションの長さ
@@ -246,26 +246,26 @@ $(function () {
 });
 
 
-
-//swiper 
+// ======================
+// 1つ目の Swiper（.swiper）
+// ======================
 let mySwiper = null;
 
-function initSwiper() {
+function initSwiperMain() {
   const winW = window.innerWidth;
 
   if (winW <= 830) {
     if (!mySwiper) {
       mySwiper = new Swiper('.swiper', {
         loop: true,
-        // slidesPerView: 1.25,
-        slidesPerView: 'auto', // センター寄せする場合 auto 推奨
-        centeredSlides: true,  // 中央配置
+        slidesPerView: 'auto', // センター寄せ
+        centeredSlides: true,
         spaceBetween: -10,     // 左右10pxかぶせる
-        speed: 1000,           // スライド速度
-        // autoplay: {
-        //   delay: 2000,         // 自動送り間隔
-        //   disableOnInteraction: false,
-        // },
+        speed: 1000,
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+        },
         pagination: {
           el: '.swiper-pagination',
           clickable: true,
@@ -280,6 +280,50 @@ function initSwiper() {
   }
 }
 
-window.addEventListener('load', initSwiper);
-window.addEventListener('resize', initSwiper);
 
+// ======================
+// 2つ目の Swiper（.points-swiper）
+// ======================
+let mySwiper2 = null;
+
+function initSwiperPoints() {
+  const winW2 = window.innerWidth;
+
+  if (winW2 <= 830) {
+    if (!mySwiper2) {
+      mySwiper2 = new Swiper('.points-swiper', {
+        // loop: true,
+        slidesPerView: 'auto',
+        centeredSlides: true,
+        spaceBetween: -10,
+        speed: 1000,
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: '.points-pagination', // ← 同名のpaginationが複数ある場合は明示的に指定
+          clickable: true,
+        },
+      });
+    }
+  } else {
+    if (mySwiper2) {
+      mySwiper2.destroy(true, true);
+      mySwiper2 = null;
+    }
+  }
+}
+
+
+// ======================
+// イベント登録（両方実行）
+// ======================
+window.addEventListener('load', () => {
+  initSwiperMain();
+  initSwiperPoints();
+});
+window.addEventListener('resize', () => {
+  initSwiperMain();
+  initSwiperPoints();
+});

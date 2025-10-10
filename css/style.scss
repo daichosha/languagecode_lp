@@ -535,7 +535,6 @@ header {
         flex-flow: column;
         justify-content: center;
         align-items: center;
-        padding: 0 6%;
         gap: 8vh;
       }
     }
@@ -837,6 +836,10 @@ header {
     &:hover .floating-item--instagram {
       transform: translateX(-10px);
       transition: transform 0.3s ease;
+
+      @include mq-down(md) {
+        transform: translateX(0px);
+      }
     }
   }
 
@@ -888,7 +891,7 @@ header {
         width: 40px;
         height: 40px;
         top: -20px;
-        left: -10px;
+        left: -4px;
       }
     }
 
@@ -1275,7 +1278,7 @@ header {
 
 .section-ttl {
   &__ja {
-    @include fontSize(30, 30, 1, 1);
+    @include fontSize(30, 23, 1.5, 1.5);
     @include letterSpacing(100);
     color: $mainColor;
   }
@@ -3144,9 +3147,18 @@ header {
   background: linear-gradient(180deg, #fff 0%, #fff 75%, #F0F4F8 75%, #F0F4F8 100%);
   padding: 120px 0;
 
+  @include mq-down(md) {
+    padding: 72px 0;
+    background: #fff;
+  }
+
   .points-ttl {
     .section-ttl__en {
       width: 186px;
+
+      @include mq-down(md) {
+        width: 124px;
+      }
 
       svg {
         #points-base path {
@@ -3171,12 +3183,32 @@ header {
     }
   }
 
-  .points-item {
+  .points-list {
     margin-top: 30px;
 
-    &__inner {
+    @include mq-down(md) {
+      margin: 0 calc(50% - 50vw);
+      width: 100vw;
+    }
+
+
+    &__item {
+      width: auto;
+
+      @include mq-down(md) {
+        max-width: 270px;
+        margin: 0 auto;
+      }
+
+    }
+
+    &__wrap {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
+
+      @include mq-down(md) {
+        display: flex;
+      }
     }
 
     &__box {
@@ -3191,16 +3223,32 @@ header {
       background-color: #fff;
       position: relative;
 
+      @include mq-down(md) {
+        padding: 16px;
+        aspect-ratio: 1/1;
+        max-width: 270px;
+        width: 100%;
+      }
+
       &:hover {
         outline: 3px solid $accentColor;
         transition: all 0.3s ease;
         z-index: 1;
 
-        .points-item__decoration::before {
+        @include mq-down(md) {
+          outline: 2px dashed $mainColor;
+          transition: none;
+        }
+
+        .points-list__decoration::before {
           display: inline-block;
           /* これがないと回転してくれない */
           animation: rotate-z 5s linear infinite;
+
           /* 2秒で1回転 */
+          @include mq-down(md) {
+            animation: none;
+          }
         }
 
         @keyframes rotate-z {
@@ -3232,6 +3280,13 @@ header {
       @include letterSpacing(100);
       z-index: 5;
 
+      @include mq-down(md) {
+        width: 60px;
+        height: 60px;
+        top: -25px;
+        left: -25px;
+      }
+
       &::before {
         content: "";
         position: absolute;
@@ -3244,10 +3299,16 @@ header {
         z-index: -1;
         top: -2px;
         left: 2px;
+
+        @include mq-down(md) {
+          width: 60px;
+          height: 60px;
+        }
+
       }
 
       span {
-        @include fontSize(30, 36, 1, 1);
+        @include fontSize(30, 26, 1, 1);
         @include letterSpacing(0);
         margin-right: 5px;
       }
@@ -3256,7 +3317,12 @@ header {
     &__img {
       width: 160px;
       height: auto;
-      margin-top: 0 auto 24px auto;
+      margin: 0 auto 24px auto;
+
+      @include mq-down(md) {
+        width: 130px;
+        margin: 0 auto 8px auto;
+      }
     }
 
     &__text {
@@ -3279,6 +3345,12 @@ header {
           position: absolute;
           left: -20px;
           top: -5px;
+
+          @include mq-down(md) {
+            width: 12px;
+            height: 8px;
+            left: -15px;
+          }
         }
 
         &::after {
@@ -3292,6 +3364,12 @@ header {
           position: absolute;
           right: -20px;
           bottom: -5px;
+
+          @include mq-down(md) {
+            width: 12px;
+            height: 8px;
+            right: -15px;
+          }
         }
       }
 
@@ -3302,9 +3380,54 @@ header {
       }
     }
 
+    &__pagination {
+      @include mq-down(md) {
+        text-align: center;
+      }
+
+
+      .swiper-pagination {
+        @include mq-down(md) {
+          position: static;
+        }
+
+      }
+
+      .swiper-pagination-bullet {
+        @include mq-down(md) {
+          background-color: $mainColor;
+          opacity: 1;
+        }
+
+      }
+
+      .swiper-pagination-bullet-active {
+        @include mq-down(md) {
+          background-color: $accentColor;
+        }
+
+      }
+    }
+
 
   }
 
+  .points-swiper {
+    @include mq-down(md) {
+      position: relative;
+      overflow: hidden;
+      padding: 40px 0 20px;
+    }
+
+  }
+
+  .points-swiper .swiper-slide {
+    @include mq-down(md) {
+      width: 100%;
+      max-width: 280px;
+      box-sizing: border-box;
+    }
+  }
 }
 
 
@@ -3312,6 +3435,14 @@ header {
   background-color: #F0F4F8;
   padding-bottom: 100px;
   position: relative;
+
+
+  @include mq-down(md) {
+    background: linear-gradient(180deg, #F0F4F8 0%, #F0F4F8 96%, #fff 96%, #fff 100%);
+    padding: 24px 0 64px;
+    overflow: hidden;
+  }
+
 
   &::before {
     z-index: 1;
@@ -3324,6 +3455,14 @@ header {
     opacity: .1;
     border-radius: 20px;
     background-image: repeating-linear-gradient(-45deg, #2f5f98, #2f5f98 5px, transparent 5px, transparent 10px);
+
+    @include mq-down(md) {
+      top: 10px;
+      right: -20px;
+      width: 200px;
+      height: 200px;
+      border-radius: 8px;
+    }
   }
 
   &::after {
@@ -3337,14 +3476,57 @@ header {
     background-image: radial-gradient(circle, #d96345 4px, transparent 4px);
     background-position: 0 0;
     background-size: 18px 18px;
+
+    @include mq-down(md) {
+      bottom: 0;
+      right: -20px;
+      width: 90px;
+      height: 90px;
+      border-radius: 8px;
+      background-size: 15px 15px;
+
+      background-image: radial-gradient(circle, #d96345 3px, transparent 3px);
+    }
   }
 
 
 
   &__ttl {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 10%;
+      right: -22px;
+      transform: translate(100%, 100%);
+      width: 77px;
+      height: 83px;
+      background-image: url(../images/campaign-present.png);
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      @include mq-down(md) {
+        width: 54px;
+        height: 58px;
+        top: auto;
+        bottom: -40px;
+        right: 10px;
+        transform: translate(0%, 0%);
+      }
+    }
+
     .section-ttl__en {
       width: 278px;
       margin: 0 auto 10px;
+
+      @include mq-down(md) {
+        width: 186px;
+        margin: 0 auto 14px;
+      }
 
       svg {
         #campaign-base path {
@@ -3374,6 +3556,10 @@ header {
       margin: 0 auto;
       position: relative;
 
+      @include mq-down(md) {
+        width: 298px;
+      }
+
       &::after {
         content: "";
         position: absolute;
@@ -3383,12 +3569,28 @@ header {
         background-size: cover;
         left: -10px;
         top: -46px;
+
+        @include mq-down(md) {
+          width: 83px;
+          height: 54px;
+          left: 26px;
+          top: -24px;
+        }
+
       }
     }
 
     p {
       text-align: center;
       margin: 10px auto 0;
+      @include fontSize(16, 14, 1.8, 1.5);
+      @include letterSpacing(50, 50);
+    }
+  }
+
+  .container__small {
+    @include mq-down(md) {
+      padding: 0 5%;
     }
   }
 
@@ -3399,11 +3601,29 @@ header {
     padding: 40px 0;
     z-index: 2;
     position: relative;
+
+    @include mq-down(md) {
+      padding: 40px 5%;
+    }
   }
+
+
 
   &__content {
     max-width: 660px;
     margin: 28px auto;
+
+    @include mq-down(md) {
+      max-width: none;
+      margin: 40px auto 0;
+    }
+  }
+
+  &__upper {
+    @include mq-down(md) {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 
   .campaign-item {
@@ -3412,12 +3632,24 @@ header {
     align-items: center;
     margin-bottom: 24px;
 
+    @include mq-down(md) {
+      flex-flow: column-reverse;
+      width: 100%;
+    }
+
+
     &:nth-child(2) {
       .campaign-item__graph {
         &.on {
           &::before {
             width: 66.6%;
             transition: width 1s ease-out;
+
+            @include mq-down(md) {
+              width: 40px;
+              height: 66.6%;
+              transition: height 0.5s ease-in;
+            }
           }
         }
       }
@@ -3429,22 +3661,35 @@ header {
           &::before {
             width: 100%;
             transition: width 1.5s ease-in;
+
+            @include mq-down(md) {
+              width: 40px;
+              height: 100%;
+              transition: height 0.5s ease-in;
+            }
           }
         }
       }
     }
 
     &__period {
-      @include fontSize(15, 12, 2, 1.5);
+      @include fontSize(15, 12, 2, 1.3);
       @include letterSpacing(100, 50);
       width: fit-content;
 
+      @include mq-down(md) {
+        text-align: center;
+        padding-top: 6px;
+        border-top: solid 1px $mainColor;
+        width: 100%;
+      }
+
       .big {
-        @include fontSize(16, 14, 2, 2);
+        @include fontSize(16, 14, 2, 1);
       }
 
       .small {
-        @include fontSize(14, 12, 2, 1.5);
+        @include fontSize(14, 12, 2, 1);
         @include letterSpacing(50, 50);
       }
 
@@ -3452,11 +3697,19 @@ header {
         height: 20px;
         width: auto;
         margin-right: 4px;
+
+        @include mq-down(md) {
+          height: 16px;
+        }
       }
     }
 
     &__lesson {
       width: 68%;
+
+      @include mq-down(md) {
+        width: 100%;
+      }
     }
 
     &__free {
@@ -3464,9 +3717,21 @@ header {
       align-items: end;
       justify-self: end;
 
+      @include mq-down(md) {
+        flex-flow: column;
+        align-items: center;
+        justify-self: center;
+        text-align: center
+      }
+
       p {
-        @include fontSize(14, 12, 1, 1);
+        @include fontSize(14, 12, 1, 2);
         @include letterSpacing(100, 25);
+
+        @include mq-down(md) {
+          display: block;
+          width: 100%;
+        }
 
         span {
           @include fontSize(16, 17, 1, 1);
@@ -3480,6 +3745,11 @@ header {
           padding: 0 16px;
           position: relative;
 
+          @include mq-down(md) {
+            padding: 0;
+            width: fit-content;
+          }
+
           &::before {
             content: "";
             position: absolute;
@@ -3491,6 +3761,14 @@ header {
             background-repeat: no-repeat;
             top: -5px;
             left: 0;
+
+            @include mq-down(md) {
+              width: 12px;
+              height: 20px;
+              top: -5px;
+              left: -5px;
+              transform: translate(-100%, 0%);
+            }
           }
 
           &::after {
@@ -3504,14 +3782,28 @@ header {
             background-repeat: no-repeat;
             top: -5px;
             right: 0;
+
+            @include mq-down(md) {
+              width: 12px;
+              height: 20px;
+              top: -5px;
+              right: 0;
+              transform: translate(100%, 0%);
+            }
           }
         }
-      }
 
-      img {
-        height: 20px;
-        width: auto;
-        margin-right: 4px;
+
+
+        img {
+          height: 20px;
+          width: auto;
+          margin: 0 4px;
+
+          @include mq-down(md) {
+            height: 16px;
+          }
+        }
       }
     }
 
@@ -3521,6 +3813,20 @@ header {
       margin-top: 5px;
       position: relative;
 
+
+      @include mq-down(md) {
+        margin-top: 12px;
+        height: 150px;
+        width: 100%;
+        border-top: solid 1px #EEF2F7;
+        background: repeating-linear-gradient(to bottom,
+            transparent,
+            transparent calc(33.333% - 1px),
+            #EEF2F7 calc(33.333% - 1px),
+            #EEF2F7 33.333%);
+        box-sizing: border-box;
+      }
+
       &::before {
         content: "";
         position: absolute;
@@ -3529,129 +3835,210 @@ header {
         background-image: repeating-linear-gradient(-45deg, #fbca41, #fbca41 5px, #ffffff 5px, #ffffff 10px);
         left: 0;
         top: 0;
+
+        @include mq-down(md) {
+          width: 100%;
+          height: 0;
+          top: auto;
+          bottom: 0;
+        }
       }
 
       &.on {
         &::before {
           width: 33.3%;
           transition: width 0.5s ease-in;
+
+          @include mq-down(md) {
+            height: 33.3%;
+            width: 40px;
+            transition: height 0.5s ease-in;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            z-index: 2;
+          }
         }
+      }
+
+      &::after {
+        @include mq-down(md) {
+          position: absolute;
+          content: "";
+          background-color: #EEEEEE;
+          height: 100%;
+          width: 40px;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+
       }
     }
   }
 
   &__lower {
-
     padding-top: 125px;
 
-
-  }
-
-  .campaign-lower {
-    width: 100%;
-    padding-top: 32px;
-    border-top: dashed 1px #707070;
-    display: flex;
-    justify-content: space-between;
-    align-self: center;
-    position: relative;
-
-    &::before {
-      content: "";
-      position: absolute;
-      width: 85px;
-      height: 108px;
-      background-image: url(../images/campaign-girl.png);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      top: 10px;
-      left: 40px;
-      transform: translate(0%, -100%);
+    @include mq-down(md) {
+      padding-top: 100px;
     }
 
-    &::after {
-      content: "";
-      position: absolute;
-      width: 240px;
-      height: 71px;
-      background-image: url(../images/campaign-bubble.png);
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
-      top: -110px;
-      left: 146px;
-      transform: rotate(-5deg);
-    }
+    .campaign-lower {
+      width: 100%;
+      padding-top: 32px;
+      border-top: dashed 1px #707070;
+      display: flex;
+      justify-content: space-between;
+      align-self: center;
+      position: relative;
 
-    &.on {
+
+      @include mq-down(md) {
+        display: block;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 85px;
+        height: 108px;
+        background-image: url(../images/campaign-girl.png);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        top: 10px;
+        left: 40px;
+        transform: translate(0%, -100%);
+
+        @include mq-down(md) {
+          width: 58px;
+          height: 73px;
+        }
+      }
+
       &::after {
-        animation: yurayura3 0.5s linear;
-        animation-iteration-count: 3;
+        content: "";
+        position: absolute;
+        width: 240px;
+        height: 71px;
+        background-image: url(../images/campaign-bubble.png);
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        top: -110px;
+        left: 146px;
+        transform: rotate(-5deg);
 
-        @keyframes yurayura3 {
-          0% {
-            transform: rotate(-5deg);
-          }
+        @include mq-down(md) {
+          height: 60px;
+          left: 90px;
+          top: -100px;
+        }
+      }
 
-          50% {
-            transform: rotate(5deg);
+      &.on {
+        &::after {
+          animation: yurayura3 0.5s linear;
+          animation-iteration-count: 3;
+
+          @keyframes yurayura3 {
+            0% {
+              transform: rotate(-5deg);
+            }
+
+            50% {
+              transform: rotate(5deg);
+            }
           }
         }
       }
-    }
 
-    &__text {
-      max-width: 60%;
-      @include fontSize(16, 13, 2, 2);
-      @include letterSpacing(100);
-    }
-
-    &__btn {
-      padding-right: 35px;
-      position: relative;
-      margin-top: 20px;
-
-      span {
-        position: absolute;
-        rotate: 16deg;
-        top: -20px;
-        right: 5px;
-        @include fontSize(21, 12, 1, 1);
+      &__text {
+        max-width: 60%;
+        @include fontSize(16, 13, 2, 2);
         @include letterSpacing(100);
-        @include Caveat(bold);
 
-        &::before {
-          content: "";
-          position: absolute;
-          width: 1px;
-          height: 14px;
-          background-color: $fontColor;
-          top: 5px;
-          left: -15px;
-          rotate: -15deg;
+        @include mq-down(md) {
+          max-width: 100%;
+          text-align: center;
+        }
+      }
+
+      &__btn {
+        padding-right: 35px;
+        position: relative;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+
+        @include mq-down(md) {
+          padding-right: none;
+          text-align: center;
+          margin: 24px auto 0;
+          padding: 0;
         }
 
-        &::after {
-          content: "";
+        a {
+          @include mq-down(md) {
+            display: block;
+            width: fit-content;
+          }
+
+        }
+
+        span {
           position: absolute;
-          width: 1px;
-          height: 14px;
-          background-color: $fontColor;
-          top: 13px;
-          right: -15px;
-          rotate: 60deg;
-          @include fontSize(30, 20, 1, 1);
+          rotate: 16deg;
+          top: -20px;
+          right: 5px;
+          @include fontSize(21, 12, 1, 1);
+          @include letterSpacing(100);
           @include Caveat(bold);
+
+          @include mq-down(md) {
+            top: -8px;
+            right: 60px;
+          }
+
+          &::before {
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 14px;
+            background-color: $fontColor;
+            top: 5px;
+            left: -15px;
+            rotate: -15deg;
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            width: 1px;
+            height: 14px;
+            background-color: $fontColor;
+            top: 13px;
+            right: -15px;
+            rotate: 60deg;
+            @include fontSize(30, 20, 1, 1);
+            @include Caveat(bold);
+          }
         }
       }
     }
   }
 }
 
+
 .flow {
   padding: 100px 0;
   position: relative;
+
+  @include mq-down(md) {
+    padding: 36px 0;
+  }
 
   &::after {
     content: "";
@@ -3664,6 +4051,16 @@ header {
     background-image: radial-gradient(circle, #d96345 4px, transparent 4px);
     background-position: 0 0;
     background-size: 18px 18px;
+
+    @include mq-down(md) {
+      width: 54px;
+      height: 54px;
+      border-radius: 0;
+      left: -3%;
+      background-size: 13px 13px;
+      background-image: radial-gradient(circle, #d96345 3px, transparent 3px);
+      top: 69%;
+    }
   }
 
   &::before {
@@ -3672,21 +4069,44 @@ header {
     position: absolute;
     width: 250px;
     height: 250px;
-    top: 40%;
+    top: 43%;
     left: 3%;
     border-radius: 20px;
     opacity: .3;
     background-image: repeating-linear-gradient(45deg, $accentColor, $accentColor 5px, transparent 5px, transparent 10px);
+
+    @include mq-down(md) {
+      width: 140px;
+      height: 140px;
+      border-radius: 12px;
+      left: -15%;
+      top: 60%;
+    }
+  }
+
+  .container__small {
+    @include mq-down(md) {
+      padding: 0 5%;
+    }
   }
 
 
   &__inner {
     display: flex;
     justify-content: space-between;
+
+    @include mq-down(md) {
+      display: block;
+    }
   }
 
   &__ttl {
     max-width: 21.25%;
+
+    @include mq-down(md) {
+      max-width: 100%;
+      padding-left: 5%;
+    }
 
     .section-ttl__en {
       width: 126px;
@@ -3719,8 +4139,18 @@ header {
     width: 100%;
     counter-reset: flow-counter;
 
+    @include mq-down(md) {
+      max-width: 100%;
+      margin-top: 24px;
+    }
+
     .flow-item {
       margin: 0 23% 0 auto;
+
+      @include mq-down(md) {
+        margin: 0;
+        position: relative;
+      }
 
       &::after {
         content: "";
@@ -3732,13 +4162,29 @@ header {
         left: 50%;
         transform: translate(0%, -50%);
 
+        @include mq-down(md) {
+          width: 36px;
+          height: 2px;
+          rotate: 42deg;
+          transform: translate(0%, -50%);
+
+        }
+
       }
 
       &:nth-of-type(2n) {
         margin: 0 auto 0 19%;
 
+        @include mq-down(md) {
+          margin: 0;
+        }
+
         &::after {
           rotate: -15deg;
+
+          @include mq-down(md) {
+            rotate: -42deg;
+          }
         }
 
         .flow-item {
@@ -3776,6 +4222,14 @@ header {
         }
       }
 
+      &:nth-of-type(6) {
+        .flow-item__inner {
+          @include mq-down(md) {
+            padding-top: 40px;
+          }
+        }
+      }
+
 
 
       &:last-of-type {
@@ -3790,11 +4244,20 @@ header {
         align-items: center;
         gap: 26px;
         padding: 10px 0;
+
+        @include mq-down(md) {
+          gap: 8px;
+          padding: 23px 0;
+        }
       }
 
       &__img {
         width: 165px;
         height: auto;
+
+        @include mq-down(md) {
+          width: 100px;
+        }
       }
 
       &__text {
@@ -3842,6 +4305,11 @@ header {
   position: relative;
   text-align: center;
 
+  @include mq-down(md) {
+    padding: 56px 0;
+  }
+
+
   &::before {
     z-index: 1;
     content: "";
@@ -3852,6 +4320,12 @@ header {
     right: 0%;
     opacity: .15;
     background-image: repeating-linear-gradient(-45deg, #2f5f98, #2f5f98 5px, transparent 5px, transparent 10px);
+
+    @include mq-down(md) {
+      width: 155px;
+      height: 23px;
+      top: -23px;
+    }
   }
 
 
@@ -3863,10 +4337,14 @@ header {
     width: 152px;
     height: auto;
     margin: 0 auto 20px;
+
+    @include mq-down(md) {
+      width: 120px;
+    }
   }
 
   &__text {
-    @include fontSize(18, 16, 2, 2);
+    @include fontSize(18, 16, 2, 1.5);
     @include letterSpacing(50);
     margin-bottom: 32px;
   }
@@ -3878,9 +4356,11 @@ header {
     a {
       width: 185px;
       display: block;
-    }
 
-    margin: 0 auto;
+      @include mq-down(md) {
+        width: 168px;
+      }
+    }
   }
 
   &__img {
@@ -3896,6 +4376,12 @@ header {
       }
     }
 
+    @include mq-down(md) {
+      position: relative;
+      width: 100%;
+      height: 130px;
+    }
+
 
     &--lady {
       position: absolute;
@@ -3904,6 +4390,14 @@ header {
       left: 0;
       bottom: 30%;
       opacity: 0;
+
+      @include mq-down(md) {
+        width: 90px;
+        height: 90px;
+        bottom: auto;
+        top: -10px;
+        left: -10px;
+      }
 
       &.on {
         animation: link-animation 1.2s ease-out 0s 1;
@@ -3919,6 +4413,14 @@ header {
       bottom: 30%;
       opacity: 0;
 
+      @include mq-down(md) {
+        width: 90px;
+        height: 90px;
+        top: -10px;
+        right: -10px;
+        bottom: auto;
+      }
+
       &.on {
         animation: link-animation 1.2s ease-out 0s 1;
         opacity: 1
@@ -3932,6 +4434,13 @@ header {
       right: 12%;
       bottom: -15%;
       opacity: 0;
+
+      @include mq-down(md) {
+        width: 110px;
+        height: 110px;
+        bottom: 0;
+        right: 15%;
+      }
 
       &.on {
         animation: link-animation 0.8s ease-out 0s 1;
@@ -3947,6 +4456,13 @@ header {
       bottom: -15%;
       opacity: 0;
 
+      @include mq-down(md) {
+        width: 90px;
+        height: 90px;
+        bottom: 20px;
+        left: 20%;
+      }
+
       &.on {
         animation: link-animation 1.2s ease-out 0s 1;
         opacity: 1
@@ -3959,6 +4475,10 @@ footer {
   background-color: $mainColor;
   color: #fff;
   padding: 20px 0;
+
+  @include mq-down(md) {
+    padding: 20px 0 60px;
+  }
 
   ul {
     display: flex;
