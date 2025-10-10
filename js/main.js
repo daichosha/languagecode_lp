@@ -71,15 +71,15 @@ new Vivus('points', { // svgに指定するid名
   forceRender: false, //パスが更新で再レンダリングさせない
 });
 
-// new Vivus('campaign', { // svgに指定するid名
-//   duration: 120, // アニメーションの長さ
-//   forceRender: false, //パスが更新で再レンダリングさせない
-// });
+new Vivus('campaign', { // svgに指定するid名
+  duration: 120, // アニメーションの長さ
+  forceRender: false, //パスが更新で再レンダリングさせない
+});
 
-// new Vivus('flow', { // svgに指定するid名
-//   duration: 120, // アニメーションの長さ
-//   forceRender: false, //パスが更新で再レンダリングさせない
-// });
+new Vivus('flow', { // svgに指定するid名
+  duration: 120, // アニメーションの長さ
+  forceRender: false, //パスが更新で再レンダリングさせない
+});
 
 //mvアニメーション(PC)
 $(function () {

@@ -402,7 +402,7 @@ header .header-menu {
   position: fixed;
   top: 0;
   width: 100%;
-  height: 100svh;
+  height: 100dvh;
   z-index: 9;
   padding-top: 100px;
   display: flex;
@@ -413,8 +413,7 @@ header .header-menu {
 }
 @media screen and (max-width: 829px) {
   header .header-menu {
-    padding-top: 13.49vh;
-    padding-bottom: 14.99vh;
+    padding-top: 0;
   }
 }
 header .header-menu.on {
@@ -437,7 +436,7 @@ header .header-menu__inner {
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    gap: 8vh;
+    gap: 6dvh;
   }
 }
 header .header-menu__nav {
@@ -447,7 +446,7 @@ header .header-menu__nav {
 @media screen and (max-width: 829px) {
   header .header-menu__nav {
     max-width: 100%;
-    height: 53.56vh;
+    height: 40dvh;
     display: flex;
     flex-flow: column;
     justify-content: space-between;
@@ -595,7 +594,7 @@ header .header-menu__link .header-link__logo {
 }
 @media screen and (max-width: 829px) {
   header .header-menu__link .header-link__logo {
-    margin-bottom: 1.67vh;
+    margin-bottom: 1.67dvh;
   }
 }
 header .header-menu__link .header-link__logo span {
@@ -622,7 +621,7 @@ header .header-menu__link .header-link__text {
 }
 @media screen and (max-width: 829px) {
   header .header-menu__link .header-link__text {
-    margin-bottom: 3.35vh;
+    margin-bottom: 3.35dvh;
   }
 }
 header .header-menu__link .header-link__btn {
@@ -883,7 +882,7 @@ header .header-menu__link .header-link__img--plane {
 
 .mv {
   width: 100%;
-  height: 100svh;
+  height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1503,6 +1502,7 @@ header .header-menu__link .header-link__img--plane {
 @media screen and (max-width: 829px) {
   .scene__item:nth-child(1) {
     rotate: 6deg;
+    transform-origin: center;
   }
 }
 .scene__item:nth-child(2) {
@@ -1512,6 +1512,7 @@ header .header-menu__link .header-link__img--plane {
   .scene__item:nth-child(2) {
     padding-top: 1px;
     rotate: -6deg;
+    transform-origin: center;
   }
 }
 .scene__item:nth-child(3) {
@@ -1522,8 +1523,8 @@ header .header-menu__link .header-link__img--plane {
 }
 @media screen and (max-width: 829px) {
   .scene__item img {
-    width: auto;
-    height: 100%;
+    width: auto !important;
+    height: 120px;
   }
 }
 
@@ -2389,7 +2390,7 @@ header .header-menu__link .header-link__img--plane {
 }
 .story .story-list {
   margin-top: 48px;
-  height: 300svh;
+  height: 300dvh;
 }
 @media screen and (max-width: 829px) {
   .story .story-list {
@@ -2399,7 +2400,7 @@ header .header-menu__link .header-link__img--plane {
 .story .story-list__wrap {
   background: rgba(70, 187, 216, 0.1);
   padding: 24px;
-  height: 100svh;
+  height: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
