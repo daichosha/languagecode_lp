@@ -949,6 +949,11 @@ header {
   align-items: center;
   justify-content: center;
 
+  @include mq-down(lg) {
+    height: auto;
+    padding-top: 10vh;
+  }
+
   @include mq-down(tb) {
     flex-flow: column;
     align-items: start;
@@ -974,7 +979,8 @@ header {
     }
 
     @include mq-down(lg) {
-      height: 60%;
+      width: 100vw;
+      height: auto;
     }
 
     @include mq-down(tb) {
@@ -995,12 +1001,6 @@ header {
     display: flex;
     align-items: end;
     justify-content: space-between;
-
-    @include mq-down(md) {
-      padding: 90px 0;
-      width: 90vw;
-      margin: 0 auto;
-    }
 
     @include mq-down(tb) {
       display: block;
@@ -1026,6 +1026,11 @@ header {
         @include letterSpacing(150, 150);
         padding-top: 20px;
         opacity: 0;
+
+        @include mq-down(md) {
+          padding-top: 14px;
+          font-size: 18px;
+        }
 
         @include mq-down(tb) {
           display: none;
@@ -1082,6 +1087,10 @@ header {
     @include fontSize(31, 27, 1.5, 1.3);
     @include Montserrat();
     padding-top: 36px;
+
+    @include mq-down(md) {
+      padding-top: 16px;
+    }
 
     @include mq-down(tb) {
       padding-top: 0;
@@ -1201,6 +1210,10 @@ header {
     position: relative;
     padding-top: 16%;
 
+    @include mq-down(md) {
+      padding-top: 0;
+    }
+
     @include mq-down(tb) {
       padding-top: 13%;
     }
@@ -1218,6 +1231,10 @@ header {
       background-position: center;
       background-repeat: no-repeat;
       opacity: 0;
+
+      @include mq-down(md) {
+      top: -40px;
+    }
 
       @include mq-down(tb) {
         width: 20%;
@@ -1622,6 +1639,10 @@ header {
   padding-top: 120px;
   overflow: hidden;
 
+  @include mq-down(lg) {
+    padding-top: 40px;
+  }
+
   @include mq-down(md) {
     padding-top: 80px;
   }
@@ -1646,6 +1667,10 @@ header {
         width: 402px;
 
         @include mq-down(md) {
+          width: 360px;
+        }
+
+        @include mq-down(tb) {
           width: 257px;
         }
       }
@@ -1719,7 +1744,7 @@ header {
     @include mq-down(md) {
       width: auto;
       margin: 0;
-      padding: 120px 0 60px 0;
+      padding: 104px 0 88px 0;
     }
 
     @include mq-down(tb) {
@@ -1738,15 +1763,11 @@ header {
       right: 0;
       top: 80px;
 
-      @include mq-down(md) {
+      @include mq-down(tb) {
         width: 85px;
         height: 85px;
         right: 0%;
         top: 75px;
-      }
-
-      @include mq-down(tb) {
-        right: -4%;
       }
     }
 
@@ -1762,7 +1783,7 @@ header {
       left: 0;
       bottom: 40px;
 
-      @include mq-down(md) {
+      @include mq-down(tb) {
         width: 90px;
         height: 90px;
         left: -4%;
