@@ -254,7 +254,7 @@ let mySwiper = null;
 function initSwiperMain() {
   const winW = window.innerWidth;
 
-  if (winW <= 830) {
+  if (winW <= 650) {
     if (!mySwiper) {
       mySwiper = new Swiper('.swiper', {
         loop: true,
@@ -289,7 +289,7 @@ let mySwiper2 = null;
 function initSwiperPoints() {
   const winW2 = window.innerWidth;
 
-  if (winW2 <= 830) {
+  if (winW2 <= 650) {
     if (!mySwiper2) {
       mySwiper2 = new Swiper('.points-swiper', {
         // loop: true,
