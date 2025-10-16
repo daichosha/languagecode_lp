@@ -85,8 +85,8 @@ new Vivus('flow', { // svgに指定するid名
 $(function () {
   var done = false;
   $(window).on('scroll load', function () {
-    // 画面幅が830px以下なら処理しない
-    if ($(window).width() <= 830) return;
+    // 画面幅が650px以下なら処理しない
+    if ($(window).width() <= 650) return;
 
     var winTop = $(window).scrollTop();
     var winBottom = winTop + $(window).height();
@@ -113,7 +113,7 @@ $(function () {
 
 //mvアニメーション(sp)
 $(function () {
-  if ($(window).width() <= 830) {
+  if ($(window).width() <= 650) {
     const $items = $('.mv__text-inner li');
     let index = 0;
     const duration = 5000; // 4秒
@@ -254,7 +254,7 @@ let mySwiper = null;
 function initSwiperMain() {
   const winW = window.innerWidth;
 
-  if (winW <= 650) {
+  if (winW <= 829) {
     if (!mySwiper) {
       mySwiper = new Swiper('.swiper', {
         loop: true,
@@ -289,7 +289,7 @@ let mySwiper2 = null;
 function initSwiperPoints() {
   const winW2 = window.innerWidth;
 
-  if (winW2 <= 650) {
+  if (winW2 <= 649) {
     if (!mySwiper2) {
       mySwiper2 = new Swiper('.points-swiper', {
         // loop: true,
