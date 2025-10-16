@@ -114,23 +114,13 @@ $breakpoint-down: (
   }
 }
 
-@include mq-down(tb) {
-  .tb_up {
-    display: none !important;
-  }
-
-  .tb_down {
-    display: block !important;
-  }
+.md-lg {
+  display: none;
 }
 
-@include mq-up(tb) {
-  .tb_up {
-    display: block !important;
-  }
-
-  .tb_down {
-    display: none !important;
+@media (min-width: 830px) and (max-width: 1100px) {
+  .md-lg {
+    display: inline;
   }
 }
 
@@ -341,7 +331,7 @@ header {
     }
 
     &__link {
-      @include mq-down(tb) {
+      @include mq-down(md) {
         display: none;
       }
 
@@ -713,10 +703,6 @@ header {
             display: block;
             margin: 0 0 0 auto;
 
-            @include mq-down(lg) {
-              margin: 180px 104px 0 auto;
-            }
-
             @include mq-down(md) {
               margin: 0 auto;
             }
@@ -731,10 +717,6 @@ header {
             left: -21px;
             bottom: -90px;
             transform: scale(-1, 1);
-
-            @include mq-down(lg) {
-              bottom: 0;
-            }
 
             @include mq-down(md) {
               width: 90px;
@@ -775,7 +757,7 @@ header {
   opacity: 1;
   transition: opacity 0.4s ease-out;
 
-  @include mq-down(md) {
+  @include mq-down(lg) {
     bottom: 0px;
     left: 50%;
     transform: translate(-50%, 0%);
@@ -794,7 +776,7 @@ header {
     margin-bottom: 6px;
     position: relative;
 
-    @include mq-down(md) {
+    @include mq-down(lg) {
       margin: 0 6px 0 0;
     }
 
@@ -802,7 +784,7 @@ header {
       transform: translateX(-10px);
       transition: transform 0.3s ease;
 
-      @include mq-down(md) {
+      @include mq-down(lg) {
         transform: none;
       }
     }
@@ -834,18 +816,16 @@ header {
       opacity: 0;
       transition: opacity $animeSpeed;
 
-      @include mq-down(md) {
+      @include mq-down(lg) {
         top: -40px;
-        left: auto;
-        right: -8px;
+        left: 64px;
         position: absolute;
         width: 180px;
         height: 20px;
         transform: rotate(-7deg) translate(100%, 0%);
       }
 
-      @include mq-down(sm) {
-        right: 0;
+      @include mq-down(tb) {
         top: -30px;
         left: 10px;
         position: absolute;
@@ -869,7 +849,7 @@ header {
       opacity: 0;
       transition: opacity $animeSpeed;
 
-      @include mq-down(md) {
+      @include mq-down(lg) {
         bottom: 0;
         right: -6px;
         left: auto;
@@ -889,7 +869,7 @@ header {
       transform: translateX(-10px);
       transition: transform 0.3s ease;
 
-      @include mq-down(md) {
+      @include mq-down(lg) {
         transform: translateX(0px);
       }
     }
@@ -908,7 +888,7 @@ header {
     @include letterSpacing(100, 50);
     gap: 8px;
 
-    @include mq-down(md) {
+    @include mq-down(lg) {
       writing-mode: horizontal-tb;
       padding: 13px 16px 13px 16px;
       border-radius: 10px 10px 0 0;
@@ -920,7 +900,7 @@ header {
       height: auto;
       display: inline;
 
-      @include mq-down(md) {
+      @include mq-down(lg) {
         width: 16px;
         padding: 0;
       }
@@ -939,7 +919,7 @@ header {
       top: -30px;
       left: -15px;
 
-      @include mq-down(md) {
+      @include mq-down(lg) {
         width: 40px;
         height: 40px;
         top: -20px;
@@ -3302,10 +3282,12 @@ header {
       justify-content: center;
       align-items: center;
 
-      @include mq-down(tb) {
+      @include mq-down(md) {
         width: 124px;
         height: 15px;
         top: -16px;
+        font-size: 10px;
+        letter-spacing: 0;
       }
     }
   }
@@ -3368,6 +3350,10 @@ header {
     &__item {
       width: auto;
 
+      @include mq-down(md) {
+        max-width: none;
+      }
+
       @include mq-down(tb) {
         max-width: 270px;
         margin: 0 auto;
@@ -3377,6 +3363,10 @@ header {
     &__wrap {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
+
+      @include mq-down(md) {
+        grid-template-columns: repeat(2, 1fr);
+      }
 
       @include mq-down(tb) {
         display: flex;
@@ -3402,7 +3392,7 @@ header {
       }
 
       @include mq-down(md) {
-        height: 396px;
+        height: 373px;
       }
 
       @include mq-down(tb) {
@@ -3629,7 +3619,7 @@ header {
   padding-bottom: 100px;
   position: relative;
 
-  @include mq-down(tb) {
+  @include mq-down(md) {
     background: linear-gradient(180deg, #f0f4f8 0%, #f0f4f8 96%, #fff 96%, #fff 100%);
     padding: 24px 0 64px;
     overflow: hidden;
@@ -3647,7 +3637,7 @@ header {
     border-radius: 20px;
     background-image: repeating-linear-gradient(-45deg, #2f5f98, #2f5f98 5px, transparent 5px, transparent 10px);
 
-    @include mq-down(tb) {
+    @include mq-down(md) {
       top: 10px;
       right: -20px;
       width: 200px;
@@ -3667,8 +3657,9 @@ header {
     background-image: radial-gradient(circle, #d96345 4px, transparent 4px);
     background-position: 0 0;
     background-size: 18px 18px;
+    z-index: 2;
 
-    @include mq-down(tb) {
+    @include mq-down(md) {
       bottom: 0;
       right: -20px;
       width: 90px;
@@ -3698,7 +3689,7 @@ header {
       background-position: center;
       background-repeat: no-repeat;
 
-      @include mq-down(md) {
+      @include mq-down(lg) {
         width: 54px;
         height: 58px;
         top: auto;
@@ -3707,7 +3698,11 @@ header {
         transform: translate(0%, 0%);
       }
 
-      @include mq-down(sm) {
+      @include mq-down(md) {
+        right: -64px;
+      }
+
+      @include mq-down(tb) {
         bottom: -40px;
       }
     }
@@ -3716,7 +3711,7 @@ header {
       width: 278px;
       margin: 0 auto 10px;
 
-      @include mq-down(tb) {
+      @include mq-down(md) {
         width: 186px;
         margin: 0 auto 14px;
       }
@@ -3749,7 +3744,7 @@ header {
       margin: 0 auto;
       position: relative;
 
-      @include mq-down(tb) {
+      @include mq-down(md) {
         width: 298px;
       }
 
@@ -3763,7 +3758,7 @@ header {
         left: -10px;
         top: -46px;
 
-        @include mq-down(tb) {
+        @include mq-down(md) {
           width: 83px;
           height: 54px;
           left: 26px;
@@ -3781,7 +3776,7 @@ header {
   }
 
   .container__tball {
-    @include mq-down(tb) {
+    @include mq-down(md) {
       padding: 0 5%;
     }
   }
@@ -3793,8 +3788,9 @@ header {
     padding: 40px 0;
     z-index: 2;
     position: relative;
+    max-width: 880px;
 
-    @include mq-down(tb) {
+    @include mq-down(md) {
       padding: 40px 5%;
     }
   }
@@ -3803,14 +3799,14 @@ header {
     max-width: 660px;
     margin: 28px auto;
 
-    @include mq-down(tb) {
+    @include mq-down(md) {
       max-width: none;
       margin: 40px auto 0;
     }
   }
 
   &__upper {
-    @include mq-down(tb) {
+    @include mq-down(md) {
       display: flex;
       justify-content: space-between;
     }
@@ -3822,7 +3818,7 @@ header {
     align-items: center;
     margin-bottom: 24px;
 
-    @include mq-down(tb) {
+    @include mq-down(md) {
       flex-flow: column-reverse;
       width: 100%;
     }
@@ -3834,7 +3830,7 @@ header {
             width: 66.6%;
             transition: width 1s ease-out;
 
-            @include mq-down(tb) {
+            @include mq-down(md) {
               width: 40px;
               height: 66.6%;
               transition: height 0.5s ease-in;
@@ -3851,7 +3847,7 @@ header {
             width: 100%;
             transition: width 1.5s ease-in;
 
-            @include mq-down(tb) {
+            @include mq-down(md) {
               width: 40px;
               height: 100%;
               transition: height 0.5s ease-in;
@@ -3866,11 +3862,13 @@ header {
       @include letterSpacing(100, 50);
       width: fit-content;
 
-      @include mq-down(tb) {
+      @include mq-down(md) {
         text-align: center;
         padding-top: 6px;
         border-top: solid 1px $mainColor;
         width: 100%;
+        font-size: 12px;
+        line-height: 1.3em;
       }
 
       .big {
@@ -3887,7 +3885,7 @@ header {
         width: auto;
         margin-right: 4px;
 
-        @include mq-down(tb) {
+        @include mq-down(md) {
           height: 16px;
         }
       }
@@ -3896,7 +3894,7 @@ header {
     &__lesson {
       width: 68%;
 
-      @include mq-down(tb) {
+      @include mq-down(md) {
         width: 100%;
       }
     }
@@ -3906,7 +3904,7 @@ header {
       align-items: end;
       justify-self: end;
 
-      @include mq-down(tb) {
+      @include mq-down(md) {
         flex-flow: column;
         align-items: center;
         justify-self: center;
@@ -3917,14 +3915,20 @@ header {
         @include fontSize(14, 12, 1, 2);
         @include letterSpacing(100, 25);
 
-        @include mq-down(tb) {
+        @include mq-down(md) {
           display: block;
           width: 100%;
+          font-size: 12px;
+          line-height: 2em;
         }
 
         span {
           @include fontSize(16, 17, 1, 1);
           @include letterSpacing(100);
+
+          @include mq-down(md) {
+            font-size: 17px;
+          }
         }
 
         &:last-child {
@@ -3934,9 +3938,10 @@ header {
           padding: 0 16px;
           position: relative;
 
-          @include mq-down(tb) {
+          @include mq-down(md) {
             padding: 0;
             width: fit-content;
+            font-size: 17px;
           }
 
           &::before {
@@ -3951,7 +3956,7 @@ header {
             top: -5px;
             left: 0;
 
-            @include mq-down(tb) {
+            @include mq-down(md) {
               width: 12px;
               height: 20px;
               top: -5px;
@@ -3972,7 +3977,7 @@ header {
             top: -5px;
             right: 0;
 
-            @include mq-down(tb) {
+            @include mq-down(md) {
               width: 12px;
               height: 20px;
               top: -5px;
@@ -3987,7 +3992,7 @@ header {
           width: auto;
           margin: 0 4px;
 
-          @include mq-down(tb) {
+          @include mq-down(md) {
             height: 16px;
           }
         }
@@ -4000,7 +4005,7 @@ header {
       margin-top: 5px;
       position: relative;
 
-      @include mq-down(tb) {
+      @include mq-down(md) {
         margin-top: 12px;
         height: 150px;
         width: 100%;
@@ -4018,7 +4023,7 @@ header {
         left: 0;
         top: 0;
 
-        @include mq-down(tb) {
+        @include mq-down(md) {
           width: 100%;
           height: 0;
           top: auto;
@@ -4031,7 +4036,7 @@ header {
           width: 33.3%;
           transition: width 0.5s ease-in;
 
-          @include mq-down(tb) {
+          @include mq-down(md) {
             height: 33.3%;
             width: 40px;
             transition: height 0.5s ease-in;
@@ -4044,7 +4049,7 @@ header {
       }
 
       &::after {
-        @include mq-down(tb) {
+        @include mq-down(md) {
           position: absolute;
           content: "";
           background-color: #eeeeee;
@@ -4061,7 +4066,7 @@ header {
   &__lower {
     padding-top: 125px;
 
-    @include mq-down(tb) {
+    @include mq-down(md) {
       padding-top: 100px;
     }
 
@@ -4074,7 +4079,7 @@ header {
       align-self: center;
       position: relative;
 
-      @include mq-down(tb) {
+      @include mq-down(md) {
         display: block;
       }
 
@@ -4091,7 +4096,7 @@ header {
         left: 40px;
         transform: translate(0%, -100%);
 
-        @include mq-down(tb) {
+        @include mq-down(md) {
           width: 58px;
           height: 73px;
         }
@@ -4110,7 +4115,7 @@ header {
         left: 146px;
         transform: rotate(-5deg);
 
-        @include mq-down(tb) {
+        @include mq-down(md) {
           height: 60px;
           left: 90px;
           top: -100px;
@@ -4139,7 +4144,7 @@ header {
         @include fontSize(16, 13, 2, 2);
         @include letterSpacing(100);
 
-        @include mq-down(tb) {
+        @include mq-down(md) {
           max-width: 100%;
           text-align: center;
         }
@@ -4152,16 +4157,20 @@ header {
         display: flex;
         justify-content: center;
 
-        @include mq-down(tb) {
+        @include mq-down(md) {
           padding-right: none;
           text-align: center;
-          margin: 24px auto 0;
+          margin: 32px auto 0;
           padding: 0;
           width: fit-content;
         }
 
+        @include mq-down(tb) {
+          margin: 24px auto 0;
+        }
+
         a {
-          @include mq-down(tb) {
+          @include mq-down(md) {
             display: block;
             width: fit-content;
           }
@@ -4176,7 +4185,7 @@ header {
           @include letterSpacing(100);
           @include Caveat(bold);
 
-          @include mq-down(tb) {
+          @include mq-down(md) {
             top: -8px;
             right: -48px;
           }
@@ -4592,6 +4601,11 @@ header {
       bottom: 30%;
       opacity: 0;
 
+      @include mq-down(md) {
+        width: 110px;
+        height: 110px;
+      }
+
       @include mq-down(tb) {
         width: 90px;
         height: 90px;
@@ -4613,6 +4627,11 @@ header {
       right: 0;
       bottom: 30%;
       opacity: 0;
+
+      @include mq-down(md) {
+        width: 110px;
+        height: 110px;
+      }
 
       @include mq-down(tb) {
         width: 90px;
@@ -4636,6 +4655,11 @@ header {
       bottom: -15%;
       opacity: 0;
 
+      @include mq-down(md) {
+        width: 130px;
+        height: 130px;
+      }
+
       @include mq-down(tb) {
         width: 110px;
         height: 110px;
@@ -4657,6 +4681,11 @@ header {
       bottom: -15%;
       opacity: 0;
 
+      @include mq-down(md) {
+        width: 110px;
+        height: 110px;
+      }
+
       @include mq-down(tb) {
         width: 90px;
         height: 90px;
@@ -4677,7 +4706,7 @@ footer {
   color: #fff;
   padding: 20px 0;
 
-  @include mq-down(tb) {
+  @include mq-down(md) {
     padding: 20px 0 60px;
   }
 
