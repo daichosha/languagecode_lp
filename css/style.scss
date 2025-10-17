@@ -494,7 +494,7 @@ header {
       transition: all 0.2s ease-in;
 
       @include mq-down(md) {
-        height: 2px;
+        top: 50%;
       }
 
       &:first-of-type {
@@ -1374,12 +1374,7 @@ header {
   width: 100%;
   padding-top: 80px;
   overflow: hidden;
-  height: 380px;
-
-  @include mq-down(md) {
-    padding-top: 40px;
-    height: 290px;
-  }
+  // height: 380px;
 
   @include mq-down(tb) {
     padding-top: 32px;
@@ -1395,7 +1390,7 @@ header {
 
   &__line {
     position: absolute;
-    top: 15px;
+    top: 45px;
     left: 50%;
     transform: translate(-50%, -100%);
     width: 2506px;
@@ -1407,11 +1402,25 @@ header {
     background-repeat: no-repeat;
     background-size: 100%;
 
+    @include mq-down(lg) {
+      top: 18px;
+    }
+
     @include mq-down(tb) {
       background-image: url(../images/sceneline_sp.png);
       width: 857px;
       height: 96px;
       top: 15px;
+    }
+
+    &:last-of-type {
+      @include mq-down(lg) {
+        top: 55%;
+      }
+
+      @include mq-down(tb) {
+        top: 15px;
+      }
     }
   }
 
@@ -1561,11 +1570,16 @@ header {
   &__flex {
     position: relative;
     width: 100%;
+    margin-top: -30px;
+
+    @include mq-down(lg) {
+      margin-top: -20px;
+    }
 
     @include mq-down(tb) {
       height: 135px;
       margin-bottom: 20px;
-
+      margin-top: -10px;
       &:last-of-type {
         margin-bottom: 0;
       }
@@ -1575,9 +1589,15 @@ header {
   &__list {
     display: flex;
     justify-content: space-between;
-    position: absolute;
+    // position: absolute;
     gap: 8px;
     top: -30px;
+
+    @include mq-down(lg) {
+      justify-content: center;
+      gap: 16px;
+      margin: 0 auto;
+    }
 
     @include mq-down(tb) {
       justify-content: center;
@@ -1586,7 +1606,27 @@ header {
       gap: 12px;
       top: 0;
       left: 50%;
-      transform: translate(-50%, 0%);
+    }
+
+    &:last-child {
+      .scene__item {
+        &:nth-child(1) {
+          @include mq-down(lg) {
+            padding-top: 0;
+            rotate: (2deg);
+            max-width: 232px;
+          }
+        }
+
+        &:nth-child(2) {
+          @include mq-down(lg) {
+            rotate: (6deg);
+            max-width: 310px;
+          }
+
+        }
+
+      }
     }
   }
 
@@ -1596,32 +1636,41 @@ header {
     &:nth-child(1) {
       rotate: (-2deg);
 
-      @include mq-down(lg) {
-        rotate: (-4deg);
-        padding-top: 10px;
-      }
+      // @include mq-down(lg) {
+      //   rotate: (-4deg);
+      //   padding-top: 10px;
+      // }
 
-      @include mq-down(md) {
-        padding-top: 22px;
+      @include mq-down(lg) {
+        max-width: 310px;
+        rotate: (-7deg);
       }
 
       @include mq-down(tb) {
         // 1・2段目左側
         rotate: (6deg);
         transform-origin: center;
-        padding-top: 0;
+        // padding-top: 0;
       }
     }
 
     &:nth-child(2) {
       padding-top: 30px;
 
-      @include mq-down(md) {
-        padding-top: 34px;
+      @include mq-down(lg) {
+        padding-top: 22px;
       }
 
+      @include mq-down(lg) {
+        padding-top: 0;
+        rotate: (-3deg);
+        max-width: 232px;
+      }
+
+
+
       @include mq-down(tb) {
-        padding-top: 1px;
+        // padding-top: 1px;
         // 1・2段目右側
         rotate: (-6deg);
         transform-origin: center;
@@ -1631,21 +1680,22 @@ header {
     &:nth-child(3) {
       padding-top: 32px;
 
-      @include mq-down(md) {
-        padding-top: 36px;
+      @include mq-down(lg) {
+        padding-top: 22px;
       }
     }
 
     &:nth-child(4) {
       rotate: (2deg);
 
+      // @include mq-down(lg) {
+      //   rotate: (4deg);
+      //   padding-top: 10px;
+      // }
+
       @include mq-down(lg) {
         rotate: (4deg);
-        padding-top: 10px;
-      }
-
-      @include mq-down(md) {
-        padding-top: 20px;
+        max-width: 310px;
       }
     }
 
@@ -1664,10 +1714,6 @@ header {
 
   @include mq-down(lg) {
     padding-top: 40px;
-  }
-
-  @include mq-down(md) {
-    padding-top: 80px;
   }
 
   .hole-ttl {
@@ -4393,6 +4439,7 @@ header {
   &__inner {
     display: flex;
     justify-content: space-between;
+
     @media screen and (max-width: 980px) {
       display: block;
     }
