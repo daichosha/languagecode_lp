@@ -157,14 +157,14 @@ $(function () {
 });
 
 $(function () {
-  $(".holl__point").on("inview", function () {
+  $(".hole__point").on("inview", function () {
     $(this).addClass("on");
   });
 });
 
 setTimeout(function () {
   $(function () {
-    $(".holl-bottom__bk").on("inview", function () {
+    $(".hole-bottom__bk").on("inview", function () {
       $(this).addClass("on");
     });
   });

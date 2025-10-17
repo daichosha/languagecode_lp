@@ -29,7 +29,7 @@ $breakpoint-up: (
   "md": "screen and (min-width: 830px)",
   "lg": "screen and (min-width: 1100px)",
   "xl": "screen and (min-width: 1366px)",
-) !default;
+  ) !default;
 
 // max-width
 $breakpoint-down: (
@@ -39,7 +39,7 @@ $breakpoint-down: (
   "md": "screen and (max-width: 829px)",
   "lg": "screen and (max-width: 1099px)",
   "xl": "screen and (max-width: 1365px)",
-) !default;
+  ) !default;
 
 // @mixinの定義
 @mixin mq-up($breakpoint: tb) {
@@ -128,7 +128,8 @@ $breakpoint-down: (
 /* サイト設計 */
 
 // フォントタイプ/
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:wght@800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:wght@800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
+);
 
 //font-familyここから
 @mixin Zenkaku($weight: bold) {
@@ -137,7 +138,9 @@ $breakpoint-down: (
 
   @if $weight ==medium {
     font-weight: 500;
-  } @else if $weight ==bold {
+  }
+
+  @else if $weight ==bold {
     font-weight: 700;
   }
 }
@@ -149,7 +152,9 @@ $breakpoint-down: (
 
   @if $weight ==regular {
     font-weight: 400;
-  } @else if $weight ==bold {
+  }
+
+  @else if $weight ==bold {
     font-weight: 700;
   }
 }
@@ -183,6 +188,7 @@ $letterSpacing: 50;
 
 // xdの数値をそのまま入力するletter-spacing
 @mixin letterSpacing($letterSpacing: $letterSpacing, $letterSpacing_tb: $letterSpacing) {
+
   // 親プロパティはネストより上
   & {
     letter-spacing: calc(#{math.div($letterSpacing, 1000)} * 1em);
@@ -618,7 +624,7 @@ header {
           padding: 14px 16px 20px 32px;
 
           @include mq-down(md) {
-            padding: 0 6px 10px 10px;
+            padding: 0 6px 10px 12px;
           }
         }
 
@@ -639,8 +645,8 @@ header {
             bottom: -2px;
 
             @include mq-down(md) {
-              left: -8px;
-              bottom: -9px;
+              left: -12px;
+              bottom: -4px;
             }
           }
         }
@@ -1006,6 +1012,10 @@ header {
     align-items: end;
     justify-content: space-between;
 
+    @include mq-down(md) {
+      flex-flow: column-reverse;
+    }
+
     @include mq-down(tb) {
       display: block;
       padding: 0 5%;
@@ -1014,6 +1024,10 @@ header {
   }
 
   &__text {
+    @include mq-down(md) {
+      margin: 0 auto 0 0;
+    }
+
     @include mq-down(tb) {
       padding: 0 5%;
       width: 100%;
@@ -1344,16 +1358,6 @@ header {
     padding: 0 5%;
   }
 
-  &__tball {
-    max-width: 880px;
-    margin: 0 auto;
-
-    @include mq-down(tb) {
-      max-width: none;
-      width: 100%;
-      padding: 0 10%;
-    }
-  }
 }
 
 .section-ttl {
@@ -1654,7 +1658,7 @@ header {
   }
 }
 
-.holl {
+.hole {
   padding-top: 120px;
   overflow: hidden;
 
@@ -1666,10 +1670,10 @@ header {
     padding-top: 80px;
   }
 
-  .holl-ttl {
+  .hole-ttl {
     text-align: center;
     color: $fontColor;
-    @include fontSize(20, 18, 1, 1.5);
+    @include fontSize(20, 18, 1.5, 1);
     @include letterSpacing(50, 80);
 
     &__top {
@@ -1680,6 +1684,7 @@ header {
 
       @include mq-down(md) {
         display: block;
+        line-height: 1;
       }
 
       img {
@@ -1693,9 +1698,16 @@ header {
           width: 257px;
         }
       }
+
+
     }
 
     &__bottom {
+      @include mq-down(md) {
+        padding-top: 8px;
+        line-height: 1;
+      }
+
       span {
         position: relative;
 
@@ -1707,13 +1719,13 @@ header {
           transform: translate(-50%, 100%);
           width: 58px;
           height: 8px;
-          background-image: url(../images/holl-ttlline.png);
+          background-image: url(../images/hole-ttlline.png);
           background-size: contain;
           background-position: center;
           background-repeat: no-repeat;
 
           @include mq-down(tb) {
-            background-image: url(../images/holl-ttlline_sp.png);
+            background-image: url(../images/hole-ttlline_sp.png);
             width: 37px;
             height: 11px;
           }
@@ -1763,7 +1775,7 @@ header {
     @include mq-down(md) {
       width: auto;
       margin: 0;
-      padding: 104px 0 88px 0;
+      padding: 140px 0 60px 0;
     }
 
     @include mq-down(tb) {
@@ -1773,7 +1785,7 @@ header {
     &::before {
       position: absolute;
       content: "";
-      background-image: url(../images/holl-decoration01.png);
+      background-image: url(../images/hole-decoration01.png);
       background-size: 100%;
       background-position: center;
       background-repeat: no-repeat;
@@ -1791,14 +1803,14 @@ header {
         width: 85px;
         height: 85px;
         right: 0%;
-        top: 75px;
+        top: 48px;
       }
     }
 
     &::after {
       position: absolute;
       content: "";
-      background-image: url(../images/holl-decoration02.png);
+      background-image: url(../images/hole-decoration02.png);
       background-size: 100%;
       background-position: center;
       background-repeat: no-repeat;
@@ -1806,6 +1818,11 @@ header {
       height: 130px;
       left: 0;
       bottom: 40px;
+
+      @include mq-down(md) {
+        left: 0;
+        bottom: 8px;
+      }
 
       @include mq-down(tb) {
         width: 90px;
@@ -1828,7 +1845,7 @@ header {
 
     @include mq-down(md) {
       margin-left: 10%;
-      font-size: 23px;
+      // font-size: 23px;
       line-height: 1;
     }
 
@@ -1859,7 +1876,7 @@ header {
       width: 220px;
       height: 49px;
 
-      @include mq-down(md) {
+      @include mq-down(tb) {
         width: 190px;
         height: auto;
       }
@@ -1868,14 +1885,14 @@ header {
     &::before {
       content: "";
       position: absolute;
-      background-image: url(../images/holl-worries.png);
+      background-image: url(../images/hole-worries.png);
       background-size: cover;
       width: 32px;
       height: 40px;
       top: -32px;
       left: -64px;
 
-      @include mq-down(md) {
+      @include mq-down(tb) {
         width: 22px;
         height: 30px;
         top: -30px;
@@ -1886,7 +1903,7 @@ header {
     &::after {
       content: "";
       position: absolute;
-      background-image: url(../images/holl-bubble.png);
+      background-image: url(../images/hole-bubble.png);
       background-size: cover;
       width: 72px;
       height: 72px;
@@ -1896,7 +1913,7 @@ header {
       transform: rotate(20deg);
       opacity: 0;
 
-      @include mq-down(md) {
+      @include mq-down(tb) {
         width: 62px;
         height: 62px;
         top: -38px;
@@ -1937,7 +1954,7 @@ header {
     }
   }
 
-  .holl-bottom {
+  .hole-bottom {
     padding-top: 120px;
 
     @include mq-down(tb) {
@@ -1954,7 +1971,7 @@ header {
         position: absolute;
         width: 1996px;
         height: 810px;
-        background-image: url(../images/holl-bottom-bk.png);
+        background-image: url(../images/hole-bottom-bk.png);
         background-size: 100%;
         background-position: center;
         background-repeat: no-repeat;
@@ -1969,15 +1986,15 @@ header {
         }
 
         @include mq-down(md) {
-          right: 10%;
+          right: 12%;
         }
 
         @include mq-down(sm) {
           width: 850px;
           height: 647px;
-          background-image: url(../images/holl-bottom-bk_sp.png);
+          background-image: url(../images/hole-bottom-bk_sp.png);
           top: 25px;
-          right: 20%;
+          right: 30%;
         }
       }
 
@@ -1997,11 +2014,11 @@ header {
         opacity: 0;
 
         @include mq-down(lg) {
-          right: 15%;
+          right: 12%;
         }
 
         @include mq-down(md) {
-          right: 5%;
+          right: 1%;
         }
 
         @include mq-down(sm) {
@@ -2015,9 +2032,9 @@ header {
       &.on {
         &::before {
           opacity: 1;
-          animation: holl-animation 0.8s ease-out 0s 1;
+          animation: hole-animation 0.8s ease-out 0s 1;
 
-          @keyframes holl-animation {
+          @keyframes hole-animation {
             0% {
               transform: translateX(-30%) translateY(15%);
               animation-timing-function: ease;
@@ -2034,7 +2051,7 @@ header {
       }
     }
 
-    .holl-text {
+    .hole-text {
       text-align: center;
       @include fontSize(24, 20, 2, 1.5);
 
@@ -2067,6 +2084,7 @@ header {
         }
       }
 
+
       &__sup {
         text-align: center;
         margin-top: 44px;
@@ -2076,6 +2094,8 @@ header {
         @include mq-down(tb) {
           margin-top: 24px;
         }
+
+
 
         p {
           background-color: #fff;
@@ -2155,7 +2175,7 @@ header {
       top: 0;
       margin: 0 calc(50% - 50vw);
       width: 100vw;
-      padding: 80px 0 40px;
+      padding: 50px 0;
     }
 
     @include mq-down(tb) {
@@ -2171,7 +2191,7 @@ header {
         content: "";
         width: 855px;
         height: 73px;
-        background-image: url(../images/holl-ttl_sp.png);
+        background-image: url(../images/hole-ttl_sp.png);
         background-size: 100%;
         background-position: center;
         background-repeat: no-repeat;
@@ -2203,7 +2223,7 @@ header {
       display: flex;
       justify-content: center;
       align-items: center;
-      background-image: url(../images/holl-bk01.png);
+      background-image: url(../images/hole-bk01.png);
       background-size: 100%;
       background-position: center;
       background-repeat: no-repeat;
@@ -2222,18 +2242,18 @@ header {
       }
     }
 
-    .holl__item {
+    .hole__item {
       &--01 {
         top: 40px;
         left: 0;
-        background-image: url(../images/holl-bk.png);
+        background-image: url(../images/hole-bk.png);
         background-size: 100%;
         background-position: left;
         width: 670px;
         justify-content: end;
 
         @include mq-down(md) {
-          background-image: url(../images/holl-bk01.png);
+          background-image: url(../images/hole-bk01.png);
           width: 340px;
           justify-content: center;
         }
@@ -2255,7 +2275,7 @@ header {
       &--02 {
         top: 0;
         right: 152px;
-        background-image: url(../images/holl-bk02.png);
+        background-image: url(../images/hole-bk02.png);
 
         @include mq-down(lg) {
           top: 144px;
@@ -2266,7 +2286,7 @@ header {
       &--03 {
         top: 95px;
         right: 0;
-        background-image: url(../images/holl-bk03.png);
+        background-image: url(../images/hole-bk03.png);
 
         @include mq-down(lg) {
           top: 264px;
@@ -2277,7 +2297,7 @@ header {
       &--04 {
         bottom: 30px;
         right: 143px;
-        background-image: url(../images/holl-bk01.png);
+        background-image: url(../images/hole-bk01.png);
 
         @include mq-down(lg) {
           bottom: 0;
@@ -2289,7 +2309,7 @@ header {
       &--05 {
         bottom: 0;
         right: 440px;
-        background-image: url(../images/holl-bk03.png);
+        background-image: url(../images/hole-bk03.png);
 
         @include mq-down(lg) {
           bottom: 80px;
@@ -2301,7 +2321,7 @@ header {
       &--06 {
         bottom: 63px;
         left: 80px;
-        background-image: url(../images/holl-bk02.png);
+        background-image: url(../images/hole-bk02.png);
 
         @include mq-down(lg) {
           bottom: 196px;
@@ -2544,13 +2564,16 @@ header {
           @include mq-down(lg) {
             width: 75%;
           }
+
           @include mq-down(md) {
             width: 100%;
           }
+
           li {
             @include mq-down(lg) {
               width: 33%;
             }
+
             @include mq-down(md) {
               width: 47%;
             }
@@ -2721,6 +2744,16 @@ header {
             &:nth-child(1) {
               .story-list__unit {
                 width: 90%;
+
+                @include mq-down(lg) {
+                  width: 86%;
+                }
+              }
+
+              .story-list__item {
+                padding: 16px 0px;
+                @include fontSize(17, 13, 1.5, 1.5);
+                @include letterSpacing(75, 50);
               }
             }
 
@@ -3003,7 +3036,7 @@ header {
 
     &__about {
       padding-bottom: 56px;
-      width: 54%;
+      width: 56%;
       position: relative;
 
       @include mq-down(lg) {
@@ -3050,6 +3083,7 @@ header {
       }
 
       &.on {
+
         &::after,
         &::before {
           animation: fadeIn 0.5s linear;
@@ -4356,17 +4390,10 @@ header {
     }
   }
 
-  .container__tball {
-    @include mq-down(md) {
-      padding: 0 5%;
-    }
-  }
-
   &__inner {
     display: flex;
     justify-content: space-between;
-
-    @include mq-down(md) {
+    @media screen and (max-width: 980px) {
       display: block;
     }
   }
@@ -4374,10 +4401,11 @@ header {
   &__ttl {
     max-width: 21.25%;
 
-    @include mq-down(md) {
+    @media screen and (max-width: 980px) {
       max-width: 100%;
       padding-left: 5%;
     }
+
 
     .section-ttl__en {
       width: 126px;
@@ -4410,10 +4438,15 @@ header {
     width: 100%;
     counter-reset: flow-counter;
 
-    @include mq-down(md) {
+    @media screen and (max-width: 980px) {
       max-width: 100%;
       margin-top: 24px;
     }
+
+    // @include mq-down(md) {
+    //   max-width: 100%;
+    //   margin-top: 24px;
+    // }
 
     .flow-item {
       margin: 0 23% 0 auto;
