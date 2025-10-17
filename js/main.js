@@ -323,6 +323,8 @@ function initSwiperMain() {
         centeredSlides: true,
         spaceBetween: -10, // 左右10pxかぶせる
         speed: 1000,
+        simulateTouch: true,
+        allowTouchMove: true,
         autoplay: {
           delay: 2000,
           disableOnInteraction: false,
@@ -352,7 +354,6 @@ function initSwiperPoints() {
   if (winW2 <= 649) {
     if (!mySwiper2) {
       mySwiper2 = new Swiper(".points-swiper", {
-        // loop: true,
         slidesPerView: "auto",
         centeredSlides: true,
         spaceBetween: -10,

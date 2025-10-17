@@ -1815,7 +1815,6 @@ header .header-menu__link .header-link__img--plane {
   width: 100%;
   background: #2f5f98;
   z-index: -10;
-  position: relative;
   margin-top: 2px;
 }
 .hole__box {
