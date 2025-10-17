@@ -972,15 +972,20 @@ header {
     background-position: center;
     background-repeat: no-repeat;
     margin: 0 auto;
+    overflow: hidden;
 
     @include mq-down(xl) {
       overflow: hidden;
       background-size: cover;
+      height: 76%;
     }
 
-    @include mq-down(lg) {
-      width: 100vw;
-      height: auto;
+    @include mq-down(xl) {
+      height: 880px;
+    }
+
+    @include mq-down(md) {
+      height: 736px;
     }
 
     @include mq-down(tb) {
@@ -1193,8 +1198,16 @@ header {
     width: 38.89%;
     height: 100%;
 
+    @include mq-down(xl) {
+      width: 40%;
+    }
+
     @include mq-down(lg) {
-      width: 42%;
+      width: 48%;
+    }
+
+    @include mq-down(md) {
+      position: relative;
     }
 
     @include mq-down(tb) {
@@ -1211,11 +1224,14 @@ header {
     padding-top: 16%;
 
     @include mq-down(md) {
-      padding-top: 0;
+      width: 336px;
+      position: absolute;
+      right: 0;
     }
 
     @include mq-down(tb) {
       padding-top: 13%;
+      width: 100%;
     }
 
     &::after {
@@ -1231,10 +1247,6 @@ header {
       background-position: center;
       background-repeat: no-repeat;
       opacity: 0;
-
-      @include mq-down(md) {
-      top: -40px;
-    }
 
       @include mq-down(tb) {
         width: 20%;
