@@ -276,6 +276,7 @@ body {
   @include Zenkaku();
   @include fontSize(16, 16, 1.6, 1.6);
   position: relative;
+  overflow-x: hidden;
 
   img {
     width: 100%;
@@ -975,12 +976,10 @@ header {
     overflow: hidden;
 
     @include mq-down(xl) {
-      overflow: hidden;
       background-size: cover;
-      height: 76%;
     }
 
-    @include mq-down(xl) {
+    @include mq-down(lg) {
       height: 880px;
     }
 
@@ -1127,7 +1126,7 @@ header {
       background: $accentColor;
       transform-origin: right 25px;
       z-index: 2;
-      animation: rotate-circle-left 5s linear infinite;
+      animation: none; // デフォルトはアニメなし
     }
 
     &::after {
@@ -1141,7 +1140,15 @@ header {
       background: $accentColor;
       transform-origin: left 25px;
       z-index: 3;
-      animation: rotate-circle-right 5s linear infinite;
+      animation: none; // デフォルトはアニメなし
+    }
+
+    &.circle-animate::before {
+      animation: rotate-circle-left 5s linear forwards;
+    }
+
+    &.circle-animate::after {
+      animation: rotate-circle-right 5s linear forwards;
     }
 
     @keyframes rotate-circle-right {
@@ -1775,6 +1782,11 @@ header {
       right: 0;
       top: 80px;
 
+      @include mq-down(md) {
+        top: 48px;
+        right: 16px;
+      }
+
       @include mq-down(tb) {
         width: 85px;
         height: 85px;
@@ -1816,6 +1828,8 @@ header {
 
     @include mq-down(md) {
       margin-left: 10%;
+      font-size: 23px;
+      line-height: 1;
     }
 
     @include mq-down(tb) {
@@ -1835,7 +1849,7 @@ header {
       &:nth-child(2) {
         padding-top: 6px;
 
-        @include mq-down(tb) {
+        @include mq-down(md) {
           padding-top: 3px;
         }
       }

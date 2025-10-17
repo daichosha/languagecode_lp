@@ -165,6 +165,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   position: relative;
+  overflow-x: hidden;
 }
 @media screen and (max-width: 649px) {
   body {
@@ -961,12 +962,10 @@ header .header-menu__link .header-link__img--plane {
 }
 @media screen and (max-width: 1365px) {
   .mv__bg {
-    overflow: hidden;
     background-size: cover;
-    height: 76%;
   }
 }
-@media screen and (max-width: 1365px) {
+@media screen and (max-width: 1099px) {
   .mv__bg {
     height: 880px;
   }
@@ -1141,7 +1140,7 @@ header .header-menu__link .header-link__img--plane {
   background: #fbca41;
   transform-origin: right 25px;
   z-index: 2;
-  animation: rotate-circle-left 5s linear infinite;
+  animation: none;
 }
 .mv__circle::after {
   content: "";
@@ -1154,7 +1153,13 @@ header .header-menu__link .header-link__img--plane {
   background: #fbca41;
   transform-origin: left 25px;
   z-index: 3;
-  animation: rotate-circle-right 5s linear infinite;
+  animation: none;
+}
+.mv__circle.circle-animate::before {
+  animation: rotate-circle-left 5s linear forwards;
+}
+.mv__circle.circle-animate::after {
+  animation: rotate-circle-right 5s linear forwards;
 }
 @keyframes rotate-circle-right {
   0% {
@@ -1818,6 +1823,12 @@ header .header-menu__link .header-link__img--plane {
   right: 0;
   top: 80px;
 }
+@media screen and (max-width: 829px) {
+  .holl__box::before {
+    top: 48px;
+    right: 16px;
+  }
+}
 @media screen and (max-width: 649px) {
   .holl__box::before {
     width: 85px;
@@ -1873,6 +1884,8 @@ header .header-menu__link .header-link__img--plane {
 @media screen and (max-width: 829px) {
   .holl__point {
     margin-left: 10%;
+    font-size: 23px;
+    line-height: 1;
   }
 }
 @media screen and (max-width: 649px) {
@@ -1894,7 +1907,7 @@ header .header-menu__link .header-link__img--plane {
 .holl__point span:nth-child(2) {
   padding-top: 6px;
 }
-@media screen and (max-width: 649px) {
+@media screen and (max-width: 829px) {
   .holl__point span:nth-child(2) {
     padding-top: 3px;
   }
