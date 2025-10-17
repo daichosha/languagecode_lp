@@ -957,17 +957,23 @@ header .header-menu__link .header-link__img--plane {
   background-position: center;
   background-repeat: no-repeat;
   margin: 0 auto;
+  overflow: hidden;
 }
 @media screen and (max-width: 1365px) {
   .mv__bg {
     overflow: hidden;
     background-size: cover;
+    height: 76%;
   }
 }
-@media screen and (max-width: 1099px) {
+@media screen and (max-width: 1365px) {
   .mv__bg {
-    width: 100vw;
-    height: auto;
+    height: 880px;
+  }
+}
+@media screen and (max-width: 829px) {
+  .mv__bg {
+    height: 736px;
   }
 }
 @media screen and (max-width: 649px) {
@@ -1195,9 +1201,19 @@ header .header-menu__link .header-link__img--plane {
   width: 38.89%;
   height: 100%;
 }
+@media screen and (max-width: 1365px) {
+  .mv__catch {
+    width: 40%;
+  }
+}
 @media screen and (max-width: 1099px) {
   .mv__catch {
-    width: 42%;
+    width: 48%;
+  }
+}
+@media screen and (max-width: 829px) {
+  .mv__catch {
+    position: relative;
   }
 }
 @media screen and (max-width: 649px) {
@@ -1215,12 +1231,15 @@ header .header-menu__link .header-link__img--plane {
 }
 @media screen and (max-width: 829px) {
   .mv__img {
-    padding-top: 0;
+    width: 336px;
+    position: absolute;
+    right: 0;
   }
 }
 @media screen and (max-width: 649px) {
   .mv__img {
     padding-top: 13%;
+    width: 100%;
   }
 }
 .mv__img::after {
@@ -1236,11 +1255,6 @@ header .header-menu__link .header-link__img--plane {
   background-position: center;
   background-repeat: no-repeat;
   opacity: 0;
-}
-@media screen and (max-width: 829px) {
-  .mv__img::after {
-    top: -40px;
-  }
 }
 @media screen and (max-width: 649px) {
   .mv__img::after {
