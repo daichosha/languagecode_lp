@@ -118,23 +118,26 @@ $(function () {
 $(function () {
   if ($(window).width() <= 650) {
     const $items = $(".mv__text-inner li");
+    const $circle = $(".mv__circle");
     let index = 0;
-    const duration = 5000; // 4秒
-    setTimeout(function () {
-      $(".mv__img").addClass("on");
-    }, 2000); // 2秒後
+    const duration = 5000; // 5秒
+    const animationDuration = 5000; // 円のアニメーション時間
 
-    // 最初の要素を表示
+    // 初回表示
     $items.eq(index).addClass("sp-on");
+    $circle.addClass("circle-animate");
 
-    // 次の要素に切り替え続けるループ
     setInterval(function () {
       const nextIndex = (index + 1) % $items.length;
 
-      // 現在→次を一度に切り替え（同時にクラス更新）
+      // テキスト切り替え
       $items.removeClass("sp-on").eq(nextIndex).addClass("sp-on");
 
-      // インデックス更新
+      // 円アニメーションをリセットして再スタート
+      $circle.removeClass("circle-animate");
+      void $circle[0].offsetWidth; // 強制リフローで再描画
+      $circle.addClass("circle-animate");
+
       index = nextIndex;
     }, duration);
   }
