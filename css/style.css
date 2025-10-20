@@ -1722,6 +1722,8 @@ header .header-menu__link .header-link__img--plane {
   color: #444444;
   font-size: 20px;
   line-height: 1.5;
+  position: relative;
+  z-index: 2;
 }
 @media screen and (max-width: 649px) {
   .hole .hole-ttl {
@@ -5294,4 +5296,4 @@ footer .copyright {
     font-size: 10px;
     line-height: 1;
   }
-}
+}/*# sourceMappingURL=style.css.map */

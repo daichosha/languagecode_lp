@@ -29,7 +29,7 @@ $breakpoint-up: (
   "md": "screen and (min-width: 830px)",
   "lg": "screen and (min-width: 1100px)",
   "xl": "screen and (min-width: 1366px)",
-  ) !default;
+) !default;
 
 // max-width
 $breakpoint-down: (
@@ -39,7 +39,7 @@ $breakpoint-down: (
   "md": "screen and (max-width: 829px)",
   "lg": "screen and (max-width: 1099px)",
   "xl": "screen and (max-width: 1365px)",
-  ) !default;
+) !default;
 
 // @mixinの定義
 @mixin mq-up($breakpoint: tb) {
@@ -128,8 +128,7 @@ $breakpoint-down: (
 /* サイト設計 */
 
 // フォントタイプ/
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:wght@800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap"
-);
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Montserrat:wght@800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap");
 
 //font-familyここから
 @mixin Zenkaku($weight: bold) {
@@ -138,9 +137,7 @@ $breakpoint-down: (
 
   @if $weight ==medium {
     font-weight: 500;
-  }
-
-  @else if $weight ==bold {
+  } @else if $weight ==bold {
     font-weight: 700;
   }
 }
@@ -152,9 +149,7 @@ $breakpoint-down: (
 
   @if $weight ==regular {
     font-weight: 400;
-  }
-
-  @else if $weight ==bold {
+  } @else if $weight ==bold {
     font-weight: 700;
   }
 }
@@ -188,7 +183,6 @@ $letterSpacing: 50;
 
 // xdの数値をそのまま入力するletter-spacing
 @mixin letterSpacing($letterSpacing: $letterSpacing, $letterSpacing_tb: $letterSpacing) {
-
   // 親プロパティはネストより上
   & {
     letter-spacing: calc(#{math.div($letterSpacing, 1000)} * 1em);
@@ -1357,7 +1351,6 @@ header {
     width: 100%;
     padding: 0 5%;
   }
-
 }
 
 .section-ttl {
@@ -1623,9 +1616,7 @@ header {
             rotate: (6deg);
             max-width: 310px;
           }
-
         }
-
       }
     }
   }
@@ -1666,8 +1657,6 @@ header {
         rotate: (-3deg);
         max-width: 232px;
       }
-
-
 
       @include mq-down(tb) {
         // padding-top: 1px;
@@ -1721,6 +1710,8 @@ header {
     color: $fontColor;
     @include fontSize(20, 18, 1.5, 1);
     @include letterSpacing(50, 80);
+    position: relative;
+    z-index: 2;
 
     &__top {
       display: flex;
@@ -1744,8 +1735,6 @@ header {
           width: 257px;
         }
       }
-
-
     }
 
     &__bottom {
@@ -2129,7 +2118,6 @@ header {
         }
       }
 
-
       &__sup {
         text-align: center;
         margin-top: 44px;
@@ -2139,8 +2127,6 @@ header {
         @include mq-down(tb) {
           margin-top: 24px;
         }
-
-
 
         p {
           background-color: #fff;
@@ -3128,7 +3114,6 @@ header {
       }
 
       &.on {
-
         &::after,
         &::before {
           animation: fadeIn 0.5s linear;
@@ -4451,7 +4436,6 @@ header {
       max-width: 100%;
       padding-left: 5%;
     }
-
 
     .section-ttl__en {
       width: 126px;
