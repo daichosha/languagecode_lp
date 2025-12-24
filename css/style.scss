@@ -2712,6 +2712,7 @@ header {
         background: rgba(159, 98, 184, 0.1);
 
         .story-list {
+          pointer-events: auto;
           &__outer {
             border: solid 2px #9f62b8;
             color: #9f62b8;
@@ -3033,6 +3034,7 @@ header {
       display: flex;
       justify-content: left;
       align-items: center;
+      pointer-events: auto;
 
       @include mq-down(lg) {
         right: 0;
@@ -3060,6 +3062,10 @@ header {
           height: 16px;
           margin-top: 4px;
         }
+      }
+
+      a {
+        pointer-events: auto;
       }
     }
 
