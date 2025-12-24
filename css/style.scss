@@ -2699,6 +2699,12 @@ header {
                 background-color: #ecf8f0;
               }
             }
+
+            a {
+              &:hover {
+                color: #43b771;
+              }
+            }
           }
 
           &__navcap {
@@ -2804,6 +2810,12 @@ header {
             li {
               @include mq-down(md) {
                 background-color: #f5eff8;
+              }
+            }
+
+            a {
+              &:hover {
+                color: #9f62b8;
               }
             }
           }
@@ -3642,7 +3654,7 @@ header {
         @include letterSpacing(50);
         position: relative;
         width: fit-content;
-        margin: 0 auto 8px auto;
+        margin: 0 auto 12px auto;
 
         @include mq-down(lg) {
           @include fontSize(18, 14);
